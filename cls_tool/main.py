@@ -5,6 +5,7 @@ Fetches CLS telegraph news and generates AI-powered morning briefing.
 
 import sys
 import os
+import re
 from datetime import datetime, timedelta
 
 from config import (
@@ -162,7 +163,7 @@ def main():
 
     # 5. Build analysis prompt
     print("[INFO] 正在构建分析提示词...")
-    prompt = build_analysis_prompt(items, start_dt, end_dt, idx_data=idx_data)
+    prompt, prompt_items = build_analysis_prompt(items, start_dt, end_dt, idx_data=idx_data)
 
     # 6. AI Analysis via DeepSeek
     print("[INFO] 正在调用 DeepSeek API 生成分析...")
@@ -188,6 +189,18 @@ def main():
         analysis = normalize(analysis, date_display, weekday_str, trading_note)
     except Exception as e:
         print(f"[WARN] Markdown规范化失败: {e}")
+
+    # 6.6 Append pre-generated full telegraph table (not relying on AI)
+    print("[INFO] 正在生成全量电报列表...")
+    try:
+        from prompt_builder import build_full_telegraph_table
+        full_table = build_full_telegraph_table(prompt_items)
+        # Strip any existing telegram table section that AI might have output
+        analysis = re.sub(r'\n*##\s+三、全量电报列表[^\n]*.*', '', analysis, flags=re.DOTALL)
+        analysis = analysis.rstrip() + '\n\n' + full_table + '\n'
+        print(f"[INFO] 全量电报列表已生成: {len(prompt_items)} 条")
+    except Exception as e:
+        print(f"[WARN] 全量电报列表生成失败: {e}")
 
     # 7. Write report
     output_path = write_report(analysis, date_str, OUTPUT_DIR)

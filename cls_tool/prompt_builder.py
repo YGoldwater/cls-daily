@@ -11,6 +11,32 @@ def _fmt_ts(ts: int) -> str:
     return datetime.fromtimestamp(ts).strftime("%H:%M")
 
 
+def build_full_telegraph_table(items: list[dict]) -> str:
+    """Generate the complete telegraph table in markdown (NOT via AI).
+    Sorted by level (S>A>B>C) then by share_num+comment_num descending.
+    Returns the full markdown table block ready to append."""
+    level_order = {'S': 0, 'A': 1, 'B': 2, 'C': 3}
+    sorted_items = sorted(items, key=lambda x: (
+        level_order.get(x.get('level', 'C'), 3),
+        -(x.get('share_num', 0) + x.get('comment_num', 0))
+    ))
+
+    lines = [
+        '## 三、全量电报列表（精简）',
+        '| 序号 | 时间 | Lv | 分享 | 评论 | 内容摘要40字 |',
+        '|------|------|----|------|------|-------------|',
+    ]
+    for i, item in enumerate(sorted_items, 1):
+        ctime = _fmt_ts(item.get("ctime", 0))
+        level = item.get("level", "C")
+        share_num = item.get("share_num", 0)
+        comment_num = item.get("comment_num", 0)
+        content = item.get("content", "")[:40].replace("\n", " ").replace("|", " ").replace("\\", "")
+        lines.append(f"| {i} | {ctime} | {level} | {share_num} | {comment_num} | {content} |")
+
+    return '\n'.join(lines)
+
+
 def _format_item_compact(item: dict, idx: int) -> str:
     """Compact single-line format to save tokens."""
     level = item.get("level", "C")
@@ -134,16 +160,10 @@ def build_analysis_prompt(
 - **券商研报视角**: 是否有卖方覆盖，主流观点和预期差在哪
 - **持续性判断**: 一日游 / 3-5天事件驱动 / 中期主线 / 长期赛道
 
-### 三、全量电报列表（精简）
-**【强制】必须输出完整表格，包含全部{len(items)}条电报，禁止使用"篇幅限制略"等占位文本。**
-按综合重要度排列（等级优先，分享数和评论数作为热度参考）：
-| 序号 | 时间 | Lv | 分享 | 评论 | 内容摘要40字 |
-|------|------|----|------|------|-------------|
-
 ---
 ## 电报数据
 
 {all_news}
 {rest_table}
 """
-    return prompt
+    return prompt, items  # return items so caller can build full table

@@ -244,6 +244,14 @@ def _normalize_risk_items(text: str) -> str:
 
 
 
+def _split_table_cells(line: str) -> list:
+    """Split a markdown table row by | but respect escaped pipes (\|)."""
+    placeholder = '\x00PIPE\x00'
+    line = line.replace('\\|', placeholder)
+    cells = [c.strip().replace(placeholder, '|') for c in line.split('|')]
+    return [c for c in cells if c.strip()]
+
+
 def _fix_table_column_count(text: str, table_start: int) -> str:
     """Merge extra columns into the last content column when rows have more cells than header."""
     lines = text[table_start:].split('\n')
@@ -255,7 +263,7 @@ def _fix_table_column_count(text: str, table_start: int) -> str:
     for line in lines:
         stripped = line.strip()
         if stripped.startswith('|') and '---' in stripped:
-            parts = [p for p in stripped.split('|') if p.strip()]
+            parts = _split_table_cells(stripped)
             expected_cols = len(parts)
             break
 
@@ -266,8 +274,8 @@ def _fix_table_column_count(text: str, table_start: int) -> str:
             fixed_lines.append(line)
             continue
 
-        parts = [p for p in stripped.split('|')]
-        inner = [p.strip() for p in parts[1:-1]] if len(parts) > 1 else []
+        # Use cell-aware split to handle escaped pipes
+        inner = _split_table_cells(stripped)
 
         # Header and separator rows: keep as-is
         if '---' in stripped or any(k in stripped for k in ['序号', '内容']):

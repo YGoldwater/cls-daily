@@ -226,6 +226,14 @@ body {
 """
 
 
+def _split_table_cells(line: str) -> list:
+    """Split a markdown table row by | but respect escaped pipes (backslash-pipe)."""
+    placeholder = '\x00PIPE\x00'
+    line = line.replace('\\|', placeholder)
+    cells = [c.strip().replace(placeholder, '|') for c in line.split('|')]
+    return [c for c in cells if c.strip()]
+
+
 def md_to_html(md_path: str, html_path: str = None):
     with open(md_path, 'r', encoding='utf-8') as f:
         md = f.read()
@@ -388,7 +396,7 @@ def _convert_md_body(md: str, date_str: str = '') -> str:
                 out.append(f'<table class="{tbl_class}">')
 
                 # Header
-                cells = [c.strip() for c in data_lines[0].split('|') if c.strip()]
+                cells = _split_table_cells(data_lines[0])
                 out.append('<thead><tr>')
                 for c in cells:
                     cls = 'th-important' if '核心影响' in c else ''
@@ -399,7 +407,7 @@ def _convert_md_body(md: str, date_str: str = '') -> str:
                 out.append('<tbody>')
                 is_telegram = tbl_class == 'telegram-table'
                 for dl in data_lines[1:]:
-                    cells = [c.strip() for c in dl.split('|') if c.strip()]
+                    cells = _split_table_cells(dl)
                     if not cells:
                         continue
                     out.append('<tr>')
