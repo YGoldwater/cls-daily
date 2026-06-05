@@ -245,7 +245,7 @@ def _normalize_risk_items(text: str) -> str:
 
 
 def _split_table_cells(line: str) -> list:
-    """Split a markdown table row by | but respect escaped pipes (\|)."""
+    """Split a markdown table row by | but respect escaped pipes (backslash-pipe)."""
     placeholder = '\x00PIPE\x00'
     line = line.replace('\\|', placeholder)
     cells = [c.strip().replace(placeholder, '|') for c in line.split('|')]
