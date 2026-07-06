@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLS 早报</title>
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+    background: #f4f5f7;
+    color: #1a1a2e;
+    line-height: 1.6;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 30px 24px; }
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff; padding: 30px 36px; border-radius: 8px; margin-bottom: 24px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; letter-spacing: 1px; }
+.header .meta { font-size: 13px; opacity: 0.85; margin-top: 10px; }
+.header .meta span { margin-right: 20px; }
+.header .verdict {
+    margin-top: 18px; padding: 14px 18px; background: rgba(255,255,255,0.1);
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 14px; line-height: 1.7;
+}
+
+/* Core verdict banner */
+.verdict-banner {
+    background: #fff5f5; padding: 16px 20px; border-radius: 8px;
+    border-left: 4px solid #e94560; margin: 12px 0 20px;
+    font-size: 18px; line-height: 1.8; color: #e94560;
+    box-shadow: 0 1px 6px rgba(233,69,96,0.1);
+}
+
+/* Verdict section (## 核心判断) */
+.verdict-section {
+    background: #fff; border-radius: 8px; padding: 24px 28px;
+    margin: 16px 0 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    border-top: 4px solid #e94560;
+}
+.verdict-section .section-title {
+    border-bottom: none; margin-top: 0; margin-bottom: 14px;
+    color: #e94560; font-size: 22px;
+}
+.verdict-content p { font-size: 15px; line-height: 1.8; margin: 6px 0; }
+.verdict-content strong { color: #0f3460; }
+.verdict-content ul, .verdict-content ol { margin: 8px 0 8px 20px; font-size: 15px; line-height: 1.7; }
+.verdict-content li { margin-bottom: 4px; }
+
+/* Section titles */
+.section-title {
+    font-size: 20px; font-weight: 700; color: #0f3460;
+    border-bottom: 3px solid #e94560; padding-bottom: 8px;
+    margin: 28px 0 16px;
+}
+
+/* Ranking table */
+.rank-table {
+    width: 100%; border-collapse: collapse; margin: 16px 0 24px;
+    background: #fff; border-radius: 8px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); font-size: 14px;
+}
+.rank-table thead th {
+    background: #0f3460; color: #fff; padding: 10px 10px;
+    font-weight: 600; text-align: center; font-size: 13px;
+}
+.rank-table thead th.th-important {
+    color: #ff6b6b; font-size: 15px; font-weight: 800;
+}
+.rank-table tbody td {
+    padding: 8px 10px; border-bottom: 1px solid #eee;
+    text-align: center; vertical-align: middle;
+}
+.rank-table tbody tr:hover { background: #f8f9ff; }
+.rank-table .rank-num { font-weight: 700; color: #e94560; font-size: 16px; }
+.rank-table .title-col { text-align: left; font-weight: 500; }
+.rank-table .impact-col { text-align: left; font-size: 14px; color: #444; max-width: 400px; }
+.rank-table .stars { color: #f5a623; white-space: nowrap; font-size: 14px; letter-spacing: 1px; }
+
+/* Analysis card */
+.analysis-card {
+    background: #fff; border-radius: 8px; padding: 22px 28px;
+    margin: 16px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    border-top: 4px solid #e94560;
+}
+.analysis-card .card-title {
+    font-size: 17px; font-weight: 700; color: #1a1a2e; margin-bottom: 12px;
+}
+.analysis-card .card-level {
+    display: inline-block; padding: 3px 10px; border-radius: 3px;
+    font-size: 16px; font-weight: 800; color: #e94560;
+    background: #fff5f5; border: 1px solid #e94560;
+    margin-right: 4px;
+}
+.analysis-card .card-meta {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 10px;
+    font-size: 13px; color: #777;
+    line-height: 1.4;
+}
+.analysis-card .card-meta-inline {
+    display: inline-block; margin-right: 18px; margin-bottom: 8px;
+    font-size: 13px; color: #777; line-height: 1.4;
+}
+.analysis-card .card-meta .stars { color: #f5a623; font-size: 16px; }
+.analysis-card .logic {
+    background: #fff8f0; padding: 12px 16px; border-radius: 6px;
+    font-size: 14px; color: #8b4513; margin-bottom: 14px;
+    border-left: 3px solid #f5a623;
+}
+.analysis-card h4 {
+    font-size: 15px; font-weight: 700; color: #0f3460;
+    margin: 10px 0 4px; padding-bottom: 2px; border-bottom: 1px dashed #ddd;
+    line-height: 1.4;
+}
+.analysis-card h4.perspective-domestic {
+    color: #c0392b; border-bottom-color: #e94560; font-size: 17px;
+}
+.analysis-card h4.perspective-intl {
+    color: #0e8c6a; border-bottom-color: #0e8c6a; font-size: 17px;
+}
+/* When a perspective h4 is immediately followed by another h4, make it inline */
+.analysis-card h4.perspective-domestic + h4,
+.analysis-card h4.perspective-intl + h4 {
+    margin-top: 0; padding-top: 0; border-top: none;
+}
+.analysis-card h4.perspective-domestic + h4::before {
+    content: 'B8  ';
+    color: #c0392b;
+}
+.analysis-card h4.perspective-intl + h4::before {
+    content: 'B8  ';
+    color: #0e8c6a;
+}
+.analysis-card ul { margin: 4px 0 8px 18px; font-size: 14px; line-height: 1.5; }
+.analysis-card ul li { margin-bottom: 2px; }
+.bull { color: #e94560; font-weight: 600; }
+.bear { color: #2ecc71; font-weight: 600; }
+
+/* Sector tags */
+.tag { display: inline-block; padding: 2px 8px; border-radius: 3px;
+    font-size: 11px; font-weight: 600; margin-right: 4px; }
+.tag-a { background: #ffe0e0; color: #c0392b; }
+.tag-b { background: #fff3cd; color: #856404; }
+.tag-c { background: #e8e8e8; color: #555; }
+
+/* Emotion section */
+.emotion-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px; margin: 16px 0;
+}
+.emotion-item {
+    background: #fff; padding: 18px 20px; border-radius: 8px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+}
+.emotion-item .label { font-size: 11px; color: #999; text-transform: uppercase; }
+.emotion-item .value { font-size: 16px; font-weight: 700; color: #0f3460; margin-top: 4px; }
+
+/* Risk list */
+.risk-list { list-style: none; }
+.risk-list li {
+    padding: 10px 14px; margin: 6px 0; background: #fff5f5;
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 13px;
+}
+.risk-list li::before { content: '⚠ '; }
+
+.risk-item {
+    padding: 6px 12px; margin: 3px 0; background: #fff5f5;
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 13px; line-height: 1.5;
+}
+.risk-heading {
+    font-size: 15px; font-weight: 800; color: #e94560;
+    margin: 10px 0 4px;
+}
+
+/* Full telegram table */
+.telegram-table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    background: #fff; border-radius: 6px; overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+}
+.telegram-table thead th {
+    background: #16213e; color: #fff; padding: 10px 8px;
+    font-weight: 500; font-size: 12px;
+}
+.telegram-table thead th:first-child { width: 42px; }
+.telegram-table thead th:nth-child(2) { width: 48px; }
+.telegram-table thead th:nth-child(3) { width: 38px; }
+.telegram-table thead th:nth-child(4) { width: 48px; }
+.telegram-table thead th:nth-child(5) { width: 48px; }
+.telegram-table thead th:last-child { width: auto; }
+.telegram-table tbody td {
+    padding: 5px 8px; border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+.telegram-table tbody td:first-child,
+.telegram-table tbody td:nth-child(2),
+.telegram-table tbody td:nth-child(3),
+.telegram-table tbody td:nth-child(4),
+.telegram-table tbody td:nth-child(5) {
+    text-align: center;
+}
+.telegram-table tbody td:last-child {
+    text-align: left; white-space: normal; word-break: break-all;
+}
+.telegram-table tbody tr:nth-child(even) { background: #fafafa; }
+.telegram-table .lv-S { background: #c0392b; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-A { background: #e74c3c; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-B { background: #f39c12; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-C { background: #bbb; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+
+.footer {
+    text-align: center; margin-top: 40px; padding: 20px;
+    color: #999; font-size: 12px; border-top: 1px solid #eee;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header"><h1>每日早报深度分析：2026年07月06日（周一）交易日</h1></div>
+
+<div class="verdict-section">
+<h2 class="section-title" style="margin-top:0">核心判断</h2>
+<div class="verdict-content">
+<p>*   <strong>一句话定调</strong>: 今日市场主线是“科技业绩兑现”与“宏观预期修复”的双轮驱动，但结构分化加剧，资金从泛科技向确定性业绩和低位补涨方向切换。</p>
+<p>*   <strong>3个关键信号</strong>:</p>
+<p>1.  <strong>华为“韬定律”V2.0发布</strong>：标志着国产半导体从理论追赶进入工程落地阶段，为国产算力链注入强心针，是今日科技股最重要的催化剂。</p>
+<p>2.  <strong>A股再融资规则改革</strong>：建立储架发行等制度，旨在优化融资生态，利好优质科创企业，但短期可能对市场流动性预期产生扰动。</p>
+<p>3.  <strong>韩国KOSPI指数大涨</strong>：亚太市场情绪回暖，叠加美联储加息预期降温，为A股提供了友好的外部环境，外资回流预期增强。</p>
+<p>*   <strong>策略一句话</strong>: 聚焦中报业绩超预期（化工、光纤、铝箔）和产业趋势确定性强的方向（国产算力、机器人、商业航天），回避纯概念炒作的高位股，利用市场情绪修复进行调仓换股。</p>
+</div></div>
+<h2 class="section-title">一、重要性排序总览</h2>
+<table class="rank-table">
+<thead><tr>
+<th class="">排名</th>
+<th class="">时间</th>
+<th class="">等级</th>
+<th class="">标题概述</th>
+<th class="">重要度</th>
+<th class="th-important">核心影响</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class=""><span class="rank-num">1</span></td>
+<td class="">08:20</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">华为半导体负责人何庭波发布“韬定律”V2.0版论文</td>
+<td class=""><span class="stars">★★★★★</span></td>
+<td class="impact-col">国产半导体从理论到工程落地的关键信号，重塑国产算力产业链估值</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">2</span></td>
+<td class="">06:42</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">证监会就完善上市公司再融资规则公开征求意见</td>
+<td class=""><span class="stars">★★★★★</span></td>
+<td class="impact-col">直击再融资痛点，优化融资生态，利好优质科创，影响市场流动性预期</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">3</span></td>
+<td class="">21:31</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">多家A股上市公司发布2026年半年度业绩预告</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">中报季正式开启，业绩成为市场核心主线，验证产业景气度</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">4</span></td>
+<td class="">08:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">韩国KOSPI指数涨幅扩大至2%</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">亚太市场情绪显著回暖，为A股提供积极外部环境，外资风向标</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">5</span></td>
+<td class="">07:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">现货黄金向上触及4200美元</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">全球避险情绪与通胀预期交织，对资源股和贵金属板块形成支撑</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">6</span></td>
+<td class="">06:20</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">上周逾百亿资金回流股票ETF，硬科技板块热度居高不下</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">资金借道ETF布局，显示对硬科技中长期看好，但需警惕短期拥挤</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">7</span></td>
+<td class="">07:28</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">中信建投：供需趋紧钠电放量，格局优异铝箔可期</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">明确看好铝箔涨价逻辑，叠加钠电池放量，细分赛道景气度确认</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">8</span></td>
+<td class="">06:23</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">电子布价格连涨，产业链上游高端织机紧缺</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">供给瓶颈导致涨价，利好国内电子布及上游设备国产替代企业</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">9</span></td>
+<td class="">07:52</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">科技部部长阴和俊：加快新能源、新材料等战略性新兴产业集群发展</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">最高层定调，为科技成长主线提供政策背书，强化市场信心</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">10</span></td>
+<td class="">22:23</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">我国成功发射千帆星座组网卫星</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">商业航天事件催化，验证组网进度，利好卫星制造和地面设备</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">11</span></td>
+<td class="">07:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">“油电同权”大幕拉开，新能源汽车产业步入市场驱动新阶段</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">政策补贴退出，行业进入市场化竞争，利好龙头和成本控制能力强的企业</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">12</span></td>
+<td class="">06:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">新型激光雷达可同时获取目标位置、速度与材料属性</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">技术突破，提升自动驾驶感知能力，利好激光雷达产业链</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">13</span></td>
+<td class="">07:27</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">借力科创板政策红利，量子计算愈发“吸金”</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">科创板政策支持，量子计算产业化加速，主题投资机会显现</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">14</span></td>
+<td class="">05:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">公募调研紧盯业绩兑现，医药板块关注程度提升</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">机构调仓动向，医药板块在经历调整后，性价比和关注度回升</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">15</span></td>
+<td class="">06:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">A股交易新规今起施行，券商配套更新风险揭示书</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">交易规则变化，影响部分品种流动性，投资者需适应新规</td>
+</tr>
+</tbody></table>
+
+<h2 class="section-title">二、TOP 15 重要新闻深度分析</h2>
+<div class="analysis-card">
+<div class="card-title">1. <span class="card-level">B级</span> 华为半导体负责人何庭波发布“韬定律”V2.0版论文</div>
+<div class="card-meta"><span class="stars">★★★★★</span> <span>⏰ 2026年07月06日 2026年07月06日 08:20</span></div>
+<div class="logic">从V1的理论框架到V2的工程细节与量化数据，标志着华为在“后摩尔时代”的半导体技术路径已从“纸上谈兵”进入“实战验证”阶段。这不仅是技术突破，更是对国产半导体产业链信心的巨大提振，意味着国产替代不再是口号，而是有具体路线图和量化指标的工程实践。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">对A股而言，这是国产算力链（芯片设计、制造、封测、设备、材料）的强心针。市场将从炒作“国产替代”概念，转向寻找能够率先落地“韬定律”相关工艺、设备或材料的公司。尤其利好与华为有深度合作、或在先进封装、Chiplet等领域有布局的企业。政策面看，这与此前科创板支持硬科技的政策导向完全吻合，有望吸引更多资金流入相关板块。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">在全球半导体竞争加剧的背景下，华为此举是对美国技术封锁的正面回应。它向全球展示了中国在半导体基础理论创新上的能力，可能改变外资对中国半导体产业“只能追赶、无法超越”的刻板印象。对于美股半导体公司而言，这意味着未来将面临一个更具技术实力的竞争对手。外资可能重新评估中国半导体产业链的长期投资价值，部分长期资本或开始战略性布局。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>国产算力/先进封装</strong>: 华为技术路线的落地需要先进的封装和互联技术 → 长电科技(600584), 通富微电(002156)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>半导体设备/材料</strong>: 新工艺需要新设备和新材料，国产替代空间打开 → 北方华创(002371), 中微公司(688012), 沪硅产业(688126)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于V2.0论文的技术细节是否足够“硬核”，以及哪些A股公司能真正受益。分歧点在于，这是短期主题炒作还是长期产业趋势的起点。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">多家券商已开始覆盖“后摩尔时代”投资机会，普遍认为Chiplet、先进封装、3D堆叠是确定性方向。预期差在于市场可能低估了该理论对成熟制程性能提升的指导意义。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线。从主题催化转向产业趋势验证，影响深远。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">2. <span class="card-level">B级</span> 证监会就完善上市公司再融资规则公开征求意见</div>
+<div class="card-meta"><span class="stars">★★★★★</span> <span>⏰ 2026年07月06日 2026年07月06日 06:42</span></div>
+<div class="logic">建立储架发行、优化小额快速、市价发行等六大改革，核心是提升再融资效率与灵活性，同时强化“扶优扶科”导向。这标志着A股融资生态从“规模扩张”向“质量优先”转变，是资本市场服务实体经济、支持科技创新的重要制度性利好。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">对A股而言，短期可能因供给增加预期而对市场流动性造成一定心理压力，尤其对大盘蓝筹股。但中长期看，利好真正有融资需求的优质科创企业，它们能以更低成本、更高效率获得发展资金。对券商投行业务是直接利好，尤其是项目储备丰富、定价能力强的头部券商。对ST股和绩差股是利空，因为再融资门槛提高，壳价值进一步下降。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">这是中国资本市场与国际接轨的重要一步。储架发行制度在美股等成熟市场已非常成熟，此举有助于吸引更多注重公司治理和融资效率的长期外资。同时，这也向全球投资者传递了中国政府持续深化资本市场改革的决心，有助于提升A股在全球资产配置中的吸引力。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>头部券商</strong>: 投行业务直接受益于再融资市场活跃度提升 → 中信证券(600030), 中金公司(601995)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>优质科创企业</strong>: 融资渠道畅通，加速研发和产业化进程 → 可关注科创板、创业板中研发投入高、成长性强的公司</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“储架发行”是否会引发大规模“抽血”，以及“市价发行”对定增参与方的利益影响。分歧在于短期利空还是长期利好。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">普遍解读为重大利好，认为这是继注册制改革后的又一里程碑事件。预期差在于市场可能低估了“小额快速”机制对中小市值公司的积极影响。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">长期制度红利，影响深远。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">3. <span class="card-level">B级</span> 多家A股上市公司发布2026年半年度业绩预告</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年07月06日 2026年07月05日 21:31</span></div>
+<div class="logic">中报季正式开启，业绩成为检验股价成色的试金石。永鼎股份（光纤量价齐升）、东方盛虹（石化行业供需改善）等公司的预增公告，直接揭示了当前高景气赛道，为市场提供了明确的业绩主线。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">市场将从“炒预期”转向“炒业绩”。资金将围绕业绩超预期、景气度持续向上的行业进行布局。光纤、石化、铝箔、部分化工品等周期行业，以及半导体设备等成长行业，业绩兑现概率高。同时，业绩不及预期的公司可能面临“双杀”，加剧市场分化。这为投资者提供了清晰的调仓换股信号。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">在全球经济面临不确定性背景下，中国部分制造业和周期行业展现出强劲的盈利韧性，这有助于增强全球投资者对中国资产的信心。例如，东方盛虹的业绩暴增反映了全球石化产业链的供需再平衡，而永鼎股份的增长则受益于全球数字化和AI带来的光纤需求。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>光纤光缆</strong>: 永鼎股份业绩验证行业高景气 → 永鼎股份(600105), 长飞光纤(601869)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>石化化工</strong>: 东方盛虹业绩暴增，行业拐点确认 → 东方盛虹(000301), 恒力石化(600346)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于业绩的可持续性，以及哪些公司能超预期。分歧在于周期股的业绩高点是否已现。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">券商普遍建议聚焦中报业绩高增长或超预期方向，认为这是7-8月最重要的交易主线。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线（7-8月）。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">4. <span class="card-level">C级</span> 韩国KOSPI指数涨幅扩大至2%</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年07月06日 2026年07月06日 08:07</span></div>
+<div class="logic">作为全球半导体和经济的“金丝雀”，韩国股市大涨是亚太乃至全球风险偏好回升的领先指标。这可能与美联储加息预期降温、韩国自身经济数据或政策利好有关，为A股开盘营造了积极的氛围。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">提振A股市场情绪，尤其是与韩国股市联动性强的半导体、电子等科技板块。外资通过陆股通流入A股的意愿增强，有助于支撑市场。同时，韩国股市的强势表现也可能带动国内投资者对相关产业链（如存储芯片、面板）的关注。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">韩国KOSPI大涨，叠加日经指数高开，显示亚太市场整体风险偏好回暖。这与美联储7月维持利率不变的高概率（77%）相呼应，全球流动性紧缩预期缓和。外资可能重新审视新兴市场，尤其是东亚市场的配置价值。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>半导体（存储/代工）</strong>: 与韩国产业链联动性强，情绪传导直接 → 兆易创新(603986), 中芯国际(688981)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>中韩贸易/合作</strong>: 双边贸易活跃度提升利好相关公司 → 可关注在韩国有业务布局的上市公司</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于韩国股市上涨的持续性，以及对A股的带动作用能有多大。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">通常作为市场情绪指标，分析师会关注其背后的驱动因素（如出口数据、科技股表现）。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">短期情绪驱动，持续性取决于后续催化剂。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">5. <span class="card-level">C级</span> 现货黄金向上触及4200美元</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年07月06日 2026年07月06日 07:29</span></div>
+<div class="logic">金价上涨是多重因素共振的结果：全球地缘政治风险（中东冲突、法国骚乱）、对通胀韧性的担忧、以及部分央行持续增持黄金。这反映了市场对“滞胀”或“衰退”风险的定价。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">直接利好A股黄金板块，提升相关公司盈利预期。同时，金价上涨也反映了市场避险情绪，可能对高估值成长股形成一定压力，资金或流向防御性板块。对于持有黄金矿企股票的投资者是直接利好。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">金价突破4200美元是重要的心理和技术关口。这与美联储降息预期反复、美元指数走弱（高盛下调日元汇率预测）以及全球央行“去美元化”趋势密切相关。外资可能增加对黄金ETF及相关股票的配置，作为对冲全球不确定性工具。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>黄金矿业</strong>: 直接受益于金价上涨，利润弹性大 → 紫金矿业(601899), 山东黄金(600547)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>黄金饰品/零售</strong>: 金价上涨带动产品价值提升，但需关注消费需求变化 → 老凤祥(600612)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于金价上涨的驱动力是避险还是通胀，以及能否持续创新高。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">多家券商看好黄金板块，认为在全球宏观不确定性背景下，黄金具备长期配置价值。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期趋势，受全球宏观变量驱动。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">6. <span class="card-level">C级</span> 上周逾百亿资金回流股票ETF，硬科技板块热度居高不下</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年07月06日 2026年07月06日 06:20</span></div>
+<div class="logic">资金在震荡市中逆势流入ETF，显示机构和个人投资者对后市的信心，尤其是对硬科技板块的长期看好。但“热度居高不下”也提示了交易拥挤的风险，资金正在从“泛科技”向“AI业绩兑现”集中。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">这是市场重要的资金面信号。ETF资金流入为相关板块提供了增量资金支撑，尤其是科创50、半导体等ETF。但这也意味着，一旦业绩不及预期，拥挤的交易可能引发踩踏。投资者应关注ETF资金流向的变化，作为判断市场风格切换的辅助指标。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">全球范围内，资金也在从AI概念股向有业绩支撑的硬件和应用公司转移。A股硬科技板块的吸金能力，反映了全球投资者对中国科技产业链，特别是半导体自主可控的长期信心。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>半导体/芯片ETF</strong>: 直接受益于资金流入 → 华夏国证半导体芯片ETF(159995), 国联安中证全指半导体ETF(512480)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>AI算力/光模块</strong>: 资金从“泛科技”向“业绩兑现”集中，利好已兑现业绩的龙头 → 中际旭创(300308), 天孚通信(300394)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于ETF资金流入的持续性，以及当前科技板块是否已经过热。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">分析师普遍关注ETF资金流向，认为这是市场结构性行情的重要推手，并提示关注交易拥挤度风险。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期趋势，但需警惕短期过热后的回调。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">7. <span class="card-level">C级</span> 中信建投：供需趋紧钠电放量，格局优异铝箔可期</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年07月06日 2026年07月06日 07:28</span></div>
+<div class="logic">明确指出了铝箔行业“小而美”的赛道特征：竞争格局好（龙头市占率高）、供需持续改善（涨价落地）、叠加钠电池放量带来的新增需求。这是一个典型的供需格局驱动价格上涨的景气赛道。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">直接利好A股铝箔龙头公司。加工费上涨将直接增厚公司利润。同时，钠电池的商业化进展为铝箔需求提供了新的增长极，打开了估值空间。该逻辑清晰，容易获得市场认可，可能吸引资金从其他锂电材料板块流入。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">全球新能源汽车和储能市场的发展，对电池铝箔的需求持续增长。中国铝箔企业在全球具备成本和技术优势，有望持续受益于全球产业链分工。外资可能看好中国铝箔龙头在全球市场的份额提升。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>电池铝箔龙头</strong>: 直接受益于加工费上涨和需求增长 → 鼎胜新材(603876), 万顺新材(300057)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>钠电池产业链</strong>: 铝箔需求新增量，利好整个钠电池板块情绪 → 传艺科技(002866), 维科技术(600152)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于铝箔涨价的持续性和空间，以及钠电池放量的时间点。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中信建投的观点具有代表性，多家卖方覆盖并看好铝箔板块，认为其是锂电材料中确定性较高的细分方向。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，景气度有望贯穿下半年。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">8. <span class="card-level">C级</span> 电子布价格连涨，产业链上游高端织机紧缺</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年07月06日 2026年07月06日 06:23</span></div>
+<div class="logic">揭示了电子布涨价的根本原因——供给瓶颈。日本丰田织机产能有限且交付周期长达数年，导致新增产能无法释放。这为国内电子布企业和上游织机国产替代企业创造了历史性机遇。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">这是典型的“供给受限”驱动的涨价逻辑。利好国内电子布龙头企业，它们可以通过涨价和提升产能利用率来增厚利润。更重要的是，高端织机的紧缺将倒逼国产替代进程加速，为国内纺织机械企业带来巨大的市场空间和想象空间。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">日本企业在高端织机领域的垄断地位被打破，全球电子布供应链面临重构。中国企业有望借此机会切入全球供应链，提升在全球电子材料领域的地位。这可能引发外资对中国高端装备制造能力的重新评估。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>电子布生产商</strong>: 直接受益于产品涨价 → 中国巨石(600176), 中材科技(002080)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>高端织机国产替代</strong>: 解决行业“卡脖子”问题，市场空间巨大 → 可关注相关纺织机械上市公司，如经纬纺机(000666)等</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于国产织机能否在短期内实现技术突破和量产，以及电子布涨价的持续性。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">已有券商开始关注电子布行业的供需反转，并重点提示了织机国产替代的投资机会。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，涨价和国产替代逻辑可持续。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">9. <span class="card-level">C级</span> 科技部部长阴和俊：加快新能源、新材料、航空航天、低空经济等战略性新兴产业集群发展</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年07月06日 2026年07月06日 07:52</span></div>
+<div class="logic">最高层级的政策定调，明确了国家未来产业发展的重点方向。这不仅是产业规划，更是对资本市场投资方向的指引，为相关板块提供了坚实的政策底和想象空间。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">对A股相关板块是全面利好，尤其是新能源、新材料、航空航天、低空经济、量子科技、生物制造等。政策背书将提升这些板块的风险偏好，吸引更多资金关注。投资者应重点关注这些领域中，具备核心技术、有订单落地、业绩有望兑现的龙头企业。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">在全球科技竞争白热化的背景下，中国明确将战略性新兴产业作为未来发展的核心引擎，这向全球展示了中国产业升级的决心和路径。外资在配置中国资产时，会优先考虑这些符合国家战略方向的产业。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>低空经济</strong>: 政策明确支持，产业从0到1加速 → 亿航智能(EH), 万丰奥威(002085)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>航空航天/商业航天</strong>: 政策+事件催化，产业进入快速发展期 → 航天电子(600879), 中航沈飞(600760)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于哪些细分领域会率先出台具体支持政策，以及如何把握投资节奏。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">各大券商策略报告均将此作为下半年最重要的投资主线之一，建议投资者围绕“国家安全”和“科技自立”进行布局。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">长期赛道，政策将持续催化。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">10. <span class="card-level">B级</span> 我国成功发射千帆星座组网卫星</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年07月06日 2026年07月05日 22:23</span></div>
+<div class="logic">千帆星座组网卫星的成功发射，标志着我国低轨卫星互联网建设进入加速期。这是商业航天领域的重要里程碑，验证了火箭和卫星的可靠性，为后续大规模组网奠定了基础。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">对A股商业航天板块是直接的事件催化。利好卫星制造、火箭发射、地面设备、卫星运营等全产业链。市场将关注后续组网发射的节奏和频率，以及相关公司的订单获取情况。这与此前科技部部长的讲话形成呼应，强化了板块的投资逻辑。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">在全球低轨卫星竞赛中，中国正加速追赶SpaceX的Starlink。此次成功发射，提升了中国在全球商业航天领域的竞争力。外资可能关注与千帆星座有合作或能进入其供应链的A股公司。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>卫星制造</strong>: 直接受益于卫星批量生产需求 → 中国卫星(600118), 上海沪工(603131)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>火箭发射</strong>: 发射任务增加，利好相关配套企业 → 航天动力(600343), 中天火箭(003009)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于千帆星座与星网集团的竞合关系，以及哪些公司能拿到实质性订单。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">券商普遍看好商业航天的长期前景，认为2026年是星座组网的关键之年，板块具备持续催化。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期事件驱动，后续组网发射将持续提供催化剂。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">11. <span class="card-level">C级</span> “油电同权”大幕拉开，新能源汽车产业步入市场驱动新阶段</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年07月06日 2026年07月06日 07:16</span></div>
+<div class="logic">车船税优惠取消，标志着新能源汽车产业从政策扶持正式转向市场驱动。行业将进入残酷的淘汰赛阶段，竞争加剧，但龙头企业的优势将更加凸显。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">短期对新能源汽车板块情绪可能造成一定压制，市场担忧需求端受影响。但中长期看，利好行业健康发展，拥有成本控制能力、技术优势和品牌力的龙头企业将胜出。对上游锂电材料的需求影响中性，因为市场驱动下，车企会更注重降本，可能加速钠电池、磷酸铁锂等低成本路线的渗透。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中国作为全球最大的新能源汽车市场，其政策转向具有示范效应。其他国家和地区也可能逐步退出补贴，全球新能源汽车产业将进入比拼产品力和成本控制的新阶段。这对特斯拉等全球龙头是利好，对依赖补贴的车企是挑战。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>整车龙头</strong>: 成本控制和技术领先，市场份额有望提升 → 比亚迪(002594), 特斯拉(TSLA)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>低成本电池技术</strong>: 钠电池、磷酸铁锂等受益于车企降本需求 → 宁德时代(300750), 振华新材(688707)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于补贴退出对终端销量的影响有多大，以及哪些车企能扛过价格战。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">分析师普遍认为行业进入“良币驱逐劣币”阶段，建议关注具有强产品周期和成本优势的头部车企。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">长期结构性影响，短期情绪扰动。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">12. <span class="card-level">C级</span> 新型激光雷达可同时获取目标位置、速度与材料属性</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年07月06日 2026年07月06日 06:57</span></div>
+<div class="logic">这是一项重要的技术突破，将激光雷达的感知维度从3D（位置）扩展到4D甚至5D（+速度+材料）。这将极大提升自动驾驶系统在复杂环境下的感知能力和决策可靠性。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">利好A股激光雷达产业链，尤其是技术路线领先、与高校或研究所有合作的公司。这项技术有望加速高阶自动驾驶（L3/L4）的落地进程，从而带动整个智能驾驶产业链的需求。对自动驾驶芯片、算法公司也是间接利好。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">这是全球激光雷达技术竞赛的一个缩影。加拿大、美国团队的突破，将刺激其他厂商加速研发。对于禾赛科技、速腾聚创等中国激光雷达龙头，既是挑战也是机遇，需要持续投入研发以保持领先。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>激光雷达厂商</strong>: 技术突破提升行业天花板 → 禾赛科技(HSAI), 速腾聚创(2498.HK)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>自动驾驶/ADAS</strong>: 感知能力提升，推动高阶智驾普及 → 德赛西威(002920), 中科创达(300496)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于该技术从实验室到量产的时间周期，以及对现有技术路线的冲击。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">券商普遍看好激光雷达在自动驾驶中的核心作用，认为技术迭代将加速产业渗透。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">长期技术趋势，短期对股价影响有限。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">13. <span class="card-level">C级</span> 借力科创板政策红利，量子计算愈发“吸金”</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年07月06日 2026年07月06日 07:27</span></div>
+<div class="logic">科创板对量子科技等未来产业的支持政策，正在转化为实际的融资效应。玻色量子、量旋科技等公司的巨额融资和IPO启动，标志着量子计算产业化进程加速，从实验室走向资本市场。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">对A股量子计算概念股是重大利好。科创板为这些“硬科技”公司提供了宝贵的融资渠道和退出机制，将吸引更多社会资本投入。这将加速相关公司的研发和商业化进程，提升整个板块的估值中枢。投资者可关注已上市或拟上市的量子计算相关公司。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">量子计算是全球科技竞争的制高点。中国通过科创板等资本市场工具，为量子计算企业提供“弹药”，意图在全球竞争中抢占先机。这可能会加剧全球量子计算领域的投资竞赛。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>量子计算概念股</strong>: 直接受益于产业融资加速和关注度提升 → 国盾量子(688027), 科大国创(300520)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>量子通信</strong>: 与量子计算同属量子科技，情绪上联动 → 神州信息(000555)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于量子计算何时能实现“量子霸权”和商业化落地，以及当前估值是否合理。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">部分券商开始覆盖量子科技，认为这是未来十年最具颠覆性的技术之一，但短期仍以主题投资为主。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">长期赛道，短期主题催化。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">14. <span class="card-level">C级</span> 公募调研紧盯业绩兑现，医药板块关注程度提升</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年07月06日 2026年07月06日 05:15</span></div>
+<div class="logic">公募调研动向是市场风格切换的重要信号。在科技股极致分化后，机构开始关注调整充分的医药板块，尤其是创新药和CXO。这表明部分资金开始寻求“高低切换”，寻找业绩确定性强且估值合理的板块。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">对A股医药板块是积极信号。创新药（中信证券看好）和CXO板块在经历长时间调整后，估值已进入合理区间，且基本面（研发质量提升、全球授权）持续向好。公募调研的增加可能预示着后续的配置行为，为板块带来增量资金。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">全球生物医药投融资环境正在回暖，中国创新药企的研发实力（ASCO数据亮眼）得到全球认可，License-out交易活跃。外资对中国创新药板块的关注度也在提升，认为其具备全球竞争力。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>创新药龙头</strong>: 研发管线丰富，国际化进展顺利 → 百济神州(688235), 信达生物(1801.HK)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>CXO</strong>: 受益于全球创新药研发投入回暖 → 药明康德(603259), 康龙化成(300759)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于医药板块的反弹是超跌修复还是趋势反转，以及创新药板块的估值锚在哪里。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">多家券商开始提示医药板块的底部配置价值，认为创新和出海是核心主线。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期修复行情，具备估值和基本面支撑。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">15. <span class="card-level">C级</span> A股交易新规今起施行，券商配套更新风险揭示书</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年07月06日 2026年07月06日 06:14</span></div>
+<div class="logic">交易新规正式实施，涉及基金收盘交易机制、盘后固定价格交易、ST股涨跌幅调整等。这些变化将影响部分品种的流动性和交易策略，投资者需要适应新规则。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">对A股整体影响中性，但对特定品种有影响。ST股涨跌幅放宽至10%，将加剧其波动性，投机风险加大。优化基金收盘交易机制，有助于减少尾盘异动。券商需要更新风险揭示书，提醒投资者注意规则变化。这体现了监管层持续优化交易制度的决心。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">交易制度的完善是A股国际化进程的一部分。更透明、更高效、更与国际接轨的交易规则，有助于吸引更多外资参与A股市场。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>券商IT系统服务商</strong>: 交易规则变更带来系统升级需求 → 恒生电子(600570), 金证股份(600446)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于ST股新规对“炒壳”风气的影响，以及盘后交易对流动性的改善作用。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">券商普遍提示投资者注意新规变化，尤其是ST股交易风险。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">制度性影响，长期存在。</p>
+</div>
+<h2 class="section-title">三、全量电报列表（精简）</h2>
+<table class="telegram-table">
+<thead><tr>
+<th class="">序号</th>
+<th class="">时间</th>
+<th class="">Lv</th>
+<th class="">分享</th>
+<th class="">评论</th>
+<th class="">内容摘要40字</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class=""><span class="rank-num">1</span></td>
+<td class="">22:09</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">3044</td>
+<td class="">4</td>
+<td class="content-col">【下周资本市场大事提醒：国家统计局将公布6月CPI、PPI数据 SK海力士迎美股</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">2</span></td>
+<td class="">22:23</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1736</td>
+<td class="">39</td>
+<td class="content-col">【我国成功发射千帆星座组网卫星】财联社7月5日电，今日21时43分，在海南商业航</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">3</span></td>
+<td class="">08:20</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1692</td>
+<td class="">0</td>
+<td class="content-col">【财联社7月6日早间新闻精选】 1、华为半导体负责人何庭波于7月3日发布《面向多</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">4</span></td>
+<td class="">21:31</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1065</td>
+<td class="">21</td>
+<td class="content-col">【周日A股上市公司重点业绩公告精选】财联社7月5日电，据财联社不完全统计，截至发</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">5</span></td>
+<td class="">22:29</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">704</td>
+<td class="">1</td>
+<td class="content-col">【日联科技：全资子公司认购QES Group Berhad增发股份后不形成对其的</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">6</span></td>
+<td class="">07:45</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">424</td>
+<td class="">2</td>
+<td class="content-col">【投资日历：周一资本市场大事提醒】 ①今日共有1只新股申购，为北交所的龙鑫智能（</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">7</span></td>
+<td class="">08:07</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">158</td>
+<td class="">3</td>
+<td class="content-col">财联社7月6日电，韩国KOSPI指数涨幅扩大至2%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">8</span></td>
+<td class="">07:29</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">95</td>
+<td class="">2</td>
+<td class="content-col">财联社7月6日电，现货黄金向上触及4200美元，日内上涨0.61%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">9</span></td>
+<td class="">22:40</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">439</td>
+<td class="">0</td>
+<td class="content-col">【国泰海通：机器人、商业航天、AI新材料等主题投资再次兴起】财联社7月5日电，国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">10</span></td>
+<td class="">06:23</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">358</td>
+<td class="">3</td>
+<td class="content-col">【电子布价格连涨 产业链上游高端织机紧缺】财联社7月6日电，“现在高端电子布专用</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">11</span></td>
+<td class="">06:20</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">334</td>
+<td class="">17</td>
+<td class="content-col">【上周逾百亿资金回流股票ETF 硬科技板块热度居高不下】财联社7月6日电，在A股</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">12</span></td>
+<td class="">21:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">264</td>
+<td class="">0</td>
+<td class="content-col">【2026 中国（南京）具身智能机器人产业展将于7月10-12日举行】财联社7月</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">13</span></td>
+<td class="">21:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">177</td>
+<td class="">0</td>
+<td class="content-col">【招商证券：短期冲击后关注科技修复与中报业绩双主线】财联社7月5日电，招商证券发</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">14</span></td>
+<td class="">04:24</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">167</td>
+<td class="">2</td>
+<td class="content-col">【国际足联暂缓美国队前锋巴洛贡禁赛处罚】财联社7月6日电，国际足联当地时间7月5</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">15</span></td>
+<td class="">22:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">159</td>
+<td class="">0</td>
+<td class="content-col">【国泰海通：油价回落暑运启动 亲子出游仍具刚性】财联社7月5日电，国泰海通研报表</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">16</span></td>
+<td class="">23:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">156</td>
+<td class="">0</td>
+<td class="content-col">【四川绵竹市附近发生4.7级左右地震】财联社7月5日电，中国地震台网自动测定：今</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">17</span></td>
+<td class="">07:28</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">132</td>
+<td class="">7</td>
+<td class="content-col">【中信建投：供需趋紧钠电放量 格局优异铝箔可期】财联社7月6日电，中信建投研究报</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">18</span></td>
+<td class="">07:52</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">138</td>
+<td class="">0</td>
+<td class="content-col">【科技部部长阴和俊：加快新能源、新材料、航空航天、低空经济等战略性新兴产业集群发</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">19</span></td>
+<td class="">22:18</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">120</td>
+<td class="">0</td>
+<td class="content-col">【近三日美方护航通过霍尔木兹海峡的船舶仅70艘】财联社7月5日电，由美国主导的联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">20</span></td>
+<td class="">03:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">118</td>
+<td class="">0</td>
+<td class="content-col">【索尼将停止生产PlayStation5实体游戏光盘 终结游戏实体拥有时代】财联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">21</span></td>
+<td class="">01:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">117</td>
+<td class="">0</td>
+<td class="content-col">【受四川绵竹地震影响 G545绵茂公路实施全线交通管制】财联社7月6日电，从绵竹</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">22</span></td>
+<td class="">23:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">114</td>
+<td class="">1</td>
+<td class="content-col">【美军暂停搜寻在阿拉伯海因直升机事故失踪的士兵】财联社7月5日电，美国海军中央司</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">23</span></td>
+<td class="">06:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">111</td>
+<td class="">1</td>
+<td class="content-col">【三季度公募基金调查显示：科技成长仍是“心头好” 极致分化后打法生变】财联社7月</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">24</span></td>
+<td class="">23:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">112</td>
+<td class="">0</td>
+<td class="content-col">【四川绵竹市发生4.5级地震 震源深度18千米】财联社7月5日电，中国地震台网正</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">25</span></td>
+<td class="">21:11</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">112</td>
+<td class="">0</td>
+<td class="content-col">【法国南部山火持续蔓延 过火面积已达约1500公顷】财联社7月5日电，法国南部东</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">26</span></td>
+<td class="">03:55</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">112</td>
+<td class="">0</td>
+<td class="content-col">【上半年券商债券承销榜出炉 前五名包揽五成份额】财联社7月6日电，上半年券商债券</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">27</span></td>
+<td class="">05:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">112</td>
+<td class="">0</td>
+<td class="content-col">【公募调研紧盯业绩兑现 医药板块关注程度提升】财联社7月6日电，近期，公募基金围</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">28</span></td>
+<td class="">01:04</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">106</td>
+<td class="">1</td>
+<td class="content-col">【以军称已全面控制黎巴嫩南部博福特岭】财联社7月6日电，以色列国防军总参谋长扎米</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">29</span></td>
+<td class="">06:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">104</td>
+<td class="">2</td>
+<td class="content-col">财联社7月6日电，美股指期货开盘上涨，标普500指数期货开盘涨0.4%，纳斯达克</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">30</span></td>
+<td class="">21:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">106</td>
+<td class="">0</td>
+<td class="content-col">【湖南5家烟花爆竹生产企业有序复工复产】财联社7月5日电，湖南首批5家烟花爆竹生</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">31</span></td>
+<td class="">05:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">104</td>
+<td class="">0</td>
+<td class="content-col">【上市公司半年报披露开启 下半年机构紧盯业绩主线】财联社7月6日电，7至8月，A</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">32</span></td>
+<td class="">05:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">102</td>
+<td class="">1</td>
+<td class="content-col">【美联储7月维持利率不变的概率为77%】财联社7月6日电，据CME“美联储观察”</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">33</span></td>
+<td class="">04:20</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">103</td>
+<td class="">0</td>
+<td class="content-col">【南苏丹人民国防军基地遭袭 5名士兵死亡】财联社7月6日电，位于上尼罗州的南苏丹</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">34</span></td>
+<td class="">02:47</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">97</td>
+<td class="">0</td>
+<td class="content-col">【法国一博物馆约20件珠宝被盗 损失或达数百万欧元】财联社7月6日电，法国东部下</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">35</span></td>
+<td class="">06:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">93</td>
+<td class="">3</td>
+<td class="content-col">【新款半导体芯片能同步测量多种生物信号】财联社7月6日电，韩国大邱庆北科学技术学</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">36</span></td>
+<td class="">06:24</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">95</td>
+<td class="">0</td>
+<td class="content-col">【一批ST公司“摘帽” 年报问询紧盯新增业务可持续性】财联社7月6日电，数据显示</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">37</span></td>
+<td class="">07:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">88</td>
+<td class="">1</td>
+<td class="content-col">【“油电同权”大幕拉开 新能源汽车产业步入市场驱动新阶段】财联社7月6日电，自2</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">38</span></td>
+<td class="">23:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">89</td>
+<td class="">0</td>
+<td class="content-col">【斐济首都苏瓦附近海域发生5.8级地震】财联社7月5日电，据欧洲与地中海地震中心</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">39</span></td>
+<td class="">06:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">86</td>
+<td class="">1</td>
+<td class="content-col">【世界杯1/8决赛：挪威2-1战胜巴西晋级八强】财联社7月6日电，2026美加墨</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">40</span></td>
+<td class="">23:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">86</td>
+<td class="">0</td>
+<td class="content-col">【广西柳州各城区暴雨预警信号提升为红色】财联社7月5日电，受今年第10号台风“美</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">41</span></td>
+<td class="">23:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">85</td>
+<td class="">0</td>
+<td class="content-col">【意大利埃特纳火山持续喷发 卡塔尼亚机场航班受影响】财联社7月5日电，位于意大利</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">42</span></td>
+<td class="">06:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">81</td>
+<td class="">2</td>
+<td class="content-col">【注销式回购引关注 上市公司打出“组合拳”】财联社7月6日电，Wind数据显示，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">43</span></td>
+<td class="">06:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">77</td>
+<td class="">3</td>
+<td class="content-col">【A股交易新规今起施行 券商配套更新风险揭示书】财联社7月6日电，沪深北交易所新</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">44</span></td>
+<td class="">00:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">80</td>
+<td class="">0</td>
+<td class="content-col">【易捷航空同意Castlelake提出的52亿英镑收购要约】财联社7月6日电，易</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">45</span></td>
+<td class="">03:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">79</td>
+<td class="">0</td>
+<td class="content-col">【法国南部山火持续蔓延 约1万人被要求撤离】财联社7月6日电，法国东比利牛斯省政</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">46</span></td>
+<td class="">22:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">78</td>
+<td class="">0</td>
+<td class="content-col">财联社7月5日电，阿达尼防务公司将在印度希夫普里投资250亿卢比用于导弹项目。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">47</span></td>
+<td class="">05:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">78</td>
+<td class="">0</td>
+<td class="content-col">【周一（7月6日）重点关注财经事件和经济数据】  ① 15:00 瑞士6月季调后</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">48</span></td>
+<td class="">06:42</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">72</td>
+<td class="">1</td>
+<td class="content-col">【改革“六箭齐发” A股融资生态持续优化】财联社7月6日电，证监会日前就完善上市</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">49</span></td>
+<td class="">00:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">68</td>
+<td class="">0</td>
+<td class="content-col">【国家防总办公室向广西调拨物资 支持做好防汛抢险工作】财联社7月6日电，应广西壮</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">50</span></td>
+<td class="">08:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">64</td>
+<td class="">1</td>
+<td class="content-col">【中信证券：研发质量不断提升 创新药产业超预期兑现】财联社7月6日电，中信证券指</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">51</span></td>
+<td class="">02:34</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">65</td>
+<td class="">0</td>
+<td class="content-col">【印度孟买一建筑物倒塌 致至少6人死亡】财联社7月6日电，印度孟买一建筑物倒塌，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">52</span></td>
+<td class="">07:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">64</td>
+<td class="">0</td>
+<td class="content-col">【四川绵竹地震目前未造成人员伤亡和房屋倒损】财联社7月6日电，据中国地震台网正式</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">53</span></td>
+<td class="">07:27</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">60</td>
+<td class="">3</td>
+<td class="content-col">【借力科创板政策红利 量子计算愈发“吸金”】财联社7月6日电，日前，记者从知情人</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">54</span></td>
+<td class="">06:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">57</td>
+<td class="">3</td>
+<td class="content-col">【新型激光雷达可同时获取目标位置、速度与材料属性】财联社7月6日电，加拿大、美国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">55</span></td>
+<td class="">08:27</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">59</td>
+<td class="">1</td>
+<td class="content-col">财联社7月6日电，韩国KOSPI指数一度涨2.9%至8319.38点。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">56</span></td>
+<td class="">08:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">59</td>
+<td class="">0</td>
+<td class="content-col">财联社7月6日电，韩国KOSPI指数开盘上涨1.2%报8186.82点；日经22</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">57</span></td>
+<td class="">07:28</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">57</td>
+<td class="">1</td>
+<td class="content-col">【我国企业近期斩获多项高端海洋工程装备及配套产品新订单】财联社7月6日电，中国船</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">58</span></td>
+<td class="">23:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">55</td>
+<td class="">1</td>
+<td class="content-col">财联社7月5日电，科威特石油部长强调，石油生产国之间开展协调与磋商，以应对能源市</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">59</span></td>
+<td class="">06:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">47</td>
+<td class="">4</td>
+<td class="content-col">【串联太阳能电池光电转换效率创新高】财联社7月6日电，德国亥姆霍兹柏林材料与能源</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">60</span></td>
+<td class="">07:24</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">49</td>
+<td class="">2</td>
+<td class="content-col">【公募发行逆向落子 市场风格再平衡或悄然开启】财联社7月6日电，今年上半年，资本</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">61</span></td>
+<td class="">07:58</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">0</td>
+<td class="content-col">【中信证券：2027年下半年后铝价仍然具备3000美元/吨的成本曲线】财联社7月</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">62</span></td>
+<td class="">08:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">46</td>
+<td class="">0</td>
+<td class="content-col">【国家粮食和物资储备局向广西调运中央防汛抗旱物资支持做好防汛抢险工作】7月5日，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">63</span></td>
+<td class="">06:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">【王毅同芬兰外长瓦尔托宁会谈】当地时间2026年7月5日，中共中央政治局委员、外</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">64</span></td>
+<td class="">02:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">44</td>
+<td class="">0</td>
+<td class="content-col">财联社7月6日电，美国联邦航空管理局将调查纽约东河水上飞机硬着陆事故。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">65</span></td>
+<td class="">07:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">41</td>
+<td class="">2</td>
+<td class="content-col">【年中银行业AI布局现状：战略布局全速推进 落地实践审慎摸索】财联社7月6日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">66</span></td>
+<td class="">08:03</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">40</td>
+<td class="">0</td>
+<td class="content-col">财联社7月6日电，三星电子股价上涨1.9%，SK海力士上涨0.3%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">67</span></td>
+<td class="">07:31</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">39</td>
+<td class="">0</td>
+<td class="content-col">【A股限售股解禁一览：47.08亿元市值限售股今日解禁】财联社7月6日电，Win</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">68</span></td>
+<td class="">07:47</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">39</td>
+<td class="">0</td>
+<td class="content-col">【全球首个针对本迪布焦型埃博拉病毒的临床试验启动】财联社7月6日电，世界卫生组织</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">69</span></td>
+<td class="">08:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">39</td>
+<td class="">0</td>
+<td class="content-col">【水利部发布洪水黄色预警 珠江流域部分河流将出现超警洪水】财联社7月6日电，从水</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">70</span></td>
+<td class="">06:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">35</td>
+<td class="">3</td>
+<td class="content-col">【拥有完整生命周期的合成细胞创建】财联社7月6日电，美国明尼苏达大学研究团队创建</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">71</span></td>
+<td class="">07:45</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">37</td>
+<td class="">1</td>
+<td class="content-col">【今日申购指南及新股定位分析】财联社7月6日电，今日有1只新股申购，为北交所的龙</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">72</span></td>
+<td class="">07:35</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">38</td>
+<td class="">0</td>
+<td class="content-col">【暴雨橙色预警：7省区部分地区有大暴雨 广西广东局地有特大暴雨】财联社7月6日电</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">73</span></td>
+<td class="">07:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">33</td>
+<td class="">4</td>
+<td class="content-col">【本周9只ETF上市 个人投资者持有份额比例近八成】财联社7月6日电，个人投资者</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">74</span></td>
+<td class="">07:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">32</td>
+<td class="">0</td>
+<td class="content-col">【上半年港股市场累计回购超过900亿港元】财联社7月6日电，2026年上半年，港</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">75</span></td>
+<td class="">08:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">28</td>
+<td class="">0</td>
+<td class="content-col">财联社7月6日电，高盛将12个月日元兑美元汇率预测从155下调至165。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">76</span></td>
+<td class="">07:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">26</td>
+<td class="">0</td>
+<td class="content-col">【乌克兰首都基辅响起多次爆炸声】财联社7月6日电，乌克兰首都基辅当地时间6日响起</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">77</span></td>
+<td class="">07:31</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">24</td>
+<td class="">1</td>
+<td class="content-col">财联社7月6日电，韩国央行称将密切关注韩元24小时交易的影响及走势。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">78</span></td>
+<td class="">08:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">23</td>
+<td class="">0</td>
+<td class="content-col">【天问二号探测器抵达目标小行星 开始科学探测】财联社7月6日电，从国家航天局获悉</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">79</span></td>
+<td class="">08:37</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">7</td>
+<td class="">0</td>
+<td class="content-col">【我海军83舰编队抵达越南进行友好访问】财联社7月6日电，正在执行远海综合实习访</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">80</span></td>
+<td class="">08:11</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①我国成功研制全球首款基于相变忆阻器的神经动力学系统芯片，分析师看好相变存储器等</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">81</span></td>
+<td class="">07:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①机器人+电子布，自研行星滚柱丝杠、关节模组等核心零部件并推进送样，这家公司产品</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">82</span></td>
+<td class="">06:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①国内多款可回收火箭有望密集发射，我国商业航天迎来从“主题催化”转向“技术拐点验</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">83</span></td>
+<td class="">22:27</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">2026 中国（南京）具身智能机器人产业展即将举行，机器人产业链有望迎来国内外共</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">84</span></td>
+<td class="">22:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①CPO+光纤概念+超导概念+可控核聚变！这家公司受益于光纤市场量价齐升Q2净利</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">85</span></td>
+<td class="">21:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①当前补涨板块性价比如何；②华为发布“韬定律V2.0”版论文，具体讨论关键工艺参</td>
+</tr>
+</tbody></table>
+
+<div class="footer">Generated by CLS Daily Summary Tool &copy; 2026年07月06日</div>
+</div>
+</body>
+</html>
