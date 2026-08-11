@@ -1,0 +1,4392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLS 早报</title>
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+    background: #f4f5f7;
+    color: #1a1a2e;
+    line-height: 1.6;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 30px 24px; }
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff; padding: 30px 36px; border-radius: 8px; margin-bottom: 24px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; letter-spacing: 1px; }
+.header .meta { font-size: 13px; opacity: 0.85; margin-top: 10px; }
+.header .meta span { margin-right: 20px; }
+.header .verdict {
+    margin-top: 18px; padding: 14px 18px; background: rgba(255,255,255,0.1);
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 14px; line-height: 1.7;
+}
+
+/* Core verdict banner */
+.verdict-banner {
+    background: #fff5f5; padding: 16px 20px; border-radius: 8px;
+    border-left: 4px solid #e94560; margin: 12px 0 20px;
+    font-size: 18px; line-height: 1.8; color: #e94560;
+    box-shadow: 0 1px 6px rgba(233,69,96,0.1);
+}
+
+/* Verdict section (## 核心判断) */
+.verdict-section {
+    background: #fff; border-radius: 8px; padding: 24px 28px;
+    margin: 16px 0 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    border-top: 4px solid #e94560;
+}
+.verdict-section .section-title {
+    border-bottom: none; margin-top: 0; margin-bottom: 14px;
+    color: #e94560; font-size: 22px;
+}
+.verdict-content p { font-size: 15px; line-height: 1.8; margin: 6px 0; }
+.verdict-content strong { color: #0f3460; }
+.verdict-content ul, .verdict-content ol { margin: 8px 0 8px 20px; font-size: 15px; line-height: 1.7; }
+.verdict-content li { margin-bottom: 4px; }
+
+/* Section titles */
+.section-title {
+    font-size: 20px; font-weight: 700; color: #0f3460;
+    border-bottom: 3px solid #e94560; padding-bottom: 8px;
+    margin: 28px 0 16px;
+}
+
+/* Ranking table */
+.rank-table {
+    width: 100%; border-collapse: collapse; margin: 16px 0 24px;
+    background: #fff; border-radius: 8px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); font-size: 14px;
+}
+.rank-table thead th {
+    background: #0f3460; color: #fff; padding: 10px 10px;
+    font-weight: 600; text-align: center; font-size: 13px;
+}
+.rank-table thead th.th-important {
+    color: #ff6b6b; font-size: 15px; font-weight: 800;
+}
+.rank-table tbody td {
+    padding: 8px 10px; border-bottom: 1px solid #eee;
+    text-align: center; vertical-align: middle;
+}
+.rank-table tbody tr:hover { background: #f8f9ff; }
+.rank-table .rank-num { font-weight: 700; color: #e94560; font-size: 16px; }
+.rank-table .title-col { text-align: left; font-weight: 500; }
+.rank-table .impact-col { text-align: left; font-size: 14px; color: #444; max-width: 400px; }
+.rank-table .stars { color: #f5a623; white-space: nowrap; font-size: 14px; letter-spacing: 1px; }
+
+/* Analysis card */
+.analysis-card {
+    background: #fff; border-radius: 8px; padding: 22px 28px;
+    margin: 16px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    border-top: 4px solid #e94560;
+}
+.analysis-card .card-title {
+    font-size: 17px; font-weight: 700; color: #1a1a2e; margin-bottom: 12px;
+}
+.analysis-card .card-level {
+    display: inline-block; padding: 3px 10px; border-radius: 3px;
+    font-size: 16px; font-weight: 800; color: #e94560;
+    background: #fff5f5; border: 1px solid #e94560;
+    margin-right: 4px;
+}
+.analysis-card .card-meta {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 10px;
+    font-size: 13px; color: #777;
+    line-height: 1.4;
+}
+.analysis-card .card-meta-inline {
+    display: inline-block; margin-right: 18px; margin-bottom: 8px;
+    font-size: 13px; color: #777; line-height: 1.4;
+}
+.analysis-card .card-meta .stars { color: #f5a623; font-size: 16px; }
+.analysis-card .logic {
+    background: #fff8f0; padding: 12px 16px; border-radius: 6px;
+    font-size: 14px; color: #8b4513; margin-bottom: 14px;
+    border-left: 3px solid #f5a623;
+}
+.analysis-card h4 {
+    font-size: 15px; font-weight: 700; color: #0f3460;
+    margin: 10px 0 4px; padding-bottom: 2px; border-bottom: 1px dashed #ddd;
+    line-height: 1.4;
+}
+.analysis-card h4.perspective-domestic {
+    color: #c0392b; border-bottom-color: #e94560; font-size: 17px;
+}
+.analysis-card h4.perspective-intl {
+    color: #0e8c6a; border-bottom-color: #0e8c6a; font-size: 17px;
+}
+/* When a perspective h4 is immediately followed by another h4, make it inline */
+.analysis-card h4.perspective-domestic + h4,
+.analysis-card h4.perspective-intl + h4 {
+    margin-top: 0; padding-top: 0; border-top: none;
+}
+.analysis-card h4.perspective-domestic + h4::before {
+    content: 'B8  ';
+    color: #c0392b;
+}
+.analysis-card h4.perspective-intl + h4::before {
+    content: 'B8  ';
+    color: #0e8c6a;
+}
+.analysis-card ul { margin: 4px 0 8px 18px; font-size: 14px; line-height: 1.5; }
+.analysis-card ul li { margin-bottom: 2px; }
+.bull { color: #e94560; font-weight: 600; }
+.bear { color: #2ecc71; font-weight: 600; }
+
+/* Sector tags */
+.tag { display: inline-block; padding: 2px 8px; border-radius: 3px;
+    font-size: 11px; font-weight: 600; margin-right: 4px; }
+.tag-a { background: #ffe0e0; color: #c0392b; }
+.tag-b { background: #fff3cd; color: #856404; }
+.tag-c { background: #e8e8e8; color: #555; }
+
+/* Emotion section */
+.emotion-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px; margin: 16px 0;
+}
+.emotion-item {
+    background: #fff; padding: 18px 20px; border-radius: 8px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+}
+.emotion-item .label { font-size: 11px; color: #999; text-transform: uppercase; }
+.emotion-item .value { font-size: 16px; font-weight: 700; color: #0f3460; margin-top: 4px; }
+
+/* Risk list */
+.risk-list { list-style: none; }
+.risk-list li {
+    padding: 10px 14px; margin: 6px 0; background: #fff5f5;
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 13px;
+}
+.risk-list li::before { content: '⚠ '; }
+
+.risk-item {
+    padding: 6px 12px; margin: 3px 0; background: #fff5f5;
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 13px; line-height: 1.5;
+}
+.risk-heading {
+    font-size: 15px; font-weight: 800; color: #e94560;
+    margin: 10px 0 4px;
+}
+
+/* Full telegram table */
+.telegram-table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    background: #fff; border-radius: 6px; overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+}
+.telegram-table thead th {
+    background: #16213e; color: #fff; padding: 10px 8px;
+    font-weight: 500; font-size: 12px;
+}
+.telegram-table thead th:first-child { width: 42px; }
+.telegram-table thead th:nth-child(2) { width: 48px; }
+.telegram-table thead th:nth-child(3) { width: 38px; }
+.telegram-table thead th:nth-child(4) { width: 48px; }
+.telegram-table thead th:nth-child(5) { width: 48px; }
+.telegram-table thead th:last-child { width: auto; }
+.telegram-table tbody td {
+    padding: 5px 8px; border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+.telegram-table tbody td:first-child,
+.telegram-table tbody td:nth-child(2),
+.telegram-table tbody td:nth-child(3),
+.telegram-table tbody td:nth-child(4),
+.telegram-table tbody td:nth-child(5) {
+    text-align: center;
+}
+.telegram-table tbody td:last-child {
+    text-align: left; white-space: normal; word-break: break-all;
+}
+.telegram-table tbody tr:nth-child(even) { background: #fafafa; }
+.telegram-table .lv-S { background: #c0392b; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-A { background: #e74c3c; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-B { background: #f39c12; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-C { background: #bbb; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+
+.footer {
+    text-align: center; margin-top: 40px; padding: 20px;
+    color: #999; font-size: 12px; border-top: 1px solid #eee;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header"><h1>每日早报深度分析：2026年08月11日（周二）交易日</h1></div>
+
+<div class="verdict-section">
+<h2 class="section-title" style="margin-top:0">核心判断</h2>
+<div class="verdict-content">
+<p><strong>一句话定调</strong>: 今日市场核心矛盾在于“AI算力军备竞赛的资本化加速”与“地缘冲突引发的能源通胀预期”之间的博弈，前者支撑科技成长主线，后者扰动全球风险偏好，A股在两者夹缝中呈现结构性行情。</p>
+<p><strong>3个关键信号</strong>:</p>
+<p>1. <strong>英伟达5000亿美元AI融资协议落地</strong>（#22、#27）：全球AI资本开支进入“杠杆化”新阶段，算力基础设施从科技公司自筹转向华尔街资本共担，AI产业泡沫担忧与景气度确认并存，对A股光模块、PCB、液冷等算力链构成中期利好。</p>
+<p>2. <strong>霍尔木兹海峡局势反复+国际油价大涨5%</strong>（#14、#67、#167）：地缘风险溢价重新定价，原油突破80美元关口，直接利好石油石化、油运板块，但压制高估值成长股，同时强化通胀预期制约美联储政策空间。</p>
+<p>3. <strong>央行“十五五”改革发展规划印发</strong>（#21、#23）：货币政策框架现代化信号明确，为中长期流动性环境定调，叠加《煤炭工业发展“十五五”规划》同日落地，政策面稳增长与产业升级双轮驱动格局清晰。</p>
+<p><strong>策略一句话</strong>: 今日建议“哑铃型”配置——一端配置受益油价上行的能源/油运/黄金，另一端逢低布局算力链核心标的（光模块、存储），回避高位题材股，关注中报业绩超预期品种。</p>
+</div></div>
+<h2 class="section-title">一、重要性排序总览</h2>
+<table class="rank-table">
+<thead><tr>
+<th class="">排名</th>
+<th class="">时间</th>
+<th class="">等级</th>
+<th class="">标题概述</th>
+<th class="">重要度</th>
+<th class="th-important">核心影响</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class=""><span class="rank-num">1</span></td>
+<td class="">04:07</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">英伟达与6家金融公司合作筹集逾5000亿美元AI算力资金</td>
+<td class=""><span class="stars">★★★★★</span></td>
+<td class="impact-col">全球AI资本开支进入杠杆化新阶段，算力链景气度获华尔街背书</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">2</span></td>
+<td class="">06:22</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">国际油价大涨5%，霍尔木兹海峡重开协议未达成</td>
+<td class=""><span class="stars">★★★★★</span></td>
+<td class="impact-col">地缘风险溢价重估，能源通胀预期升温，全球风险偏好承压</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">3</span></td>
+<td class="">18:23</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">央行印发“十五五”改革发展规划</td>
+<td class=""><span class="stars">★★★★★</span></td>
+<td class="impact-col">货币政策框架现代化顶层设计落地，流动性环境长期定调</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">4</span></td>
+<td class="">16:02</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">《煤炭工业发展“十五五”规划》印发</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">传统能源供给侧改革深化，煤机智能化、煤化工产业化提速</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">5</span></td>
+<td class="">19:58</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">江波龙上半年净利105.77亿元，同比增长715倍</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">存储超级周期业绩兑现，国产存储龙头盈利爆发力确认</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">6</span></td>
+<td class="">16:55</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">韩国设立超35亿美元半导体材料、零部件及设备基金</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">全球半导体供应链安全化加速，国产替代逻辑强化</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">7</span></td>
+<td class="">17:51</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">中金公司增持中际旭创H股至5.22%</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">机构资金持续加码光模块龙头，算力链核心资产受追捧</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">8</span></td>
+<td class="">20:12</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">马斯克瞄准EUV光源，青睐FEL技术</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">芯片制造技术路线潜在变革，半导体设备国产化新叙事</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">9</span></td>
+<td class="">16:32</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">阿里云计划将全球数据中心产能提升两倍以上</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">国内AI基建加速信号，AIDC交付周期缩短至100天</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">10</span></td>
+<td class="">21:02</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">微软计划最快9月发布下一代MAIA 300 AI芯片</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">科技巨头自研芯片竞赛升级，算力供给格局多元化</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">11</span></td>
+<td class="">17:37</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">摩根大通：全球存储芯片短缺或持续至2028年</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">存储涨价周期拉长，HBM价格涨幅超预期</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">12</span></td>
+<td class="">20:01</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">爱丽家居12天11板后再度停牌核查</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">监管对妖股炒作态度明确，短线情绪或受压制</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">13</span></td>
+<td class="">19:10</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">宇树科技中签率0.0181%，发行价150.80元</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">机器人赛道标杆IPO落地，人形机器人板块估值锚确立</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">14</span></td>
+<td class="">19:13</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">频准激光年内最贵新股中签号出炉</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">高端激光设备稀缺标的上市，半导体设备链关注度提升</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">15</span></td>
+<td class="">17:10</td>
+<td class=""><span class="tag tag-b">A</span></td>
+<td class="title-col">甘李药业授权Menarini欧洲商业化权利，里程碑付款最高6.64亿欧元</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">国产创新药出海再下一城，GLP-1赛道国际化逻辑强化</td>
+</tr>
+</tbody></table>
+
+
+<h2 class="section-title">二、TOP 15 重要新闻深度分析</h2>
+<div class="analysis-card">
+<div class="card-title">1. <span class="card-level">A级</span> 英伟达与6家金融公司合作筹集逾5000亿美元AI算力资金</div>
+<div class="card-meta"><span class="stars">★★★★★</span> <span>⏰ 2026年08月11日 2026年08月11日 04:07</span></div>
+<div class="logic">英伟达联合Apollo、贝莱德、黑石、博枫、高盛和KKR设立独立算力融资平台，为AI基础设施建设筹集超5000亿美元第三方资本。这是AI产业从“科技公司自筹资金”向“华尔街资本杠杆化”转变的标志性事件，意味着AI算力投资不再受制于单一企业资产负债表，而是成为全球资本配置的核心方向。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">对A股算力产业链构成中期重大利好。英伟达客户获得更低成本的算力融资，将直接拉动对光模块、PCB、液冷、IDC等基础设施的需求。中际旭创、新易盛等光模块厂商的海外订单能见度进一步提升；国内IDC运营商和算力租赁商有望受益于全球AI资本开支的“水涨船高”。同时，该事件也印证了AI产业趋势的确定性，有助于稳定A股科技板块的估值锚。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">这是全球AI产业格局的标志性事件。5000亿美元规模相当于全球主权财富基金级别的配置，表明华尔街主流机构已将AI视为“新基建”级别的长期赛道。英伟达股价盘前一度下跌2.6%，或因短期利好兑现和增发担忧，但中期看，该融资平台将强化英伟达在AI算力生态中的“卖铲人”地位。对美股科技板块整体构成支撑，但需警惕AI资本开支过快扩张带来的产能过剩风险。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>光模块/光通信</strong>: 全球AI数据中心建设加速 → 中际旭创(300308), 新易盛(300502), 天孚通信(300394)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>算力基础设施/IDC</strong>: 算力融资成本降低，需求扩容 → 润泽科技(300442), 奥飞数据(300738), 光环新网(300383)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于5000亿美元是否会造成AI算力过剩，以及国内算力链能否真正分到“蛋糕”。分歧点在于：部分投资者认为英伟达融资平台主要利好海外产业链，国内厂商受益有限；另一派则认为全球AI资本开支扩张将带动中国光模块、PCB等优势环节出口。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中信证券、中金公司等主流券商普遍看好算力链中期景气度，认为AI资本开支的“杠杆化”将延长产业上行周期。预期差在于市场对AI泡沫的担忧与产业订单实际落地的节奏差异。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线（3-6个月以上），该事件将作为AI算力链的重要催化剂持续发酵。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">2. <span class="card-level">A级</span> 国际油价大涨5%，霍尔木兹海峡重开协议未达成</div>
+<div class="card-meta"><span class="stars">★★★★★</span> <span>⏰ 2026年08月11日 2026年08月11日 06:22</span></div>
+<div class="logic">因霍尔木兹海峡重开协议仍未达成，WTI原油大涨5.1%至82.13美元/桶，布伦特原油涨5%至87.72美元/桶。美国战略石油储备跌穿3亿桶关口，为1983年以来首次。地缘风险溢价重新定价，能源通胀预期升温，全球风险资产承压。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">直接利好A股石油石化、油运板块。中国作为全球最大原油进口国，油价上涨将推升上游开采企业利润（中国石油、中国海油），同时油运运价有望跟涨（中远海能、招商轮船）。但需警惕油价持续上行对中下游制造业成本端的挤压，以及输入性通胀对货币政策空间的制约。煤炭板块在能源替代逻辑下或间接受益。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">霍尔木兹海峡局势是当前全球地缘政治的核心变量。特朗普声称美军已“100%控制”海峡，但伊朗要求美国解除封锁并赔偿，双方处于“半谈判”状态。油价突破80美元后，通胀预期重新升温，美联储9月加息25个基点的概率升至51.2%，全球流动性环境面临收紧压力。美股油气股集体上涨，但纳指承压，市场风格可能从成长转向价值。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>石油开采</strong>: 油价直接受益 → 中国石油(601857), 中国海油(600938), 中曼石油(603619)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>油运/航运</strong>: 地缘风险推高运价 → 中远海能(600026), 招商轮船(601872), 招商南油(601975)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于霍尔木兹海峡局势的持续性——是短期脉冲还是长期封锁。分歧点在于：部分投资者认为美伊最终会达成协议，油价将回落；另一派则认为地缘冲突常态化，油价中枢将系统性上移。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">巴克莱维持布伦特2026年均价96美元/桶的预测，认为地缘风险溢价尚未完全计入。中信建投看好油运板块的“运价弹性+估值修复”双击机会。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，但若局势持续紧张则可能升级为中期主线。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">3. <span class="card-level">A级</span> 央行印发“十五五”改革发展规划</div>
+<div class="card-meta"><span class="stars">★★★★★</span> <span>⏰ 2026年08月11日 2026年08月10日 18:23</span></div>
+<div class="logic">央行印发《中国人民银行“十五五”改革发展规划》，配套9份细分领域行动方案，涵盖货币政策体系、宏观审慎管理、金融市场建设、金融高水平开放等核心领域。这是未来五年中国货币政策框架的顶层设计，为中长期流动性环境和金融改革定调。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">对A股构成中长期制度性利好。“构建科学稳健的货币政策体系”意味着货币政策将更加精准有效，流动性环境有望保持合理充裕；“持续增强金融服务实体经济质效”指向对科技创新、绿色发展等领域的结构性支持。金融高水平开放有助于吸引外资中长期配置A股。券商、金融科技板块有望受益于金融改革深化。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">在全球央行政策分化背景下，中国央行明确“十五五”改革路径，释放出货币政策独立性和稳定性信号。人民币兑美元升至6.7442，创2023年2月以来新高，反映外资对中国经济信心增强。该规划有助于稳定全球投资者对中国金融市场的长期预期。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>券商/金融科技</strong>: 金融改革深化，资本市场活跃度提升 → 中信证券(600030), 东方财富(300059), 同花顺(300033)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>银行/保险</strong>: 货币政策框架现代化，经营环境优化 → 招商银行(600036), 中国平安(601318)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“十五五”规划对资本市场的影响路径——是短期情绪催化还是长期制度红利。分歧点在于：部分投资者认为规划偏宏观，短期难以落地；另一派则认为货币政策框架现代化将打开降准降息空间。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">主流券商普遍解读为“稳增长、促改革”的政策组合拳，预期差在于对具体货币政策工具（降准/降息）落地时点的判断。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，政策红利将逐步释放。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">4. <span class="card-level">A级</span> 《煤炭工业发展“十五五”规划》印发</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年08月11日 2026年08月10日 16:02</span></div>
+<div class="logic">国家发改委、国家能源局印发《煤炭工业发展“十五五”规划》，提出到2030年全国大型现代化煤矿产能比重提升至87%，推进煤制芳烃、煤基生物可降解材料产业化，加快煤机装备工业软件、关键零部件国产化替代。传统能源供给侧改革与转型升级并重。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">对A股煤炭板块构成结构性利好。产能向大型现代化煤矿集中，利好中国神华、陕西煤业等龙头煤企；煤机智能化改造需求释放，利好天地科技、郑煤机等煤机设备商；煤化工产业化突破利好宝丰能源、华鲁恒升等现代煤化工企业。同时，中小煤矿加速退出将改善行业供需格局，支撑煤价中枢。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">在全球能源转型大背景下，中国明确煤炭的“兜底保障”定位，体现了能源安全的战略考量。国际油价大涨背景下，煤炭作为替代能源的性价比凸显。海外投资者对中国煤炭龙头的高分红属性关注度提升。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>煤炭龙头</strong>: 产能集中度提升，盈利稳定性增强 → 中国神华(601088), 陕西煤业(601225), 中煤能源(601898)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>煤机/煤化工</strong>: 智能化改造+产业化突破 → 天地科技(600582), 郑煤机(601717), 宝丰能源(600989)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于煤炭板块是“旧经济”还是“新价值”——高分红属性与转型预期的估值重塑。分歧点在于：部分投资者认为煤炭需求长期下行，规划只是延缓衰退；另一派则认为供给约束+高分红使煤炭成为类债券资产。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中信建投、国泰海通等券商看好煤炭板块的“高股息+估值修复”逻辑，预期差在于煤化工产业化进度。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，政策驱动+基本面改善共振。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">5. <span class="card-level">A级</span> 江波龙上半年净利105.77亿元，同比增长715倍</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年08月11日 2026年08月10日 19:58</span></div>
+<div class="logic">江波龙2026年上半年净利润105.77亿元，同比增长71528.66%，营收240.88亿元，同比增长136.26%。存储超级周期下，国产存储模组龙头盈利爆发力惊人。公司自研主控芯片累计生产超2.8亿颗，5nm先进制程UF产品推进中。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">江波龙业绩是存储行业景气的缩影。摩根大通预测全球存储芯片短缺或持续至2028年，HBM明年平均售价增幅或超四成。A股存储板块（兆易创新、北京君正、佰维存储）有望在业绩驱动下迎来估值修复。同时，公司拟4-8亿元回购股份，彰显管理层信心。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">全球存储市场正经历AI驱动的超级周期。SK海力士、美光、闪迪等国际大厂股价持续走强，韩国资金甚至抢筹中际旭创H股。存储涨价周期拉长至2028年，意味着全球科技硬件成本将系统性上升，苹果等终端厂商已因内存短缺下调出货量。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>存储模组/芯片</strong>: 存储涨价周期受益 → 江波龙(301308), 佰维存储(688525), 德明利(001309)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>存储接口/配套</strong>: 需求拉动 → 澜起科技(688008), 聚辰股份(688123)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于存储周期能持续多久——是超级周期还是阶段性涨价。分歧点在于：部分投资者担忧存储涨价抑制下游需求，导致周期见顶；另一派则认为AI驱动的存储需求是结构性增长。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">摩根大通、中信证券等主流券商看好存储板块中期景气度，预期差在于HBM对传统DRAM产能的挤占程度。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，业绩驱动+涨价周期共振。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">6. <span class="card-level">A级</span> 韩国设立超35亿美元半导体材料、零部件及设备基金</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年08月11日 2026年08月10日 16:55</span></div>
+<div class="logic">韩国将设立规模5万亿韩元（约35.2亿美元）的半导体专项基金，重点投资芯片材料、零部件及无晶圆厂企业。这是韩国建设半导体产业集群计划的一部分，反映全球半导体供应链安全化趋势加速。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">韩国加码半导体材料设备，印证了全球供应链“去全球化”趋势，中国半导体设备材料国产替代逻辑进一步强化。A股半导体设备（北方华创、中微公司）、材料（沪硅产业、鼎龙股份）板块有望受益。同时，韩国基金重点投资无晶圆厂企业，或加剧全球芯片设计竞争。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">全球主要经济体（美、日、韩、欧）均在加大对半导体产业链的战略投入，半导体产业从“效率优先”转向“安全优先”。韩国作为存储芯片强国，加码材料设备领域旨在降低对日本依赖。对中国半导体产业而言，既是挑战（竞争加剧）也是机遇（国产替代空间明确）。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>半导体设备</strong>: 国产替代核心受益 → 北方华创(002371), 中微公司(688012), 拓荆科技(688072)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>半导体材料</strong>: 供应链安全化 → 沪硅产业(688126), 鼎龙股份(300054), 安集科技(688019)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于国产替代从“概念”到“业绩”的兑现节奏。分歧点在于：部分投资者认为半导体设备估值已高，业绩增速难以匹配；另一派则认为国产化率提升空间巨大，龙头公司业绩将持续超预期。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中金公司、华泰证券等看好半导体设备材料板块的国产替代长逻辑，预期差在于先进制程设备突破进度。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">长期赛道，政策+产业趋势共振。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">7. <span class="card-level">A级</span> 中金公司增持中际旭创H股至5.22%</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年08月11日 2026年08月10日 17:51</span></div>
+<div class="logic">港交所披露，中金公司在中际旭创H股持股比例从4.91%升至5.22%，平均买入价1056.06港元。同时，韩国投资者近一个月净买入中际旭创H股4339万美元，位居港股榜首。机构资金持续加码光模块龙头。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中际旭创作为A股光模块龙头，H股上市不足两周即获国内外机构抢筹，反映全球资本对AI算力链核心资产的追捧。A股光模块板块（新易盛、天孚通信）有望在龙头带动下获得估值溢价。中金公司增持或代表“国家队”对算力链的认可。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">韩国资金抢筹中际旭创H股，反映亚洲资本对AI算力链的配置需求旺盛。美股光通信板块虽短期回调（Coherent跌超14%），但迈威尔科技、Credo等仍延续涨势，全球光模块需求景气度未改。外资通过港股通/陆股通配置A股光模块龙头的趋势有望延续。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>光模块龙头</strong>: 机构资金持续加码 → 中际旭创(300308), 新易盛(300502)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>光通信配套</strong>: 产业链联动 → 天孚通信(300394), 太辰光(300570)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于光模块板块估值是否已充分反映AI需求——是“贵”还是“贵有贵的道理”。分歧点在于：部分投资者担忧光模块增速放缓，估值面临均值回归；另一派则认为AI算力需求仍处爆发期，龙头业绩将持续超预期。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中金公司、国泰海通等看好光模块板块，认为AI数据中心建设是未来3年最确定的产业趋势之一。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，机构资金持续流入。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">8. <span class="card-level">A级</span> 马斯克瞄准EUV光源，青睐FEL技术</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年08月11日 2026年08月10日 20:12</span></div>
+<div class="logic">马斯克正将目光投向芯片制造核心环节——EUV光源，相较于目前成熟商用的LPP技术，对自由电子激光（FEL）表达出明显青睐。FEL技术理论上可大幅降低先进芯片生产成本，但尚处早期研发阶段。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">马斯克入局EUV光源，为半导体设备国产替代提供了新叙事。若FEL技术路线成熟，将打破ASML在EUV领域的垄断格局，为中国半导体设备企业提供“换道超车”机会。A股激光设备（大族激光、华工科技）、半导体设备（北方华创）板块或受主题催化。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">马斯克继造车、火箭、人形机器人后，将商业版图拓展至芯片制造核心环节，反映全球科技巨头对半导体产业链的战略重视。FEL技术若成功，将重塑全球芯片制造格局，对ASML构成潜在威胁。美股半导体设备板块或受主题催化。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>激光设备</strong>: FEL技术相关 → 大族激光(002008), 华工科技(000988), 锐科激光(300747)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>半导体设备</strong>: 国产替代新叙事 → 北方华创(002371), 中微公司(688012)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于FEL技术是“真突破”还是“PPT”——马斯克的工程能力能否复制到芯片制造领域。分歧点在于：部分投资者认为FEL技术尚处早期，商业化遥遥无期；另一派则认为马斯克的“第一性原理”思维可能带来颠覆性创新。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">目前卖方覆盖较少，属于主题投资阶段，预期差在于FEL技术路线的可行性验证进度。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，主题投资属性较强。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">9. <span class="card-level">A级</span> 阿里云计划将全球数据中心产能提升两倍以上</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年08月11日 2026年08月10日 16:32</span></div>
+<div class="logic">阿里云基于首创全模块化设计架构，已将大型AIDC数据中心交付工期缩短至100天（国内传统6-12个月，美国12-18个月），建设成本降低10%以上。今年计划将模块化数据中心全球产能提升两倍以上。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">阿里云产能翻倍计划是国内AI基建加速的明确信号。AIDC交付周期大幅缩短，意味着国内算力供给瓶颈有望快速缓解，利好IDC运营商、液冷、UPS电源等产业链环节。同时，阿里云作为国内AI算力核心供应商，产能扩张将带动国产AI芯片、服务器需求。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">阿里云模块化数据中心技术领先全球，交付工期仅为美国的1/4-1/6，反映中国在AI基础设施建设效率上的竞争优势。在全球AI军备竞赛背景下，阿里云产能扩张有助于提升中国在全球AI产业格局中的地位。海外云厂商（AWS、Azure）或跟进模块化技术路线。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>IDC/算力租赁</strong>: 阿里云产能扩张带动需求 → 润泽科技(300442), 奥飞数据(300738), 数据港(603881)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>液冷/温控</strong>: AIDC高功率密度散热需求 → 英维克(002837), 高澜股份(300499), 申菱环境(301018)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于阿里云产能扩张对国内算力供给格局的影响——是利好还是利空（供给过剩担忧）。分歧点在于：部分投资者担忧产能过快扩张导致价格战；另一派则认为AI算力需求仍远大于供给。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中信证券、国泰海通看好AIDC产业链，认为模块化交付将加速国内算力基础设施建设。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，产业趋势明确。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">10. <span class="card-level">A级</span> 微软计划最快9月发布下一代MAIA 300 AI芯片</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年08月11日 2026年08月10日 21:02</span></div>
+<div class="logic">微软计划最快9月公开发布下一代MAIA 300 AI芯片，并计划明年大幅增加自研AI芯片产量，以说服Anthropic等大型云客户使用。此前Maia 200采用速度缓慢。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">微软自研芯片加速，反映全球科技巨头“去英伟达化”趋势。对A股影响：一是国产AI芯片（寒武纪、海光信息）获得“对标”逻辑支撑；二是AI芯片竞争加剧可能压低算力成本，利好下游应用；三是芯片封装、测试等配套环节需求增加。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">微软、谷歌、亚马逊、Meta等科技巨头均在加速自研AI芯片，全球AI算力供给格局正从英伟达“一家独大”走向“百花齐放”。这对英伟达构成中长期竞争压力，但对整个AI产业而言，算力成本下降将加速应用落地。美股半导体板块或出现分化。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>国产AI芯片</strong>: 自研芯片对标逻辑 → 寒武纪(688256), 海光信息(688041), 龙芯中科(688047)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>芯片封测</strong>: 自研芯片放量带动 → 长电科技(600584), 通富微电(002156), 甬矽电子(688362)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于国产AI芯片与微软自研芯片的差距——是“追赶”还是“并跑”。分歧点在于：部分投资者认为国产AI芯片性能差距仍大，难以真正替代；另一派则认为在国产替代政策支持下，生态将逐步完善。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">主流券商看好国产AI芯片的长期成长空间，预期差在于实际性能表现和客户导入进度。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，产业趋势+政策支持共振。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">11. <span class="card-level">A级</span> 摩根大通：全球存储芯片短缺或持续至2028年</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年08月11日 2026年08月10日 17:37</span></div>
+<div class="logic">摩根大通研报指出，AI需求推动存储芯片价格和出货量同步增长，将2026-2028年全球存储市场规模预测上调4%-8%，预计2027年达1.44万亿美元、2028年达1.82万亿美元。供需短缺未来两年仍将持续，2027年可能进一步恶化。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">存储超级周期确认延长至2028年，对A股存储产业链构成重大利好。江波龙上半年净利暴增715倍已率先验证业绩弹性，兆易创新、北京君正、佰维存储等有望跟进。同时，存储涨价将推升下游终端成本，苹果等厂商已下调出货量，消费电子板块或承压。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">摩根大通上调存储市场预测，反映全球AI算力需求对存储的拉动远超预期。HBM明年平均售价增幅或超四成，SK海力士、三星、美光等国际大厂盈利预期上修。存储芯片已成为全球半导体产业景气度的“风向标”。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>存储芯片/模组</strong>: 涨价周期延长 → 兆易创新(603986), 北京君正(300223), 佰维存储(688525)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>存储接口芯片</strong>: 需求拉动 → 澜起科技(688008), 聚辰股份(688123)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于存储涨价对下游需求的抑制何时显现——是“量价齐升”还是“价升量跌”。分歧点在于：部分投资者担忧存储价格过高将抑制AI服务器出货；另一派则认为AI需求刚性，涨价传导顺畅。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">摩根大通、中信证券等看好存储板块，预期差在于HBM对传统DRAM产能的挤占程度和涨价持续时长。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，景气度确定性高。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">12. <span class="card-level">A级</span> 爱丽家居12天11板后再度停牌核查</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年08月11日 2026年08月10日 20:01</span></div>
+<div class="logic">爱丽家居12天11板，累计涨幅185.56%，严重偏离基本面，8月11日起再度停牌核查。此前7月31日已停牌核查一次，复牌仅3个交易日再度停牌。监管对妖股炒作态度明确。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">爱丽家居再度停牌核查，释放监管层对短线投机炒作的警示信号。当前市场虽有99股涨停、超4000只个股上涨，但高位连板股风险积聚。投资者需警惕高位股“天地板”风险，短线情绪或受压制。对并购重组主题（爱丽家居为并购重组概念）的炒作可能降温。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">监管对妖股炒作的严格态度，反映中国资本市场“严监管”常态化。外资视角下，这有助于维护市场公平交易秩序，但也可能短期抑制市场活跃度。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>风险规避</strong>: 高位连板股回调风险 → 回避爱丽家居(603221), 高争民爆(002827)等高位股</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>价值回归</strong>: 资金或转向业绩确定性标的 → 关注中报超预期品种</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于监管对妖股炒作的态度是否会导致短线情绪退潮。分歧点在于：部分投资者认为停牌核查是“例行公事”，不影响市场整体情绪；另一派则认为这是监管趋严信号，高位股风险加大。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">主流券商提示高位股风险，建议关注业绩确定性标的。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，短线情绪影响。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">13. <span class="card-level">A级</span> 宇树科技中签率0.0181%，发行价150.80元</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年08月11日 2026年08月10日 19:10</span></div>
+<div class="logic">宇树科技科创板IPO网上发行最终中签率0.0181%，发行价150.80元/股。作为人形机器人赛道标杆企业，宇树科技上市将为人形机器人板块提供估值锚。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">宇树科技上市是人形机器人产业化的标志性事件。中签率极低反映市场追捧热度，上市后有望带动人形机器人板块估值提升。A股人形机器人产业链（减速器、伺服电机、传感器）有望获得主题催化。同时，天津等地密集出台智能机器人产业政策，产业趋势明确。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">全球人形机器人赛道竞争加剧，特斯拉Optimus、Figure AI等加速迭代。宇树科技作为中国代表企业登陆科创板，有助于提升中国在全球人形机器人产业格局中的地位。外资对人形机器人产业链的关注度提升。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>人形机器人核心零部件</strong>: 产业链联动 → 绿的谐波(688017), 汇川技术(300124), 鸣志电器(603728)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>机器人整机/集成</strong>: 板块估值锚确立 → 埃斯顿(002747), 拓斯达(300607)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于宇树科技上市后的估值水平——是“贵”还是“合理”。分歧点在于：部分投资者认为人形机器人商业化尚早，估值泡沫明显；另一派则认为人形机器人是“十年一遇”的产业机遇，应给予估值溢价。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">主流券商看好机器人产业链长期空间，预期差在于商业化落地时间表。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，上市首日或带动板块情绪。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">14. <span class="card-level">A级</span> 频准激光年内最贵新股中签号出炉</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年08月11日 2026年08月10日 19:13</span></div>
+<div class="logic">频准激光发行价186.88元/股，为A股年内发行价最高新股，中签号码共6423个，中一签需缴款9.34万元。公司主营高端激光设备，与半导体、光通信产业密切相关。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">频准激光作为年内最贵新股，反映市场对高端激光设备赛道的高度关注。公司上市有望带动A股激光设备板块（大族激光、华工科技）估值提升。同时，激光设备在半导体制造、光通信、新能源等领域的应用持续拓展，产业趋势向好。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">全球激光设备市场由IPG、相干等国际巨头主导，中国企业在高端领域加速追赶。频准激光上市有助于提升中国激光产业的国际竞争力。马斯克青睐FEL技术也为激光设备赛道增添了主题催化。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>激光设备</strong>: 板块估值提升 → 大族激光(002008), 华工科技(000988), 锐科激光(300747)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>激光器件/配套</strong>: 产业链联动 → 福晶科技(002222), 杰普特(688025)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于频准激光的发行定价是否合理——高价发行是否透支未来成长空间。分歧点在于：部分投资者认为高端激光设备赛道壁垒高、成长性好，值得溢价；另一派则认为发行价过高，破发风险不容忽视。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">目前卖方覆盖较少，上市后或有研报跟进。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，上市首日表现或影响板块情绪。</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">15. <span class="card-level">A级</span> 甘李药业授权Menarini欧洲商业化权利，里程碑付款最高6.64亿欧元</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年08月11日 2026年08月10日 17:10</span></div>
+<div class="logic">甘李药业与Menarini达成独家许可协议，授予其在欧盟27国及英国等39个欧洲国家和地区博凡格鲁肽超重或肥胖适应症的上市注册及商业化权利。首付款6200万欧元，里程碑付款最高6.64亿欧元。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">甘李药业GLP-1出海再下一城，验证国产创新药国际化逻辑。A股创新药板块（恒瑞医药、信达生物、百济神州）有望获得情绪提振。GLP-1赛道（减重/降糖）是全球医药产业最热方向，国产企业加速出海将打开成长空间。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">全球GLP-1市场由诺和诺德、礼来主导，国产企业通过授权合作模式切入欧洲市场，是“借船出海”的典型案例。诺和诺德与亚马逊AWS合作推动AI药物研发，反映AI+制药趋势。欧洲药品监管环境对中国创新药的接受度提升。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>GLP-1产业链</strong>: 出海逻辑强化 → 甘李药业(603087), 信达生物(1801.HK), 华东医药(000963)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>CXO/创新药</strong>: 板块情绪提振 → 药明康德(603259), 凯莱英(002821), 泰格医药(300347)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于国产GLP-1的国际化路径——是“授权出海”还是“自主出海”更优。分歧点在于：部分投资者认为授权模式虽能快速获得现金流，但长期价值让渡过多；另一派则认为在海外临床和商业化能力不足的情况下，授权是务实选择。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">主流券商看好创新药出海逻辑，预期差在于GLP-1市场竞争格局演变。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，对个股构成直接利好。</p>
+</div>
+<h2 class="section-title">三、全量电报列表（精简）</h2>
+<table class="telegram-table">
+<thead><tr>
+<th class="">序号</th>
+<th class="">时间</th>
+<th class="">Lv</th>
+<th class="">分享</th>
+<th class="">评论</th>
+<th class="">内容摘要40字</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class=""><span class="rank-num">1</span></td>
+<td class="">16:32</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">3597</td>
+<td class="">120</td>
+<td class="content-col">【阿里云计划将全球数据中心产能提升两倍以上】《科创板日报》10日讯，《科创板日报</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">2</span></td>
+<td class="">06:22</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">3362</td>
+<td class="">3</td>
+<td class="content-col">【周二你需要知道的隔夜全球要闻：英伟达拟与多家金融公司募资5000亿美元投向AI</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">3</span></td>
+<td class="">19:58</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">2020</td>
+<td class="">138</td>
+<td class="content-col">【江波龙：上半年净利105.77亿元 同比增长71529%】财联社8月10日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">4</span></td>
+<td class="">21:41</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1650</td>
+<td class="">6</td>
+<td class="content-col">【财联社8月10日晚间新闻精选】 1、《煤炭工业发展“十五五”规划》印发，合理引</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">5</span></td>
+<td class="">20:37</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1550</td>
+<td class="">5</td>
+<td class="content-col">【美股盘前要闻一览：英伟达拟向电力基建商Lancium投资至多30亿美元；马斯克</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">6</span></td>
+<td class="">19:10</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1438</td>
+<td class="">91</td>
+<td class="content-col">【宇树科技：网上发行最终中签率0.0181%】财联社8月10日电，宇树科技(68</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">7</span></td>
+<td class="">08:04</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1467</td>
+<td class="">2</td>
+<td class="content-col">【财联社8月11日早间新闻精选】  1、中国人民银行近日印发《中国人民银行“十五</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">8</span></td>
+<td class="">18:23</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1101</td>
+<td class="">4</td>
+<td class="content-col">【央行印发《中国人民银行“十五五”改革发展规划》 并配套制定出台9份相关细分领域</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">9</span></td>
+<td class="">15:02</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1024</td>
+<td class="">68</td>
+<td class="content-col">【收评：沪指震荡反弹涨0.67% 全市场超4000只个股上涨】财联社8月10日电</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">10</span></td>
+<td class="">20:01</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1005</td>
+<td class="">73</td>
+<td class="content-col">【12天11板爱丽家居复牌仅3个交易日后再度停牌核查】财联社8月10日电，爱丽家</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">11</span></td>
+<td class="">04:00</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1075</td>
+<td class="">3</td>
+<td class="content-col">【美股纳指收跌0.3% 光通信板块大跌 Coherent跌超14%】财联社8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">12</span></td>
+<td class="">20:12</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1000</td>
+<td class="">14</td>
+<td class="content-col">【马斯克瞄准EUV光源：FEL技术受青睐 芯片成本或迎变革】财联社8月10日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">13</span></td>
+<td class="">17:51</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">884</td>
+<td class="">81</td>
+<td class="content-col">【中金公司持有的中际旭创H股多头头寸比例增至5.22%】财联社8月10日电，香港</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">14</span></td>
+<td class="">16:55</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">885</td>
+<td class="">34</td>
+<td class="content-col">【韩国将设立超35亿美元基金 重点投资半导体材料、零部件及设备领域】财联社8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">15</span></td>
+<td class="">19:50</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">814</td>
+<td class="">1</td>
+<td class="content-col">【8月10日周一《新闻联播》要闻20条】财联社8月10日电，今天《新闻联播》主要</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">16</span></td>
+<td class="">00:26</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">793</td>
+<td class="">8</td>
+<td class="content-col">【多家华尔街公司与英伟达据悉达成5000亿美元的人工智能融资协议】财联社8月11</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">17</span></td>
+<td class="">20:02</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">712</td>
+<td class="">56</td>
+<td class="content-col">【韩国资金抢筹中际旭创 H股上市7天净买4339万美元】财联社8月10日电，上市</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">18</span></td>
+<td class="">21:30</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">689</td>
+<td class="">12</td>
+<td class="content-col">【美股三大指数集体低开 光通信板块延续涨势】财联社8月10日电，美股三大指数集体</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">19</span></td>
+<td class="">19:13</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">660</td>
+<td class="">28</td>
+<td class="content-col">【年内最贵新股频准激光中签号出炉：共有6423个】财联社8月10日电，频准激光(</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">20</span></td>
+<td class="">04:07</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">674</td>
+<td class="">5</td>
+<td class="content-col">【英伟达宣布：将与6家金融公司合作 筹集逾5000亿美元用于AI计算】财联社8月</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">21</span></td>
+<td class="">19:58</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">596</td>
+<td class="">28</td>
+<td class="content-col">【江波龙：拟4亿元-8亿元回购公司股份】财联社8月10日电，江波龙(301308</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">22</span></td>
+<td class="">16:02</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">589</td>
+<td class="">5</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：到2030年 全国大型现代化煤矿产能比重提</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">23</span></td>
+<td class="">18:39</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">503</td>
+<td class="">18</td>
+<td class="content-col">【汇添富黄金LOF：下调大额申购、定期定额投资业务限制金额至100.00元，暂停</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">24</span></td>
+<td class="">21:02</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">511</td>
+<td class="">3</td>
+<td class="content-col">【微软计划最快9月发布其下一代MAIA 300人工智能芯片】财联社8月10日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">25</span></td>
+<td class="">17:10</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">446</td>
+<td class="">12</td>
+<td class="content-col">【甘李药业：授权Menarini在欧盟27国等地区的博凡格鲁肽超重或肥胖适应症的</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">26</span></td>
+<td class="">15:25</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">391</td>
+<td class="">13</td>
+<td class="content-col">【8月10日涨停分析】财联社8月10日电，今日全市场共99股涨停，连板股总数12</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">27</span></td>
+<td class="">00:35</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">374</td>
+<td class="">10</td>
+<td class="content-col">【特朗普要求伊朗赔偿】财联社8月11日电，美国总统特朗普当地时间8月10日在社交</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">28</span></td>
+<td class="">08:13</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">353</td>
+<td class="">1</td>
+<td class="content-col">【投资日历：周二资本市场大事提醒】 ①今日共有3只新股上市，为北交所的珈凯生物（</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">29</span></td>
+<td class="">23:27</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">300</td>
+<td class="">1</td>
+<td class="content-col">【美国战略石油储备跌穿3亿桶关口 为1983年以来首次】财联社8月10日电，美国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">30</span></td>
+<td class="">17:19</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">255</td>
+<td class="">27</td>
+<td class="content-col">【2连板先导基电：主营业务不包括磷化铟衬底 亦无磷化铟衬底相关业务收入及利润】财</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">31</span></td>
+<td class="">18:15</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">247</td>
+<td class="">2</td>
+<td class="content-col">【芯联集成：上半年净利润2.78亿元同比扭亏 在AI基建和光互连领域布局技术平台</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">32</span></td>
+<td class="">18:58</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">201</td>
+<td class="">10</td>
+<td class="content-col">【益生股份：7月白羽肉鸡苗销售收入同比增长113%】财联社8月10日电，益生股份</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">33</span></td>
+<td class="">18:02</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">182</td>
+<td class="">12</td>
+<td class="content-col">【建设机械：拟收购蒲城清洁能源公司100%股权 股票停牌】财联社8月10日电，建</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">34</span></td>
+<td class="">23:11</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">709</td>
+<td class="">20</td>
+<td class="content-col">【中星4B卫星发射失利】8月10日20时02分，我国在文昌航天发射场使用长征七号</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">35</span></td>
+<td class="">21:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">231</td>
+<td class="">0</td>
+<td class="content-col">【知情人士确认亿纬锂能两类电池将涨价 业内称不排除影响后续电车定价】财联社8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">36</span></td>
+<td class="">17:37</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">204</td>
+<td class="">9</td>
+<td class="content-col">【摩根大通：全球存储芯片短缺或持续至2028年 HBM明年平均售价增幅或超四成】</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">37</span></td>
+<td class="">08:11</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">204</td>
+<td class="">0</td>
+<td class="content-col">【中信证券：算力突破电力边界 SST开启硅进铜退新周期】财联社8月11日电，中信</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">38</span></td>
+<td class="">19:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">184</td>
+<td class="">1</td>
+<td class="content-col">【洁美科技：拟购买埃福思科技100%股权】财联社8月10日电，洁美科技(0028</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">39</span></td>
+<td class="">06:28</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">178</td>
+<td class="">1</td>
+<td class="content-col">【特朗普称美军已“100%控制”霍尔木兹海峡】财联社8月11日电，美国总统特朗普</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">40</span></td>
+<td class="">22:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">169</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，美股AI应用软件股表现活跃，Tempus AI涨超6%，Mo</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">41</span></td>
+<td class="">15:50</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">158</td>
+<td class="">0</td>
+<td class="content-col">【今日投资舆情热点】 1）泛消费：《扩大消费“十五五”规划》提出，到2030年社</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">42</span></td>
+<td class="">06:18</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">156</td>
+<td class="">0</td>
+<td class="content-col">【中国AI产业链凸显增长韧性 国际资本借道ETF加力布局】财联社8月11日电，进</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">43</span></td>
+<td class="">20:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">147</td>
+<td class="">5</td>
+<td class="content-col">【恒逸石化：上半年净利润59亿元 同比增长2501%】财联社8月10日电，恒逸石</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">44</span></td>
+<td class="">21:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">148</td>
+<td class="">4</td>
+<td class="content-col">【日本连续两个月破产企业超千家 为14年来首次】财联社8月10日电，日本东京商工</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">45</span></td>
+<td class="">04:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">150</td>
+<td class="">0</td>
+<td class="content-col">【利弗莫尔中概股龙头指数收涨1.09%】财联社8月11日电，利弗莫尔中概股龙头指</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">46</span></td>
+<td class="">07:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">148</td>
+<td class="">1</td>
+<td class="content-col">【锂价止跌企稳 碳酸锂紧平衡格局仍稳固】财联社8月11日电，7月走出一轮“预期驱</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">47</span></td>
+<td class="">04:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">148</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，英伟达CEO黄仁勋表示，5000亿美元人工智能融资协议的资金</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">48</span></td>
+<td class="">05:24</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">145</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，Fermi盘后大涨34%，公司签订数据中心项目租赁协议。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">49</span></td>
+<td class="">16:13</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">140</td>
+<td class="">1</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：推进煤制芳烃、煤基生物可降解材料等实现产业</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">50</span></td>
+<td class="">23:58</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">141</td>
+<td class="">0</td>
+<td class="content-col">【霍尔木兹海峡风险推高油轮租船成本 中东航线日费逼近50万美元】财联社8月10日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">51</span></td>
+<td class="">04:52</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">134</td>
+<td class="">0</td>
+<td class="content-col">【无人机袭击摧毁利比亚扎维耶炼油厂一座燃料储罐】财联社8月11日电，利比亚国家石</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">52</span></td>
+<td class="">06:35</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">127</td>
+<td class="">0</td>
+<td class="content-col">【多路资金买入黄金 机构热议新“击球区”出现】财联社8月11日电，黄金近期迎来了</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">53</span></td>
+<td class="">19:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">126</td>
+<td class="">0</td>
+<td class="content-col">【千问办公助理收费 会员套餐分旗舰、精英、高级三档】财联社记者获悉，千问办公助理</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">54</span></td>
+<td class="">16:46</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">122</td>
+<td class="">3</td>
+<td class="content-col">【AI4S又一里程碑 美国“创世纪计划”推出科研大模型 现已进入数据收集阶段】财</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">55</span></td>
+<td class="">17:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">118</td>
+<td class="">4</td>
+<td class="content-col">【上海：推动算力和基础大模型扩大境外调用 支持智能体、多模态生成等模型产品出口】</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">56</span></td>
+<td class="">00:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">117</td>
+<td class="">0</td>
+<td class="content-col">【伊朗最高领袖任命革命卫队总司令】财联社8月11日电，伊朗最高领袖穆杰塔巴·哈梅</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">57</span></td>
+<td class="">03:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">115</td>
+<td class="">0</td>
+<td class="content-col">【美元指数10日上涨】财联社8月11日电，美元指数10日上涨。衡量美元对六种主要</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">58</span></td>
+<td class="">02:44</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">113</td>
+<td class="">0</td>
+<td class="content-col">【伊朗总统与最高领袖会谈七八个小时】财联社8月11日电，伊朗总统佩泽希齐扬8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">59</span></td>
+<td class="">06:47</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">113</td>
+<td class="">0</td>
+<td class="content-col">【中报窗口期机构密集调研 创新药步入业绩与国际化兑现期】财联社8月11日电，当前</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">60</span></td>
+<td class="">04:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">113</td>
+<td class="">0</td>
+<td class="content-col">【美以叙达成谅解 叙利亚秘密地点核材料将被转移】财联社8月11日电，美国、以色列</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">61</span></td>
+<td class="">07:20</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">111</td>
+<td class="">0</td>
+<td class="content-col">【我国高能量密度一次电池功率获突破】财联社8月11日电，从中国科学院大连化学物理</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">62</span></td>
+<td class="">15:59</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">110</td>
+<td class="">0</td>
+<td class="content-col">【8月10日连板股分析：高位股表现活跃 爱丽家居12天11板】今日共99股涨停，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">63</span></td>
+<td class="">06:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">110</td>
+<td class="">0</td>
+<td class="content-col">【美联储9月加息25个基点的概率为51.2%】财联社8月11日电，据CME“美联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">64</span></td>
+<td class="">16:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">108</td>
+<td class="">0</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：山西、内蒙古、陕西、新疆（除南疆外）产能低</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">65</span></td>
+<td class="">06:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">107</td>
+<td class="">1</td>
+<td class="content-col">【多重稳市信号释放 资本市场着力强韧性、提信心】财联社8月11日电，稳市信号持续</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">66</span></td>
+<td class="">20:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">107</td>
+<td class="">0</td>
+<td class="content-col">【我国境内发现多起“Sorry”勒索病毒攻击事件】财联社8月10日电，近日，国家</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">67</span></td>
+<td class="">08:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">106</td>
+<td class="">0</td>
+<td class="content-col">【中信建投：中长期钨精矿价格趋势向上】财联社8月11日电，中信建投研报表示，本周</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">68</span></td>
+<td class="">22:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">104</td>
+<td class="">1</td>
+<td class="content-col">【中国长城：擎天系列AI服务器可为相关业务提供算力支持】财联社8月10日电，中国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">69</span></td>
+<td class="">22:37</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">103</td>
+<td class="">2</td>
+<td class="content-col">【美股油气股集体上涨 阿帕奇石油涨超5%】财联社8月10日电，周一，美股油气股集</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">70</span></td>
+<td class="">22:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">100</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，医疗人工智能公司‌Tempus AI涨超6%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">71</span></td>
+<td class="">19:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">96</td>
+<td class="">2</td>
+<td class="content-col">【铖昌科技：2026年半年度净利润7629.53万元 同比增长34.72%】财联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">72</span></td>
+<td class="">16:11</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">98</td>
+<td class="">0</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：加快煤机装备工业软件、关键零部件自主研发和</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">73</span></td>
+<td class="">04:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">97</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，特朗普媒体科技集团第二季度营收167万美元，第二季度运营亏损</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">74</span></td>
+<td class="">04:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">97</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，摩根士丹利启动美国创新基础设施计划，将重点关注人工智能、基础</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">75</span></td>
+<td class="">18:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">93</td>
+<td class="">3</td>
+<td class="content-col">【SK海力士回应“考虑出售重庆工厂”传闻：尚未确定任何事项】财联社8月10日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">76</span></td>
+<td class="">00:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">96</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，英伟达股价跌幅扩大至2.6%，刷新日内低点。消息面上，多家华</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">77</span></td>
+<td class="">21:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">92</td>
+<td class="">3</td>
+<td class="content-col">财联社8月10日电，光通信概念股Credo开盘涨超5%、迈威尔科技涨超4%，领涨</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">78</span></td>
+<td class="">20:37</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">91</td>
+<td class="">3</td>
+<td class="content-col">【诺和诺德与亚马逊AWS建立战略合作伙伴关系 推动通过人工智能加速药物研发】财联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">79</span></td>
+<td class="">04:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">94</td>
+<td class="">0</td>
+<td class="content-col">【委内瑞拉强震造成遇难人数上升至6301人】财联社8月11日电，委内瑞拉全国代表</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">80</span></td>
+<td class="">22:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">88</td>
+<td class="">4</td>
+<td class="content-col">财联社8月10日电，美股存储股短线拉升，闪迪涨超4.2%，西部数据涨2.2%，美</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">81</span></td>
+<td class="">06:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">91</td>
+<td class="">1</td>
+<td class="content-col">【金融产品网络营销新规9月底起实施 保险业提前摸排整治账号端乱象】财联社8月11</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">82</span></td>
+<td class="">22:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">91</td>
+<td class="">0</td>
+<td class="content-col">【巴基斯坦与伊朗外长通话 就地区局势交换意见】财联社8月10日电，巴基斯坦外交部</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">83</span></td>
+<td class="">02:48</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">89</td>
+<td class="">0</td>
+<td class="content-col">【哈马克：可能需要“一定次数”的加息 现在是美联储开始采取行动的时候】财联社8月</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">84</span></td>
+<td class="">21:31</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">89</td>
+<td class="">0</td>
+<td class="content-col">【公安部开展深化扫黑除恶专项斗争第一轮集中收网行动】财联社8月10日电，为深入贯</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">85</span></td>
+<td class="">21:52</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">86</td>
+<td class="">2</td>
+<td class="content-col">【国际原油期货涨幅扩大至3%】财联社8月10日电，WTI原油期货涨幅扩大至3%，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">86</span></td>
+<td class="">03:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">88</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，英特尔股份的发售据悉受到了多倍超额认购。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">87</span></td>
+<td class="">02:47</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">86</td>
+<td class="">0</td>
+<td class="content-col">【美国7月平均气温刷新1895年以来最高纪录】财联社8月11日电，美国国家海洋和</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">88</span></td>
+<td class="">16:11</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">85</td>
+<td class="">0</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：大力实施灾害严重矿井、发生较大及以上事故矿</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">89</span></td>
+<td class="">05:37</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">85</td>
+<td class="">0</td>
+<td class="content-col">【周二（8月11日）重点关注财经事件和经济数据】 ① 12:30 澳洲联储公布利</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">90</span></td>
+<td class="">03:42</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">84</td>
+<td class="">0</td>
+<td class="content-col">【国际油价10日显著上涨】财联社8月11日电，国际油价10日显著上涨。截至当天收</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">91</span></td>
+<td class="">17:52</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">77</td>
+<td class="">6</td>
+<td class="content-col">【兆易创新：子公司出资1亿美元认购私募基金份额 基金重点关注科技领域相关公司】财</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">92</span></td>
+<td class="">07:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">83</td>
+<td class="">0</td>
+<td class="content-col">【暴雨橙色预警：山东、河南、安徽、湖北、河北、北京等地部分地区有大暴雨 河南局地</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">93</span></td>
+<td class="">05:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">83</td>
+<td class="">0</td>
+<td class="content-col">【胡塞武装再袭政府军 联合国特使警告也门冲突升级】财联社8月11日电，也门政府军</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">94</span></td>
+<td class="">04:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">83</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，OpenAI通过要约收购方式回购了价值70亿美元的员工所持股</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">95</span></td>
+<td class="">07:24</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">81</td>
+<td class="">1</td>
+<td class="content-col">【多家中小银行上调存款利率 业内人士称与五年期大额存单重启无直接关联】财联社8月</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">96</span></td>
+<td class="">01:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">80</td>
+<td class="">1</td>
+<td class="content-col">财联社8月11日电，美国总统特朗普将美国琼斯法案针对货轮的豁免措施延长90天，但</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">97</span></td>
+<td class="">16:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">81</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，美股光通信板块盘前延续涨势，Coherent涨超4%，Lum</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">98</span></td>
+<td class="">19:26</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">79</td>
+<td class="">1</td>
+<td class="content-col">【盛弘股份：上半年净利润同比增长44.11% 拟每10股派3.30元】财联社8月</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">99</span></td>
+<td class="">18:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">76</td>
+<td class="">4</td>
+<td class="content-col">【Meta发布轻量化版AI模型 单张显卡即可运行】财联社8月10日电， Meta</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">100</span></td>
+<td class="">21:13</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">76</td>
+<td class="">4</td>
+<td class="content-col">【TVB拟成立合营公司 提供算力服务】财联社8月10日电，无线集团有限公司（又称</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">101</span></td>
+<td class="">23:44</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">79</td>
+<td class="">1</td>
+<td class="content-col">【伊朗最高领袖对武装部队进行新任命】财联社8月10日电，伊朗最高领袖穆杰塔巴·哈</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">102</span></td>
+<td class="">00:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">80</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，匈牙利部长通报，该国再次出现非洲猪瘟疫情。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">103</span></td>
+<td class="">03:34</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">78</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，特朗普表示，霍尔木兹海峡现在是开放的。美国是唯一控制霍尔木兹</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">104</span></td>
+<td class="">19:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">76</td>
+<td class="">1</td>
+<td class="content-col">【杉杉股份：控股股东上层股权结构变更完成 海螺集团成为间接控股股东】财联社8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">105</span></td>
+<td class="">20:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">77</td>
+<td class="">0</td>
+<td class="content-col">【汇成真空：拟定增募资不超9.55亿元用于超精密半导体及连续式PVD设备产业化项</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">106</span></td>
+<td class="">15:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">75</td>
+<td class="">2</td>
+<td class="content-col">【深圳8月新房、二手房成交同步走高】财联社8月10日电，8月深圳楼市迎来开门红，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">107</span></td>
+<td class="">23:23</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">75</td>
+<td class="">2</td>
+<td class="content-col">【伊朗最高领袖将任命数名高级军事指挥官】财联社8月10日电，据伊朗最高领袖办公室</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">108</span></td>
+<td class="">03:26</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">77</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，特朗普在谈及伊朗局势升级可能性时表示，当然有可能。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">109</span></td>
+<td class="">03:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">77</td>
+<td class="">0</td>
+<td class="content-col">【我国科学家首次揭示冰室气候下极热事件完整图景】财联社8月11日电，据中国科学院</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">110</span></td>
+<td class="">02:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">77</td>
+<td class="">0</td>
+<td class="content-col">【美国2026财年前10个月联邦赤字为1.8万亿美元】财联社8月11日电，据美国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">111</span></td>
+<td class="">00:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">77</td>
+<td class="">0</td>
+<td class="content-col">【美国32所高校被指控招生过程相互合谋】财联社8月11日电，美国一位法官裁定，包</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">112</span></td>
+<td class="">01:35</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">76</td>
+<td class="">0</td>
+<td class="content-col">【南非多地遭遇持续强降雪 交通严重受阻】财联社8月11日电，南非多地10日持续遭</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">113</span></td>
+<td class="">15:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">75</td>
+<td class="">0</td>
+<td class="content-col">【华瓷股份：纳米氧化锆、氧化锆研磨珠产品已在新能源等领域批量供货】财联社8月10</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">114</span></td>
+<td class="">23:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">75</td>
+<td class="">0</td>
+<td class="content-col">【国际原油价格涨幅扩大至4%】财联社8月10日电，WTI原油期货价格涨4%，报8</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">115</span></td>
+<td class="">04:59</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">75</td>
+<td class="">0</td>
+<td class="content-col">【伊朗“圣城旅”指挥官到访巴格达 同伊拉克多方会晤】财联社8月11日电，伊拉克安</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">116</span></td>
+<td class="">18:20</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">72</td>
+<td class="">2</td>
+<td class="content-col">【九号公司：2026年半年度净利润同比下降18.79%】财联社8月10日电，九号</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">117</span></td>
+<td class="">07:23</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">72</td>
+<td class="">2</td>
+<td class="content-col">【郭明錤：苹果今年硬件出货量确因内存短缺而下调】财联社8月11日电，分析师郭明錤</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">118</span></td>
+<td class="">06:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">74</td>
+<td class="">0</td>
+<td class="content-col">【银行理财机构短期限产品规模增长过快触发监管提示】财联社8月11日电，银行理财机</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">119</span></td>
+<td class="">03:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">73</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，现货黄金涨幅扩大至1.02%，报4385.19美元/盎司。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">120</span></td>
+<td class="">19:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">70</td>
+<td class="">2</td>
+<td class="content-col">【幸福蓝海：开展上市十周年股东回馈活动】财联社8月10日电，幸福蓝海(30052</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">121</span></td>
+<td class="">18:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">72</td>
+<td class="">0</td>
+<td class="content-col">【青龙管业：签订4.97亿元预制构件框架采购协议】财联社8月10日电，青龙管业(</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">122</span></td>
+<td class="">22:37</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">72</td>
+<td class="">0</td>
+<td class="content-col">【利弗莫尔中概股龙头指数涨幅扩大至1%】财联社8月10日电，利弗莫尔中概股龙头指</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">123</span></td>
+<td class="">05:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">72</td>
+<td class="">0</td>
+<td class="content-col">【美航客机遭鸟击后返航】当地时间8月10日上午，一架原定从美国南卡罗来纳州默特尔</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">124</span></td>
+<td class="">20:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">71</td>
+<td class="">0</td>
+<td class="content-col">【恒逸石化：拟投资48.7亿元建设年产40万吨PA6熔体直纺项目】财联社8月10</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">125</span></td>
+<td class="">20:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">71</td>
+<td class="">0</td>
+<td class="content-col">【藏格矿业：上半年净利润36.38亿元 同比增长102.09%】财联社8月10日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">126</span></td>
+<td class="">17:42</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">71</td>
+<td class="">0</td>
+<td class="content-col">【伊朗外交部：美国海上封锁阻碍霍尔木兹海峡恢复通航】财联社8月10日电，伊朗外交</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">127</span></td>
+<td class="">19:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">70</td>
+<td class="">0</td>
+<td class="content-col">【昆仑万维：筹划发行H股股票并在香港联交所主板上市】财联社8月10日电，昆仑万维</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">128</span></td>
+<td class="">17:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">65</td>
+<td class="">5</td>
+<td class="content-col">【美银：7月CPI重要性高于就业报告 仍预计美联储9月启动加息】财联社8月10日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">129</span></td>
+<td class="">19:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">68</td>
+<td class="">2</td>
+<td class="content-col">【花旗Q2持仓市值突破3000亿美元 大举增持半导体产业链】财联社8月10日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">130</span></td>
+<td class="">17:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">69</td>
+<td class="">1</td>
+<td class="content-col">【两部门：到2030年煤层气产量260亿立方米 瓦斯利用量65亿立方米】财联社8</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">131</span></td>
+<td class="">00:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">70</td>
+<td class="">0</td>
+<td class="content-col">【LME期铜收涨84美元】财联社8月11日电，LME期铜收涨84美元，报1416</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">132</span></td>
+<td class="">00:47</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">70</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，AI数字基础设施提供商5C Group宣布获得超过14亿美元</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">133</span></td>
+<td class="">06:58</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">68</td>
+<td class="">1</td>
+<td class="content-col">财联社8月11日电，现货黄金向上触及4400美元，日内上涨0.22%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">134</span></td>
+<td class="">01:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">69</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，OpenAI发布GPT-5.6-Cyber，该模型专为高级授</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">135</span></td>
+<td class="">19:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">68</td>
+<td class="">0</td>
+<td class="content-col">【北京君正：拟变更证券简称为“君正股份”并推进H股上市】财联社8月10日电，北京</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">136</span></td>
+<td class="">16:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">68</td>
+<td class="">0</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：研究建立煤矿智能化行业标准化技术委员会 加</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">137</span></td>
+<td class="">03:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">68</td>
+<td class="">0</td>
+<td class="content-col">【美政府自去年初以来已吊销逾17.5万份非移民签证】财联社8月11日电，美国国务</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">138</span></td>
+<td class="">03:37</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">67</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，特朗普表示，自从沃什接任以来，和他谈过一次。非常尊重沃什。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">139</span></td>
+<td class="">05:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">67</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，富时中国A50指数期货夜盘收跌0.23%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">140</span></td>
+<td class="">21:51</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">66</td>
+<td class="">0</td>
+<td class="content-col">【多家券商上调年底标普500指数至8000点】财联社8月10日电，摩根大通10日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">141</span></td>
+<td class="">20:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">66</td>
+<td class="">0</td>
+<td class="content-col">【韩国总统李在明支持率降至新低】财联社8月10日电，韩国一项最新民意调查结果显示</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">142</span></td>
+<td class="">17:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">64</td>
+<td class="">1</td>
+<td class="content-col">【上海：支持集成电路企业实现全产业链突破 培育一批具有国际竞争力的领军企业】财联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">143</span></td>
+<td class="">05:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">65</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，IBM在加拿大发行了27.5亿美元的票据。其中，17.5亿加</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">144</span></td>
+<td class="">21:13</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">64</td>
+<td class="">0</td>
+<td class="content-col">【新恒汇：拟1.3亿元投建蚀刻引线框架生产车间扩建及物联网eSIM芯片封测扩产项</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">145</span></td>
+<td class="">17:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">64</td>
+<td class="">0</td>
+<td class="content-col">【上海：支持企业研发的创新药、现代中药和高端医疗器械全球注册认证并在当地实现销售</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">146</span></td>
+<td class="">23:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">64</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，英伟达股价下跌2.2%，报219.1美元/股，总市值报5.3</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">147</span></td>
+<td class="">06:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">64</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，周二亚太早盘，道琼斯指数期货跌0.01%，标普500指数期货</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">148</span></td>
+<td class="">00:52</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">63</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，OpenAI推出ChatGPT Business高级席位。高</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">149</span></td>
+<td class="">19:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">61</td>
+<td class="">0</td>
+<td class="content-col">【昆仑万维：拟7.5亿元出售闲徕互娱股权】财联社8月10日电，昆仑万维(3004</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">150</span></td>
+<td class="">19:27</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">61</td>
+<td class="">0</td>
+<td class="content-col">【西藏矿业：上半年净利润6006.63万元同比扭亏 拟10派1元】财联社8月10</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">151</span></td>
+<td class="">02:13</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">61</td>
+<td class="">0</td>
+<td class="content-col">【西欧今夏持续遭遇极端高温和干旱】财联社8月11日电，世界气象组织10日在社交媒</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">152</span></td>
+<td class="">03:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">61</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，恒生指数主连夜盘收涨0.07%，报25966点。恒生科技指数</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">153</span></td>
+<td class="">18:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">60</td>
+<td class="">0</td>
+<td class="content-col">【昊华能源：子公司3.3亿元竞得盛华煤炭相关资产】财联社8月10日电，昊华能源(</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">154</span></td>
+<td class="">20:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">59</td>
+<td class="">1</td>
+<td class="content-col">【波音将入股并开展合作 Archer Aviation股价美股盘前涨超15%】财</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">155</span></td>
+<td class="">23:42</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">60</td>
+<td class="">0</td>
+<td class="content-col">【美国投资级债券发行潮持续升温 单日19家公司涌入市场 年内发行规模已达1.4万</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">156</span></td>
+<td class="">23:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">60</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，部分期货品种夜盘收盘，多数商品上涨，燃油、低硫燃料油上涨近3</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">157</span></td>
+<td class="">18:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">55</td>
+<td class="">4</td>
+<td class="content-col">【摩根大通两个月内第二次上调标普500指数目标位 称AI投资开始产生回报】财联社</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">158</span></td>
+<td class="">16:03</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">59</td>
+<td class="">0</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：统筹煤矿关闭退出与区域供应保障 推动落后产</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">159</span></td>
+<td class="">21:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">59</td>
+<td class="">0</td>
+<td class="content-col">【贝索斯据传接近购买英超球队利物浦】财联社8月10日电，周一盘前的最新消息称，一</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">160</span></td>
+<td class="">00:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">59</td>
+<td class="">0</td>
+<td class="content-col">【英国石油据悉拟出售委内瑞拉Cocuina气田20%股权】财联社8月11日电，英</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">161</span></td>
+<td class="">02:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">59</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，美国白宫新闻秘书莱维特表示，布兰奇已宣誓就任美国司法部长。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">162</span></td>
+<td class="">07:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">59</td>
+<td class="">0</td>
+<td class="content-col">【AI优化视觉皮层假体电刺激模式 可提升“仿生眼”感知预测能力】财联社8月11日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">163</span></td>
+<td class="">16:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">58</td>
+<td class="">0</td>
+<td class="content-col">【伦铜库存减少4675吨】财联社8月10日电，伦敦金属交易所(LME)数据显示，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">164</span></td>
+<td class="">01:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">58</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，美联储隔夜逆回购协议（RRP）周一使用规模为9.75亿美元（</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">165</span></td>
+<td class="">16:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">57</td>
+<td class="">0</td>
+<td class="content-col">【近200家硅谷初创企业反对限制中国开源模型】财联社8月10日电，美国一些高级官</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">166</span></td>
+<td class="">16:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">57</td>
+<td class="">0</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：完善电煤保供中长期合同制度 推进煤炭交易合</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">167</span></td>
+<td class="">01:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">57</td>
+<td class="">0</td>
+<td class="content-col">【哥伦比亚因地震进入灾难状态】财联社8月11日电，因受8月10日地震影响，哥伦比</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">168</span></td>
+<td class="">16:42</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">52</td>
+<td class="">4</td>
+<td class="content-col">【章源钨业：公司钨保有资源量为7.41万吨】财联社8月10日电，章源钨业在互动平</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">169</span></td>
+<td class="">22:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">56</td>
+<td class="">0</td>
+<td class="content-col">【ST惠伦：公司基于原材料价格上涨等原因对产品价格进行了相应调整】财联社8月10</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">170</span></td>
+<td class="">17:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">55</td>
+<td class="">1</td>
+<td class="content-col">【德银Q2增持美光科技 英伟达位列第一重仓股】财联社8月10日电，根据美国证监会</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">171</span></td>
+<td class="">01:34</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">56</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，巴克莱银行维持其对布伦特原油的价格预测不变：2026年为每桶</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">172</span></td>
+<td class="">07:38</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">56</td>
+<td class="">0</td>
+<td class="content-col">【朝中社：日本2026年版《防卫白皮书》是再侵略白皮书】财联社8月11日电，据朝</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">173</span></td>
+<td class="">17:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">55</td>
+<td class="">0</td>
+<td class="content-col">【六部门印发《生态保护“十五五”规划》】财联社8月10日电，生态环境部、自然资源</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">174</span></td>
+<td class="">22:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">55</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，伯克希尔–哈撒韦B类股票在第二季度盈利超出预期后，股价盘中涨</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">175</span></td>
+<td class="">20:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">54</td>
+<td class="">0</td>
+<td class="content-col">【日本央行9月加息信号促成美日联合干预汇市】财联社8月10日电，据报道，日本政府</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">176</span></td>
+<td class="">18:24</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">54</td>
+<td class="">0</td>
+<td class="content-col">【《中国人民银行“十五五”改革发展规划》印发：强化金融市场制度建设 维护金融市场</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">177</span></td>
+<td class="">23:37</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">54</td>
+<td class="">0</td>
+<td class="content-col">【日本央行公布会议意见 多名委员呼吁加快加息】当地时间10日，日本央行公布了今年</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">178</span></td>
+<td class="">20:47</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">52</td>
+<td class="">1</td>
+<td class="content-col">【ST围海：签订8.82亿元施工总承包合同 合同金额约占2025年营业收入的42</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">179</span></td>
+<td class="">19:34</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">53</td>
+<td class="">0</td>
+<td class="content-col">【阿联酋拟掷数十亿美元建新LNG出口终端 谋求规避霍尔木兹海峡风险】财联社8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">180</span></td>
+<td class="">22:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">53</td>
+<td class="">0</td>
+<td class="content-col">【哥伦比亚强震多地建筑严重损毁】财联社8月10日电，据中国地震台网正式测定，当地</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">181</span></td>
+<td class="">21:38</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">53</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，美国天然气期货涨幅扩大，价格大涨5%至两周高点，因LNG出口</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">182</span></td>
+<td class="">02:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">53</td>
+<td class="">0</td>
+<td class="content-col">【四川宜宾市高县发生3.8级地震 震源深度5千米】财联社8月11日电，中国地震台</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">183</span></td>
+<td class="">05:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">53</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，乌克兰考虑通过摩尔多瓦铁路运输谷物。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">184</span></td>
+<td class="">16:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">52</td>
+<td class="">0</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：持续优化“西煤东运”“北煤南运”运输体系</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">185</span></td>
+<td class="">01:03</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">52</td>
+<td class="">0</td>
+<td class="content-col">【沪铝夜盘收涨0.64%】国际铜夜盘收跌0.02%，沪铜收涨0.16%，沪铝收涨</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">186</span></td>
+<td class="">16:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">52</td>
+<td class="">0</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：支持符合条件的企业建设煤炭产品储备 到20</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">187</span></td>
+<td class="">18:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">46</td>
+<td class="">5</td>
+<td class="content-col">【5连板百花医药：股票交易异常波动 公司基本面未发生重大变化】财联社8月10日电</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">188</span></td>
+<td class="">15:35</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">46</td>
+<td class="">5</td>
+<td class="content-col">【比亚迪“RACCO”在日本上市两周订单破千】财联社8月10日电，“RACCO”</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">189</span></td>
+<td class="">01:40</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">51</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，特朗普表示，伊朗应为黎巴嫩和加沙的损失负责，也应该对邻国遭受</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">190</span></td>
+<td class="">05:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">51</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，当地时间11日零时30分至36分，基辅响起两轮强烈的持续爆炸</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">191</span></td>
+<td class="">00:13</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">1</td>
+<td class="content-col">财联社8月11日电，现货白银价格涨幅扩大至2.61%，报65.18美元/盎司。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">192</span></td>
+<td class="">16:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">49</td>
+<td class="">1</td>
+<td class="content-col">【中矿资源：两条高纯锂盐生产线停产检修完成 恢复生产】财联社8月10日电，中矿资</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">193</span></td>
+<td class="">19:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">47</td>
+<td class="">3</td>
+<td class="content-col">财联社8月10日电，临床阶段生物制药公司SIONNA Therapeutics公</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">194</span></td>
+<td class="">16:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">0</td>
+<td class="content-col">【香港恒生指数收涨1.05% 恒生科技指数涨1.26%】财联社8月10日电，香港</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">195</span></td>
+<td class="">16:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">0</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：研究建立重点产煤省区协同生产机制 推动市场</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">196</span></td>
+<td class="">16:04</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">0</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：“十五五”期间 新增产能必须纳入产能“一本</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">197</span></td>
+<td class="">23:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，欧洲天然气价格涨10.1%，报61.14欧元/兆瓦时。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">198</span></td>
+<td class="">22:46</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">0</td>
+<td class="content-col">【哥伦比亚地震20多人遇难】财联社8月10日电，据哥伦比亚里萨拉尔达省首府佩雷拉</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">199</span></td>
+<td class="">21:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">0</td>
+<td class="content-col">【利弗莫尔中概股龙头指数盘初上涨0.35%】财联社8月10日电，利弗莫尔中概股龙</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">200</span></td>
+<td class="">21:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">0</td>
+<td class="content-col">【航行警告 南海海域军事训练】财联社8月10日电，据中国海事局网站消息，清澜海事</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">201</span></td>
+<td class="">22:55</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">48</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，标普500指数迅速回吐涨幅，纳斯达克100指数转跌。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">202</span></td>
+<td class="">20:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">48</td>
+<td class="">1</td>
+<td class="content-col">【英特尔美股盘前跌幅扩大至5%】财联社8月10日电，英特尔美股盘前跌幅扩大至5%</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">203</span></td>
+<td class="">20:03</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">49</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，Anthropic、麦格理集团与新加坡政府投资公司（GIC）</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">204</span></td>
+<td class="">07:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">49</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，英特尔据悉计划以至少每股95美元的价格发行200亿美元股票。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">205</span></td>
+<td class="">15:45</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">3</td>
+<td class="content-col">财联社8月10日电，伊朗外交部发言人表示，重新开放海峡需美国结束封锁并予以赔偿。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">206</span></td>
+<td class="">20:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">47</td>
+<td class="">1</td>
+<td class="content-col">【阿维塔辟谣“与华为合作是非必要项”：系言论误读】财联社8月10日电，近日有媒体</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">207</span></td>
+<td class="">23:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">47</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，SpaceX股价下跌1%，此前一度涨近3%，现报131.4美</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">208</span></td>
+<td class="">21:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">47</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，国内商品期货夜盘开盘涨跌不一，燃油涨1.51%，原油涨1.4</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">209</span></td>
+<td class="">00:37</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">47</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，美国三大股指走低，截至目前，道琼斯指数跌0.16%，标普50</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">210</span></td>
+<td class="">05:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">47</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，JBS第二季度调整后EBITDA为14.3亿美元，预计为14</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">211</span></td>
+<td class="">16:58</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">43</td>
+<td class="">3</td>
+<td class="content-col">【皖仪科技：2026年半年度净利润3102.54万元 同比增长2863.13%】</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">212</span></td>
+<td class="">18:03</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">43</td>
+<td class="">3</td>
+<td class="content-col">【MiniMax将被纳入香港交易所科技100等指数】财联社8月10日电，据香港交</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">213</span></td>
+<td class="">20:23</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">43</td>
+<td class="">3</td>
+<td class="content-col">财联社8月10日电，Moderna美股盘前涨超2.4%，公司的mRNA流感疫苗获</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">214</span></td>
+<td class="">16:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">46</td>
+<td class="">0</td>
+<td class="content-col">【我国科研团队破解量子网络规模化部署难题】财联社8月10日电，国际学术期刊《自然</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">215</span></td>
+<td class="">17:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">【甬矽电子：拟1亿元至1.5亿元回购公司股份】财联社8月10日电，甬矽电子(68</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">216</span></td>
+<td class="">21:44</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">44</td>
+<td class="">1</td>
+<td class="content-col">【英特尔跌超5%】财联社8月10日电，英特尔跌超5%，报96.405美元/股。公</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">217</span></td>
+<td class="">17:03</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">【天津：做优特种机器人 巩固“海—陆—空”特色领域优势】财联社8月10日电，天津</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">218</span></td>
+<td class="">16:04</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">【《煤炭工业发展“十五五”规划》印发：2030年 五大煤炭供应保障基地产量占全国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">219</span></td>
+<td class="">23:40</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">【欧洲三大股指收盘涨跌不一】财联社8月10日电，英国富时100指数跌0.35%，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">220</span></td>
+<td class="">21:35</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，Meta股价盘初上涨2.1%，创两周以来新高。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">221</span></td>
+<td class="">20:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">【WTI原油期货价格涨2%】财联社8月10日电，WTI原油期货价格涨2%，报79</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">222</span></td>
+<td class="">20:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">【浙江杭州发布暴雨橙色预警】财联社8月10日电，杭州市气象台10日19时26分发</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">223</span></td>
+<td class="">00:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，奈飞股价涨幅拉升至2%，该公司的广告套餐首次获得MRC（美国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">224</span></td>
+<td class="">05:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，中国地震台网正式测定：08月11日05时31分在四川宜宾市高</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">225</span></td>
+<td class="">02:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，WTI原油期货价格涨幅扩大至5%，报82.11美元/桶。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">226</span></td>
+<td class="">17:34</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">【抖音治理蹭用村干部等身份营销带货乱象】财联社8月10日电，抖音电商安全与信任中</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">227</span></td>
+<td class="">19:59</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">44</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，白宫经济顾问哈塞特称如果他身在美联储，会维持利率不变或降息。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">228</span></td>
+<td class="">18:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">44</td>
+<td class="">0</td>
+<td class="content-col">【产量恢复缓慢 炼焦煤价格延续震荡偏强走势】财联社8月10日电，国内市场炼焦煤价</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">229</span></td>
+<td class="">21:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">44</td>
+<td class="">0</td>
+<td class="content-col">【上海解除台风蓝色预警信号】财联社8月10日电，上海市气象台08月10日21时解</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">230</span></td>
+<td class="">02:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">44</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，美元兑日元上涨1%，报159.32。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">231</span></td>
+<td class="">16:58</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">42</td>
+<td class="">1</td>
+<td class="content-col">【天津：到2028年底智能机器人产业核心产值突破200亿元】财联社8月10日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">232</span></td>
+<td class="">16:58</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">43</td>
+<td class="">0</td>
+<td class="content-col">【天津：着力培育具有全球竞争力的智能机器人领军企业】财联社8月10日电，天津市工</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">233</span></td>
+<td class="">07:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">43</td>
+<td class="">0</td>
+<td class="content-col">【新型血氧仪能“读懂”肤色并实现精准测量】财联社8月11日电，美国塔夫茨大学研究</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">234</span></td>
+<td class="">19:59</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">42</td>
+<td class="">0</td>
+<td class="content-col">【中科磁业：拟发行不超6.09亿元可转债用于高性能稀土永磁组件项目】财联社8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">235</span></td>
+<td class="">08:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">42</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，韩国KOSPI指数开盘下跌0.9%报6240.06点；日本股</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">236</span></td>
+<td class="">15:47</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">40</td>
+<td class="">1</td>
+<td class="content-col">【石药创新：控股子公司SYS6037注射液获得美国药物临床试验批准】财联社8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">237</span></td>
+<td class="">19:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">41</td>
+<td class="">0</td>
+<td class="content-col">【兆驰股份：拟3亿元至5亿元回购公司股份】财联社8月10日电，兆驰股份(0024</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">238</span></td>
+<td class="">22:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">40</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，标普500指数和纳斯达克100指数转涨。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">239</span></td>
+<td class="">23:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">41</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，ICE数据显示，英国近月天然气价格上涨10%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">240</span></td>
+<td class="">22:26</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">41</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，美股存储板块宽幅震荡，美光科技跌1%，此前涨超2%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">241</span></td>
+<td class="">22:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">41</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，英国的消费品公司Imperial Brands据悉计划在美国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">242</span></td>
+<td class="">02:26</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">41</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，哥伦比亚总统阿韦拉多·德拉埃斯普列亚当地时间8月10日下午表</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">243</span></td>
+<td class="">19:20</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">39</td>
+<td class="">1</td>
+<td class="content-col">【德邦科技：2026年半年度净利润同比增长49.33%】财联社8月10日电，德邦</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">244</span></td>
+<td class="">18:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">40</td>
+<td class="">0</td>
+<td class="content-col">【国联民生：拟1亿-2亿元回购公司A股股份】财联社8月10日电，国联民生(601</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">245</span></td>
+<td class="">17:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">40</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，香港交易所信息显示，摩根士丹利对中际旭创股份有限公司 - H</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">246</span></td>
+<td class="">21:42</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">40</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，费城半导体指数跌1%，报12226.26点。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">247</span></td>
+<td class="">08:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">40</td>
+<td class="">0</td>
+<td class="content-col">【Anthropic据悉与Riot Platforms达成超90亿美元算力协议】</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">248</span></td>
+<td class="">06:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">40</td>
+<td class="">0</td>
+<td class="content-col">【基辅遭遇弹道导弹袭击 乌多地发布防空警报】财联社8月11日电，乌克兰基辅市长克</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">249</span></td>
+<td class="">16:38</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">39</td>
+<td class="">0</td>
+<td class="content-col">【中熔电气：获美国车企900VDC平台车型电池包多工位转换开关全球独家定点】财联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">250</span></td>
+<td class="">15:50</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">39</td>
+<td class="">0</td>
+<td class="content-col">【中瓷电子：目前订单饱满 产能利用率维持在较高水平】财联社8月10日电，有投资者</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">251</span></td>
+<td class="">18:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">39</td>
+<td class="">0</td>
+<td class="content-col">【世联行：股东拟协议转让5.02%股份】财联社8月10日电，世联行(002285</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">252</span></td>
+<td class="">20:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">38</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，美元兑日元一度下挫约40点，最低至158.41，现回升至15</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">253</span></td>
+<td class="">21:42</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">38</td>
+<td class="">1</td>
+<td class="content-col">【WTI原油期货向上触及80美元/桶】财联社8月10日电，WTI原油期货向上触及</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">254</span></td>
+<td class="">21:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">38</td>
+<td class="">1</td>
+<td class="content-col">【研究显示可用粪便DNA估算野生动物种群规模】财联社8月10日电，南非自由邦大学</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">255</span></td>
+<td class="">03:40</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">38</td>
+<td class="">1</td>
+<td class="content-col">财联社8月11日电，特朗普表示，与内塔尼亚胡关系良好。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">256</span></td>
+<td class="">16:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">39</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，在岸人民币兑美元收盘报6.7442，较上一交易日上涨59点，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">257</span></td>
+<td class="">22:46</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">39</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，现货白银日内涨幅扩大至2%，报64.8美元/盎司。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">258</span></td>
+<td class="">20:26</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">39</td>
+<td class="">0</td>
+<td class="content-col">【第十六届中国国际数字出版博览会将于8月27日启幕】财联社8月10日电，据第十六</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">259</span></td>
+<td class="">17:45</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">38</td>
+<td class="">0</td>
+<td class="content-col">【宁波富邦：上半年净利润同比增长504.48%】财联社8月10日电，宁波富邦(6</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">260</span></td>
+<td class="">16:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">38</td>
+<td class="">0</td>
+<td class="content-col">【长龄液压：股东拟合计减持公司不超3%股份】财联社8月10日电，长龄液压(605</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">261</span></td>
+<td class="">08:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">36</td>
+<td class="">2</td>
+<td class="content-col">【世界最大冲击式水电机组顺利完成转子吊装】财联社8月11日电，今天，世界最大冲击</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">262</span></td>
+<td class="">19:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">38</td>
+<td class="">0</td>
+<td class="content-col">【英特尔宣布拟议的150亿美元普通股发行计划】财联社8月10日电，英特尔宣布拟议</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">263</span></td>
+<td class="">18:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">38</td>
+<td class="">0</td>
+<td class="content-col">【长沙再现限价地块 相关负责人回应】财联社8月10日电，长沙市国土资源网上交易系</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">264</span></td>
+<td class="">17:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">37</td>
+<td class="">0</td>
+<td class="content-col">【富维股份：获合资品牌客户座椅项目定点 预计总销售金额39.36亿元】财联社8月</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">265</span></td>
+<td class="">23:34</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">34</td>
+<td class="">3</td>
+<td class="content-col">财联社8月10日电，SK海力士股价下跌2%，报135.255美元/股，总市值报9</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">266</span></td>
+<td class="">16:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">36</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，美股商业航天股盘前走强，SpaceX涨2%，Rocket L</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">267</span></td>
+<td class="">15:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">37</td>
+<td class="">0</td>
+<td class="content-col">【国内商品期货收盘涨跌不一 沪银、纯碱涨超3%】财联社8月10日电，国内商品期货</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">268</span></td>
+<td class="">22:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">37</td>
+<td class="">0</td>
+<td class="content-col">【港股IPO：Ever Glory United公司递表港交所】财联社8月10日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">269</span></td>
+<td class="">21:04</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">37</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，微软称，将“显著”提升人工智能芯片产量。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">270</span></td>
+<td class="">08:18</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">37</td>
+<td class="">0</td>
+<td class="content-col">【商务部：自巴西进口的牛肉已达到保障措施规定数量的90%】财联社8月11日电，商</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">271</span></td>
+<td class="">17:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">33</td>
+<td class="">3</td>
+<td class="content-col">【宇通客车：上半年净利润18.67亿元 同比下降3.52%】财联社8月10日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">272</span></td>
+<td class="">21:26</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">36</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，美股上市公司BitMine上周新增买入7391枚以太坊，总持</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">273</span></td>
+<td class="">21:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">36</td>
+<td class="">0</td>
+<td class="content-col">【受台风“白海豚”影响多地迎强降雨 国家防办、应急管理部滚动会商部署防范应对工作</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">274</span></td>
+<td class="">18:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">35</td>
+<td class="">0</td>
+<td class="content-col">【科达制造：上交所终止审核公司发行股份购买资产事项】财联社8月10日电，科达制造</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">275</span></td>
+<td class="">15:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">35</td>
+<td class="">0</td>
+<td class="content-col">【美国前空军部长被指泄露“空军一号”机密】财联社8月10日电，美国民主党籍前总统</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">276</span></td>
+<td class="">21:26</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">35</td>
+<td class="">0</td>
+<td class="content-col">【印度东北部洪灾遇难人数已达100人】财联社8月10日电，据印度媒体10日报道，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">277</span></td>
+<td class="">01:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">35</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，谷歌表示，有信心符合得克萨斯州数据中心标准。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">278</span></td>
+<td class="">00:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">35</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，美国上诉法院拒绝叫停针对Meta以及其他公司的数千起社交媒体</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">279</span></td>
+<td class="">16:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">29</td>
+<td class="">5</td>
+<td class="content-col">【日本显示器千叶工厂收到多份收购报价】财联社8月10日电，日本显示器公司（JDI</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">280</span></td>
+<td class="">19:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">31</td>
+<td class="">3</td>
+<td class="content-col">财联社8月10日电，英国批准礼来Foundayo药品上市，用于减肥及2型糖尿病。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">281</span></td>
+<td class="">15:34</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">33</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，港股消费股尾盘震荡走强，老铺黄金涨超11%，农夫山泉涨超4%</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">282</span></td>
+<td class="">17:04</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">33</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，香港交易所信息显示，纽约梅隆银行在中际旭创H股的持股比例于0</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">283</span></td>
+<td class="">07:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">33</td>
+<td class="">1</td>
+<td class="content-col">【韩国互联网巨头NAVER通过风投基金向Anthropic投资100亿韩元】财联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">284</span></td>
+<td class="">18:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">34</td>
+<td class="">0</td>
+<td class="content-col">【杰富瑞担忧高价iPhone前景并下调苹果公司评级】财联社8月10日电，Jeff</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">285</span></td>
+<td class="">21:47</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">34</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，美元兑日元向上触及159，日内涨0.78%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">286</span></td>
+<td class="">15:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">33</td>
+<td class="">0</td>
+<td class="content-col">【普洛药业：子公司获己酮可可碱缓释片药品注册证书】财联社8月10日电，普洛药业(</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">287</span></td>
+<td class="">16:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">32</td>
+<td class="">1</td>
+<td class="content-col">【宁夏7月外送电量、外送新能源电量双创新高 外送省份增至23个】财联社8月10日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">288</span></td>
+<td class="">19:45</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">32</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，英特尔称其在人工智能计算领域进行了前所未有的投资，人工智能领</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">289</span></td>
+<td class="">16:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">33</td>
+<td class="">0</td>
+<td class="content-col">【中指研究院：地方国企系长租公寓开业规模稳中有增】财联社8月10日电，中指研究院</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">290</span></td>
+<td class="">19:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">33</td>
+<td class="">0</td>
+<td class="content-col">【恒生指数公司就恒生科技指数编算方法修订方案征询市场意见】财联社8月10日电，恒</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">291</span></td>
+<td class="">08:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">33</td>
+<td class="">0</td>
+<td class="content-col">【哥伦比亚强震致132死、570伤】财联社8月11日电，哥伦比亚政府10日最新通</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">292</span></td>
+<td class="">20:18</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">29</td>
+<td class="">3</td>
+<td class="content-col">财联社8月10日电，纳斯达克100指数期货转跌，盘中曾一度上涨0.5%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">293</span></td>
+<td class="">19:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">30</td>
+<td class="">2</td>
+<td class="content-col">【菲律宾央行：外国直接投资大幅下跌至11年以来最低水平】财联社8月10日电，菲律</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">294</span></td>
+<td class="">19:55</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">31</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，SpaceX股价盘前再大涨4%，上一交易日大涨16%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">295</span></td>
+<td class="">17:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">32</td>
+<td class="">0</td>
+<td class="content-col">【南向资金今日净买入超20亿港元 Minimax获净买入居前】财联社8月10日电</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">296</span></td>
+<td class="">19:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">32</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，英特尔美股盘前跌幅扩大至4%，此前公司宣布拟进行150亿美元</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">297</span></td>
+<td class="">22:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">32</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，音乐流媒体平台Spotify盘初走强，涨幅扩大至4.5%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">298</span></td>
+<td class="">01:28</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">32</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，美军非洲司令部证实8月9日一架军机在吉布提坠毁。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">299</span></td>
+<td class="">18:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">32</td>
+<td class="">0</td>
+<td class="content-col">【国家卫健委：将进一步协调优化社会药店零售措施】财联社8月10日电，据中国疾控中</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">300</span></td>
+<td class="">18:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">31</td>
+<td class="">0</td>
+<td class="content-col">【居然智家：通过夫妻共同财产分割及遗产继承合计控制公司总股本43.93% 实际控</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">301</span></td>
+<td class="">20:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">28</td>
+<td class="">3</td>
+<td class="content-col">财联社8月10日电，格芯（GlobalFoundries）选择Redpanda作</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">302</span></td>
+<td class="">19:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">31</td>
+<td class="">0</td>
+<td class="content-col">【内蒙古启动防汛四级、暴雨气象灾害Ⅳ级应急响应】财联社8月10日电，内蒙古自治区</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">303</span></td>
+<td class="">19:46</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">31</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，白宫经济顾问哈塞特表示，政府正在认真研究人工智能安全问题。人</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">304</span></td>
+<td class="">20:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">31</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，据德国地球科学研究中心消息，哥伦比亚10日发生7.4级地震。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">305</span></td>
+<td class="">00:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">31</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，今日发生的哥伦比亚强震已致47人遇难。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">306</span></td>
+<td class="">18:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">31</td>
+<td class="">0</td>
+<td class="content-col">【受贿6798万余元 中国一重原副总经理陆文俊一审获刑15年】财联社8月10日电</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">307</span></td>
+<td class="">16:44</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">30</td>
+<td class="">0</td>
+<td class="content-col">【定向适配低空装备 吉林化纤高效大丝束碳化线投产】财联社8月10日电，吉林化纤集</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">308</span></td>
+<td class="">21:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">30</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，瑞银将伯克希尔–哈撒韦公司目标股价从87.78万美元上调至9</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">309</span></td>
+<td class="">01:58</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">30</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，哥伦比亚地震已造成至少77人遇难。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">310</span></td>
+<td class="">01:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">30</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，特朗普将于今日签署有关儿童疫苗接种的行政命令。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">311</span></td>
+<td class="">07:44</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">30</td>
+<td class="">0</td>
+<td class="content-col">【中物联：7月份中国电商物流指数为111.2点】财联社8月11日电，中国物流与采</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">312</span></td>
+<td class="">19:35</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">30</td>
+<td class="">0</td>
+<td class="content-col">【外交部：奉劝美方尽早解除对古巴的制裁封锁 不要一再向他人“泼脏水”】财联社8月</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">313</span></td>
+<td class="">18:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">29</td>
+<td class="">0</td>
+<td class="content-col">【天邦食品：子公司建德农发被裁定破产重整】财联社8月10日电，天邦食品(0021</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">314</span></td>
+<td class="">16:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">29</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，特朗普称美伊处于“半谈判”状态，暗示将依靠经济施压应对德黑兰</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">315</span></td>
+<td class="">15:18</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">29</td>
+<td class="">0</td>
+<td class="content-col">【纽约梅隆银行：美国劳动力市场走弱的信号已拉低实际利率预期】财联社8月10日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">316</span></td>
+<td class="">17:40</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">29</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，伊拉克国家石油营销组织SOMO表示，伊拉克设定9月巴士拉中质</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">317</span></td>
+<td class="">22:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">29</td>
+<td class="">0</td>
+<td class="content-col">【受第13号台风“白海豚”环流影响 上海市继续发布暴雨蓝色预警信号】财联社8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">318</span></td>
+<td class="">20:13</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">29</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，波罗的海干散货运价指数下跌0.19%，至3083点。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">319</span></td>
+<td class="">20:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">29</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，乌克兰农业部长表示，因该国海港遭受袭击，将2026/27年度</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">320</span></td>
+<td class="">05:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">29</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，Hims&amp;Hers表示公司正在对BPC-157肽进行测试。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">321</span></td>
+<td class="">15:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">28</td>
+<td class="">0</td>
+<td class="content-col">【安邦护卫：拟不超2.8亿元投建杭州安邦金融安全服务运营中心项目】财联社8月10</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">322</span></td>
+<td class="">18:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">28</td>
+<td class="">0</td>
+<td class="content-col">【今年8月电影票房已超20亿元】财联社8月10日电，据网络平台数据，截至8月10</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">323</span></td>
+<td class="">17:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">28</td>
+<td class="">0</td>
+<td class="content-col">【商务部初步认定原产于墨西哥和美国的进口碧根果存在倾销】财联社8月10日电，商务</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">324</span></td>
+<td class="">22:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">28</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，据报道，裕信银行和德国商业银行据悉将启动有关控制权变更的谈判</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">325</span></td>
+<td class="">20:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">28</td>
+<td class="">0</td>
+<td class="content-col">【哥伦比亚发生6.7级地震】财联社8月10日电，哥伦比亚地质局的地震初步通报显示</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">326</span></td>
+<td class="">20:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">28</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，Meta表示支持德克萨斯州州长提出的数据中心标准和审查工作。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">327</span></td>
+<td class="">18:40</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">27</td>
+<td class="">0</td>
+<td class="content-col">【国际原油期货日内涨幅扩大至1.5%】财联社8月10日电，国际原油期货日内涨幅扩</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">328</span></td>
+<td class="">17:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">27</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，香港交易所信息显示，FMR LLC在药明康德H股的持股比例于</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">329</span></td>
+<td class="">19:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">27</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，备忘录显示，沙特阿美将日产能40万桶的吉赞炼油厂的重启时间推</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">330</span></td>
+<td class="">22:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">27</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，美国世界大型企业研究会6月就业趋势指数从106.69修正至1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">331</span></td>
+<td class="">19:34</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">27</td>
+<td class="">0</td>
+<td class="content-col">【外交部回应菲籍人员涉嫌违法被查处】财联社8月10日电，外交部发言人郭嘉昆8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">332</span></td>
+<td class="">15:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">26</td>
+<td class="">0</td>
+<td class="content-col">【俄石化重镇遭乌无人机袭击12人死】财联社8月10日电，俄罗斯鞑靼斯坦共和国下卡</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">333</span></td>
+<td class="">17:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">26</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，香港交易所信息显示，美国银行在金风科技H股的持股比例于08月</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">334</span></td>
+<td class="">20:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">26</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，白宫经济顾问哈塞特否认可能接替库克出任美联储理事。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">335</span></td>
+<td class="">21:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">26</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，英国10年期国债收益率上升5个基点至4.97%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">336</span></td>
+<td class="">17:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">26</td>
+<td class="">0</td>
+<td class="content-col">【中证协发布30个券商支持并购重组典型案例 推行差异化定价、对价分期等安排】财联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">337</span></td>
+<td class="">19:24</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">25</td>
+<td class="">0</td>
+<td class="content-col">【天合光能：股东拟询价转让公司总股本的1.55%】财联社8月10日电，天合光能(</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">338</span></td>
+<td class="">15:03</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">25</td>
+<td class="">0</td>
+<td class="content-col">【欧洲主要股指开盘窄幅波动】财联社8月10日电，欧洲斯托克50指数涨0.09%，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">339</span></td>
+<td class="">16:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">25</td>
+<td class="">0</td>
+<td class="content-col">【欧亚及北美足联联合声讨：因凡蒂诺世界杯股权出售案涉嫌欺骗】财联社8月10日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">340</span></td>
+<td class="">15:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">25</td>
+<td class="">0</td>
+<td class="content-col">【7月IPO注册批文创年内单月新高 北交所占比过半】财联社8月10日电，7月IP</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">341</span></td>
+<td class="">20:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">25</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，罗马尼亚国家银行将基准利率维持在6.50%；预估为6.50%</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">342</span></td>
+<td class="">08:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">25</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，新加坡贸工部将2026年GDP增长预期从之前的2.0%-4.</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">343</span></td>
+<td class="">18:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">25</td>
+<td class="">0</td>
+<td class="content-col">【商务部新闻发言人就对原产于墨西哥和美国的进口碧根果反倾销调查初裁答记者问】财联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">344</span></td>
+<td class="">16:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">22</td>
+<td class="">2</td>
+<td class="content-col">【龙虎榜 儒意电影今日涨停 国泰海通证券成都北一环路证券营业部买入1.01亿元】</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">345</span></td>
+<td class="">15:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">24</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，日本30年期国债收益率上升5个基点至3.98%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">346</span></td>
+<td class="">18:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">24</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，TD COWEN将Target公司目标股价从130美元上调至</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">347</span></td>
+<td class="">17:46</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">24</td>
+<td class="">0</td>
+<td class="content-col">【交通运输部：上周监测港口完成货物吞吐量23513.2万吨 环比下降16.92%</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">348</span></td>
+<td class="">20:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">24</td>
+<td class="">0</td>
+<td class="content-col">【江西发布中小河流洪水和山洪气象风险黄色预警】财联社8月10日电，江西省水文监测</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">349</span></td>
+<td class="">19:47</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">24</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，游戏驿站首席执行官瑞安·科恩正考虑撤回对eBay价值560亿</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">350</span></td>
+<td class="">19:42</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">24</td>
+<td class="">0</td>
+<td class="content-col">【泰国前议员枪杀地方政府高官】财联社8月10日电，泰国首都曼谷北郊暖武里府的行政</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">351</span></td>
+<td class="">08:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">24</td>
+<td class="">0</td>
+<td class="content-col">财联社8月11日电，韩国8月1日至10日出口同比增长45.3%，进口同比增长23</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">352</span></td>
+<td class="">19:20</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">24</td>
+<td class="">0</td>
+<td class="content-col">【国家发展改革委紧急安排2亿元支持浙江台风灾害灾后应急恢复】财联社8月10日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">353</span></td>
+<td class="">17:35</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">24</td>
+<td class="">0</td>
+<td class="content-col">【市场监管总局批准发布一批重要国家标准】财联社8月10日电，市场监管总局（国家标</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">354</span></td>
+<td class="">15:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">23</td>
+<td class="">0</td>
+<td class="content-col">【上期所对2人给予暂停开仓交易12个月处分】财联社8月10日电，据上海期货交易所</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">355</span></td>
+<td class="">15:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">23</td>
+<td class="">0</td>
+<td class="content-col">【上海期货交易所：对2家公司、1名个人暂停开仓交易12个月】财联社8月10日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">356</span></td>
+<td class="">18:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">23</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，苹果公司美股盘前跌1.5%。杰富瑞将苹果公司评级从“持有”下</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">357</span></td>
+<td class="">17:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">23</td>
+<td class="">0</td>
+<td class="content-col">【受贿6798万余元 中国一重原副总经理陆文俊一审获刑15年】财联社8月10日电</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">358</span></td>
+<td class="">20:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">23</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，Strategy在8月3日至8月9日期间出售了价值1.086</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">359</span></td>
+<td class="">18:45</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">23</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，印度政府及业内消息人士称，印度正考虑在新榨季限制用甘蔗生产乙</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">360</span></td>
+<td class="">17:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">23</td>
+<td class="">0</td>
+<td class="content-col">【上海：到2030年 全市服务贸易规模突破3000亿美元】财联社8月10日电，上</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">361</span></td>
+<td class="">16:45</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">23</td>
+<td class="">0</td>
+<td class="content-col">【厦门建发新兴双创融合发展股权投资合伙企业登记成立 出资额100亿人民币】财联社</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">362</span></td>
+<td class="">19:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，白宫经济顾问哈塞特表示，美国政府将持有英特尔股票多久，将由特</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">363</span></td>
+<td class="">16:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">22</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，马士基宣布，AE19航线将改为通过苏伊士运河航行，而不再经过</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">364</span></td>
+<td class="">18:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">22</td>
+<td class="">0</td>
+<td class="content-col">【农业农村部和中国气象局继续发布农田渍涝风险预警】财联社8月10日电，记者从农业</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">365</span></td>
+<td class="">18:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">22</td>
+<td class="">0</td>
+<td class="content-col">【应急管理部针对河北、河南、湖北启动国家地质灾害四级应急响应】财联社8月10日电</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">366</span></td>
+<td class="">19:47</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">22</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，恒生指数公司据悉正考虑调整恒生科技指数编制方法。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">367</span></td>
+<td class="">18:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">0</td>
+<td class="content-col">【恒誉环保：8月14日起证券简称变更为“恒誉科技”】财联社8月10日电，恒誉环保</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">368</span></td>
+<td class="">16:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">20</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，伊朗表示，卡利巴夫、阿拉格齐将在适当时候访问巴基斯坦。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">369</span></td>
+<td class="">17:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">0</td>
+<td class="content-col">【江苏昆山市升级防汛应急响应为一级】财联社8月10日电，江苏昆山气象暴雨红色预警</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">370</span></td>
+<td class="">17:13</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">0</td>
+<td class="content-col">【上交所终止阳光集团发行上市审核】财联社8月10日电，因山西阳光焦化集团股份有限</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">371</span></td>
+<td class="">16:51</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">0</td>
+<td class="content-col">【江苏无锡启动防汛二级应急响应】财联社8月10日电，江苏省水利厅2026年8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">372</span></td>
+<td class="">19:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，伯恩斯坦将微软目标价从647美元上调至660美元。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">373</span></td>
+<td class="">19:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，投资研究机构ARGUS RESEARCH将闪迪评级上调至“买</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">374</span></td>
+<td class="">18:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">0</td>
+<td class="content-col">【百胜中国：上半年总收入同比增长11%至64亿美元】财联社8月10日电，百胜中国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">375</span></td>
+<td class="">22:27</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，墨西哥主要股指下跌1%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">376</span></td>
+<td class="">20:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，西门子能源股份公司为巴西国家石油公司平台供应设备，推进巴西离</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">377</span></td>
+<td class="">16:26</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">0</td>
+<td class="content-col">【市场监管总局印发《广告业统计调查制度》】财联社8月10日电，市场监管总局印发《</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">378</span></td>
+<td class="">16:26</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">18</td>
+<td class="">2</td>
+<td class="content-col">【极兔速递被罚款7万元】财联社8月10日电，国家邮政局网站显示，近日，极兔速递有</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">379</span></td>
+<td class="">15:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">20</td>
+<td class="">0</td>
+<td class="content-col">【吉林省吉林市政协党组书记、主席李富民接受纪律审查和监察调查】财联社8月10日电</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">380</span></td>
+<td class="">18:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">20</td>
+<td class="">0</td>
+<td class="content-col">【水利部和中国气象局18时联合发布橙色山洪灾害气象预警】财联社8月10日电，水利</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">381</span></td>
+<td class="">17:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">20</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，香港交易所信息显示，Schroders PLC（施罗德集团）</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">382</span></td>
+<td class="">08:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">20</td>
+<td class="">0</td>
+<td class="content-col">【智利国家铜业公司首次获准将财年利润用于再投资】财联社8月11日电，智利国家铜业</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">383</span></td>
+<td class="">15:04</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">20</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，日月光投控7月销售额737.8亿元台币，同比增长43.2%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">384</span></td>
+<td class="">18:28</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">20</td>
+<td class="">0</td>
+<td class="content-col">【明日起上海地铁全网恢复常态化运营 今晚2号线加开定点加班车】财联社8月10日电</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">385</span></td>
+<td class="">16:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">19</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，欧元区8月Sentix投资者信心指数为0.9，预期-0.5，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">386</span></td>
+<td class="">16:26</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">19</td>
+<td class="">0</td>
+<td class="content-col">【土耳其官员否认黑海通航受限】财联社8月10日电，土耳其政府官员9日证实，经土耳</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">387</span></td>
+<td class="">17:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">19</td>
+<td class="">0</td>
+<td class="content-col">【天津市拟于8月11日上午启动防汛二级应急响应】财联社8月10日电，天津市防办提</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">388</span></td>
+<td class="">17:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">19</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，香港交易所信息显示，摩根大通（JPMorgan）在天齐锂业H</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">389</span></td>
+<td class="">07:48</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">19</td>
+<td class="">0</td>
+<td class="content-col">【多瑙河水位回升 匈牙利保克什核电站逐步恢复供电】财联社8月11日电，匈牙利保克</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">390</span></td>
+<td class="">16:59</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">19</td>
+<td class="">0</td>
+<td class="content-col">【澳大利亚延期发布对进口自中国的二氧化钛反倾销基本事实报告和终裁】财联社8月10</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">391</span></td>
+<td class="">15:46</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">15</td>
+<td class="">3</td>
+<td class="content-col">财联社8月10日电，伊朗表示，与阿曼有关霍尔木兹海峡的协议包含海上服务费。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">392</span></td>
+<td class="">16:34</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">15</td>
+<td class="">3</td>
+<td class="content-col">财联社8月10日电，美元兑日元日内涨超0.5%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">393</span></td>
+<td class="">15:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">18</td>
+<td class="">0</td>
+<td class="content-col">【郑州市启动防汛三级应急响应】财联社8月10日电，据郑州市气象局预报，今年第13</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">394</span></td>
+<td class="">15:59</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">18</td>
+<td class="">0</td>
+<td class="content-col">【水利部针对冀鲁豫鄂4省启动洪水防御Ⅳ级应急响应】财联社8月10日电，据预报，受</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">395</span></td>
+<td class="">15:48</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">18</td>
+<td class="">0</td>
+<td class="content-col">【花旗：降申洲国际目标价至62港元 重申“买入”评级 料下半年毛利率复苏】财联社</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">396</span></td>
+<td class="">19:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">18</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，标普500指数期货回吐早前涨幅，转为持平。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">397</span></td>
+<td class="">08:28</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">18</td>
+<td class="">0</td>
+<td class="content-col">【CINNO ：需求弱修复叠加供给高企，8月电视面板价格或延续下行态势】财联社8</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">398</span></td>
+<td class="">17:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">18</td>
+<td class="">0</td>
+<td class="content-col">【晋商消金获批增资至10亿元 注册资本未达标消金公司仅剩2家】财联社8月10日电</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">399</span></td>
+<td class="">08:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">1</td>
+<td class="content-col">财联社8月11日电，新加坡第二季度GDP同比增长5.9%，预估5.8%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">400</span></td>
+<td class="">18:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">17</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，据报道，META公司不久将恢复发布部分开源模型。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">401</span></td>
+<td class="">16:04</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">17</td>
+<td class="">0</td>
+<td class="content-col">【海河流域部分河流将发生编号洪水 应急响应启动】财联社8月10日电，8月11日—</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">402</span></td>
+<td class="">15:59</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">17</td>
+<td class="">0</td>
+<td class="content-col">【巴克莱：日本投资者7月份减持美债 买入欧洲发达市场债券】财联社8月10日电，根</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">403</span></td>
+<td class="">15:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">17</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，恒生科技指数涨幅扩大至1%，恒生指数涨近1%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">404</span></td>
+<td class="">18:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">17</td>
+<td class="">0</td>
+<td class="content-col">【两部门向浙江等7省区及新疆生产建设兵团预拨1.8亿元救灾资金】财联社8月10日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">405</span></td>
+<td class="">15:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">0</td>
+<td class="content-col">【韩军工巨头韩华增持韩国航空宇宙产业公司 拟申请合并审查】财联社8月10日电，韩</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">406</span></td>
+<td class="">17:11</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，香港交易所信息显示，摩根大通（JPMorgan）在信达生物H</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">407</span></td>
+<td class="">17:11</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">0</td>
+<td class="content-col">【钶锐锶科创板IPO定于8月17日上会】财联社8月10日电，上海证券交易所上市审</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">408</span></td>
+<td class="">15:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，广期所品种仓单及变化如下：碳酸锂期货仓单31621手，环比上</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">409</span></td>
+<td class="">19:52</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，伯恩斯坦将康菲石油目标价从121美元上调至129美元。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">410</span></td>
+<td class="">19:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，网络安全公司Cloudflare提议私募发行21.75亿美元</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">411</span></td>
+<td class="">18:55</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，蒙特利尔银行将爱彼迎（AIRBNB）目标价从146美元上调至</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">412</span></td>
+<td class="">18:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">0</td>
+<td class="content-col">【浙江防台风应急响应调整为Ⅲ级】财联社8月10日电，今年第13号台风“白海豚”8</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">413</span></td>
+<td class="">17:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，纳指科技ETF景顺(159509)将于2026年8月11日开</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">414</span></td>
+<td class="">19:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，纳指ETF国泰(513100)将于2026年8月11日开市起</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">415</span></td>
+<td class="">18:31</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">14</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，高盛私人信贷表示，本基金迄今赎回申请规模仍低于季度5%的限额</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">416</span></td>
+<td class="">18:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">15</td>
+<td class="">0</td>
+<td class="content-col">【第32次APEC中小企业部长会议境外媒体注册开启】财联社8月10日电，第32次</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">417</span></td>
+<td class="">18:58</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">15</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，蒙特利尔银行将霍尼韦尔航空目标股价从276美元下调至209美</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">418</span></td>
+<td class="">17:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">15</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，创业板综ETF博时(159287)将于2026年8月11日开</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">419</span></td>
+<td class="">17:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">14</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，根据《中国人民银行与德意志联邦银行备忘录》，中国人民银行决定</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">420</span></td>
+<td class="">15:37</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">14</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，台达电第二季度营收1,832.6亿元台币，营业利润305.7</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">421</span></td>
+<td class="">19:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">14</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，杜克能源将以每股50美元的价格发售3500万股股权。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">422</span></td>
+<td class="">08:37</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">14</td>
+<td class="">0</td>
+<td class="content-col">【铠侠称SK海力士关联投资实体为其最大股东】财联社8月11日电，铠侠周二在一份声</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">423</span></td>
+<td class="">19:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">14</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，中韩半导体ETF华泰柏瑞(513310)将于2026年8月1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">424</span></td>
+<td class="">15:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，马来西亚银行联昌国际预计，印尼央行将在第四季度加息25个基点</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">425</span></td>
+<td class="">15:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，据上海航运交易所数据，截至2026年8月10日，上海出口集装</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">426</span></td>
+<td class="">19:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">【自然资源部与中国气象局18时联合发布橙色地质灾害气象风险预警】财联社8月10日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">427</span></td>
+<td class="">18:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，丹麦CHEMOMETEC股价在宣布与罗氏达成合作协议后上涨9</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">428</span></td>
+<td class="">18:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，瑞穗将Strategy股票目标价格从213美元下调至165美</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">429</span></td>
+<td class="">17:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">【Kalshi与纳斯达克市场监控达成合作 加强对旗下市场交易活动的监管】财联社8</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">430</span></td>
+<td class="">16:42</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，ICE数据显示，荷兰近月批发天然气价格上涨5%，至58.34</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">431</span></td>
+<td class="">16:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，越南VN指数收盘上涨0.5%至1,776.77点。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">432</span></td>
+<td class="">17:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">【澳大利亚对进口自中国的焊接钢丝网片作出反倾销初裁】财联社8月10日电，据中国贸</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">433</span></td>
+<td class="">15:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">【苏州市发布京杭运河苏州段洪水红色预警】财联社8月10日电，苏州市水务局8月10</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">434</span></td>
+<td class="">16:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">11</td>
+<td class="">1</td>
+<td class="content-col">财联社8月10日电，台泥7月销售额137.4亿元台币，同比增长1.54％。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">435</span></td>
+<td class="">15:27</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">12</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，乌克兰农业部称，受出口中断影响，今年秋季乌克兰谷物储存能力缺</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">436</span></td>
+<td class="">15:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">12</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，和硕7月销售额860.2亿元台币，同比增长11.6%，累计销</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">437</span></td>
+<td class="">18:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">12</td>
+<td class="">0</td>
+<td class="content-col">【自然资源部对冀辽鲁启动海洋灾害四级应急响应】财联社8月10日电，今年第13号台</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">438</span></td>
+<td class="">18:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">12</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，印度国家证券存管有限公司(NSDL)数据显示，全球基金在前一</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">439</span></td>
+<td class="">17:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">12</td>
+<td class="">0</td>
+<td class="content-col">【上交所：上周无新增IPO受理企业】财联社8月10日电，上交所公告，本期（8月3</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">440</span></td>
+<td class="">15:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">11</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，澳洲国民银行外汇策略师认为，美国通胀环境依旧错综复杂，美联储</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">441</span></td>
+<td class="">17:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">11</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，香港交易所信息显示，贝莱德（BlackRock）在李宁H股的</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">442</span></td>
+<td class="">18:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">11</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，禹洲集团7月合约销售额3.99亿元，今年以来公司累计合约销售</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">443</span></td>
+<td class="">15:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">11</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，根据向日本财务省提交的一份文件，东芝公司在铠侠的持股比例从1</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">444</span></td>
+<td class="">17:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">11</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，纳指ETF易方达(159696)将于2026年8月11日开市</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">445</span></td>
+<td class="">17:31</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">10</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，富瑞将优步（UBER）目标股价从100美元上调至110美元。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">446</span></td>
+<td class="">17:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">10</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，香港交易所信息显示，贝莱德在舜宇光学科技H股的持股比例于08</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">447</span></td>
+<td class="">15:28</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">10</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，华硕7月销售额841.3亿元台币，同比增加53.3％。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">448</span></td>
+<td class="">17:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">10</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，纳指ETF嘉实(159501)将于2026年8月11日开市起</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">449</span></td>
+<td class="">16:58</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">10</td>
+<td class="">0</td>
+<td class="content-col">【深圳航空增资至212.4亿 增幅约127%】财联社8月10日电，天眼查显示，近</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">450</span></td>
+<td class="">17:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">9</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，联发科7月销售额484.7亿元台币，同比增长12.2%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">451</span></td>
+<td class="">15:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">9</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，恒生科技指数、恒生指数均涨超1%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">452</span></td>
+<td class="">17:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">9</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，印度寻求限制各邦对矿产资源和矿山征税的权力。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">453</span></td>
+<td class="">15:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">8</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，加拿大皇家银行资本市场高级经济学家Mary Jo Verga</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">454</span></td>
+<td class="">15:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">7</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，据马来西亚独立检验机构AmSpec，马来西亚8月1-10日棕</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">455</span></td>
+<td class="">19:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">7</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，财通福鑫定开混合(501046)将于2026年8月11日开盘</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">456</span></td>
+<td class="">16:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">6</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，ICE数据显示，英国近月天然气价格上涨5.1%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">457</span></td>
+<td class="">17:11</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">5</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，香港交易所信息显示，摩根大通（JPMorgan）在中国铝业H</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">458</span></td>
+<td class="">16:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">4</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，美元兑日元上涨0.5%至158.62点。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">459</span></td>
+<td class="">16:48</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">4</td>
+<td class="">0</td>
+<td class="content-col">财联社8月10日电，长荣航7月销售额224.5亿元台币，同比增长21.4％。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">460</span></td>
+<td class="">08:42</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①订单有望有序落地+公募持仓处于历史低位，该行业景气度持续上行，相关板块业绩或获</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">461</span></td>
+<td class="">08:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①AI4S又一里程碑！美国“创世纪计划”推出科研大模型且已进入数据收集阶段，分析</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">462</span></td>
+<td class="">07:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①钨+业绩高增，拥有钨锡铜丰富矿产资源，自产资源优势显著，这家公司子公司刀具量价</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">463</span></td>
+<td class="">07:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①全球稀土供应链正在从效率优先转向安全优先，分析师看好具备中重稀土资源和分离能力</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">464</span></td>
+<td class="">22:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">诺和诺德携手亚马逊推动通过人工智能加速药物研发！机构看好基因合成、蛋白表达等产业</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">465</span></td>
+<td class="">22:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①创新药+CRO+合成生物+AI应用！这家公司上半年CDMO在手订单金额增长超过</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">466</span></td>
+<td class="">22:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①谁将引领AI新叙事；②阿里云计划将全球数据中心产能提升两倍以上，依托现有基础设</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">467</span></td>
+<td class="">20:46</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①阿里云计划将全球数据中心产能提升两倍以上，机构称数据中心交换机迎来发展新机遇，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">468</span></td>
+<td class="">20:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①这家公司卡位量子计算产业化关键环节，携手高校共同推动兼具技术可行性与商业价值的</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">469</span></td>
+<td class="">19:43</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">这家智能硬件ODM服务商AIPC业务完成多平台量产交付，机器人数据采集设备量产进</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">470</span></td>
+<td class="">19:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①MLCC+AI服务器+液冷，MLCC、电感器等主营产品销量及单价同比上升，已经</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">471</span></td>
+<td class="">17:23</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①半导体设备真空器件+金刚石散热MPCVD核心部件，这家公司已实现对北方华创、新</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">472</span></td>
+<td class="">17:13</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">兼具高业绩、高现金、高分红属性，基本面、政策面双重共振下，该行业已处于新一轮周期</td>
+</tr>
+</tbody></table>
+
+<div class="footer">Generated by CLS Daily Summary Tool &copy; 2026年08月11日</div>
+</div>
+</body>
+</html>
