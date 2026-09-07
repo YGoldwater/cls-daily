@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLS 早报</title>
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+    background: #f4f5f7;
+    color: #1a1a2e;
+    line-height: 1.6;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 30px 24px; }
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff; padding: 30px 36px; border-radius: 8px; margin-bottom: 24px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; letter-spacing: 1px; }
+.header .meta { font-size: 13px; opacity: 0.85; margin-top: 10px; }
+.header .meta span { margin-right: 20px; }
+.header .verdict {
+    margin-top: 18px; padding: 14px 18px; background: rgba(255,255,255,0.1);
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 14px; line-height: 1.7;
+}
+
+/* Core verdict banner */
+.verdict-banner {
+    background: #fff5f5; padding: 16px 20px; border-radius: 8px;
+    border-left: 4px solid #e94560; margin: 12px 0 20px;
+    font-size: 18px; line-height: 1.8; color: #e94560;
+    box-shadow: 0 1px 6px rgba(233,69,96,0.1);
+}
+
+/* Verdict section (## 核心判断) */
+.verdict-section {
+    background: #fff; border-radius: 8px; padding: 24px 28px;
+    margin: 16px 0 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    border-top: 4px solid #e94560;
+}
+.verdict-section .section-title {
+    border-bottom: none; margin-top: 0; margin-bottom: 14px;
+    color: #e94560; font-size: 22px;
+}
+.verdict-content p { font-size: 15px; line-height: 1.8; margin: 6px 0; }
+.verdict-content strong { color: #0f3460; }
+.verdict-content ul, .verdict-content ol { margin: 8px 0 8px 20px; font-size: 15px; line-height: 1.7; }
+.verdict-content li { margin-bottom: 4px; }
+
+/* Section titles */
+.section-title {
+    font-size: 20px; font-weight: 700; color: #0f3460;
+    border-bottom: 3px solid #e94560; padding-bottom: 8px;
+    margin: 28px 0 16px;
+}
+
+/* Ranking table */
+.rank-table {
+    width: 100%; border-collapse: collapse; margin: 16px 0 24px;
+    background: #fff; border-radius: 8px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); font-size: 14px;
+}
+.rank-table thead th {
+    background: #0f3460; color: #fff; padding: 10px 10px;
+    font-weight: 600; text-align: center; font-size: 13px;
+}
+.rank-table thead th.th-important {
+    color: #ff6b6b; font-size: 15px; font-weight: 800;
+}
+.rank-table tbody td {
+    padding: 8px 10px; border-bottom: 1px solid #eee;
+    text-align: center; vertical-align: middle;
+}
+.rank-table tbody tr:hover { background: #f8f9ff; }
+.rank-table .rank-num { font-weight: 700; color: #e94560; font-size: 16px; }
+.rank-table .title-col { text-align: left; font-weight: 500; }
+.rank-table .impact-col { text-align: left; font-size: 14px; color: #444; max-width: 400px; }
+.rank-table .stars { color: #f5a623; white-space: nowrap; font-size: 14px; letter-spacing: 1px; }
+
+/* Analysis card */
+.analysis-card {
+    background: #fff; border-radius: 8px; padding: 22px 28px;
+    margin: 16px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    border-top: 4px solid #e94560;
+}
+.analysis-card .card-title {
+    font-size: 17px; font-weight: 700; color: #1a1a2e; margin-bottom: 12px;
+}
+.analysis-card .card-level {
+    display: inline-block; padding: 3px 10px; border-radius: 3px;
+    font-size: 16px; font-weight: 800; color: #e94560;
+    background: #fff5f5; border: 1px solid #e94560;
+    margin-right: 4px;
+}
+.analysis-card .card-meta {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 10px;
+    font-size: 13px; color: #777;
+    line-height: 1.4;
+}
+.analysis-card .card-meta-inline {
+    display: inline-block; margin-right: 18px; margin-bottom: 8px;
+    font-size: 13px; color: #777; line-height: 1.4;
+}
+.analysis-card .card-meta .stars { color: #f5a623; font-size: 16px; }
+.analysis-card .logic {
+    background: #fff8f0; padding: 12px 16px; border-radius: 6px;
+    font-size: 14px; color: #8b4513; margin-bottom: 14px;
+    border-left: 3px solid #f5a623;
+}
+.analysis-card h4 {
+    font-size: 15px; font-weight: 700; color: #0f3460;
+    margin: 10px 0 4px; padding-bottom: 2px; border-bottom: 1px dashed #ddd;
+    line-height: 1.4;
+}
+.analysis-card h4.perspective-domestic {
+    color: #c0392b; border-bottom-color: #e94560; font-size: 17px;
+}
+.analysis-card h4.perspective-intl {
+    color: #0e8c6a; border-bottom-color: #0e8c6a; font-size: 17px;
+}
+/* When a perspective h4 is immediately followed by another h4, make it inline */
+.analysis-card h4.perspective-domestic + h4,
+.analysis-card h4.perspective-intl + h4 {
+    margin-top: 0; padding-top: 0; border-top: none;
+}
+.analysis-card h4.perspective-domestic + h4::before {
+    content: 'B8  ';
+    color: #c0392b;
+}
+.analysis-card h4.perspective-intl + h4::before {
+    content: 'B8  ';
+    color: #0e8c6a;
+}
+.analysis-card ul { margin: 4px 0 8px 18px; font-size: 14px; line-height: 1.5; }
+.analysis-card ul li { margin-bottom: 2px; }
+.bull { color: #e94560; font-weight: 600; }
+.bear { color: #2ecc71; font-weight: 600; }
+
+/* Sector tags */
+.tag { display: inline-block; padding: 2px 8px; border-radius: 3px;
+    font-size: 11px; font-weight: 600; margin-right: 4px; }
+.tag-a { background: #ffe0e0; color: #c0392b; }
+.tag-b { background: #fff3cd; color: #856404; }
+.tag-c { background: #e8e8e8; color: #555; }
+
+/* Emotion section */
+.emotion-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px; margin: 16px 0;
+}
+.emotion-item {
+    background: #fff; padding: 18px 20px; border-radius: 8px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+}
+.emotion-item .label { font-size: 11px; color: #999; text-transform: uppercase; }
+.emotion-item .value { font-size: 16px; font-weight: 700; color: #0f3460; margin-top: 4px; }
+
+/* Risk list */
+.risk-list { list-style: none; }
+.risk-list li {
+    padding: 10px 14px; margin: 6px 0; background: #fff5f5;
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 13px;
+}
+.risk-list li::before { content: '⚠ '; }
+
+.risk-item {
+    padding: 6px 12px; margin: 3px 0; background: #fff5f5;
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 13px; line-height: 1.5;
+}
+.risk-heading {
+    font-size: 15px; font-weight: 800; color: #e94560;
+    margin: 10px 0 4px;
+}
+
+/* Full telegram table */
+.telegram-table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    background: #fff; border-radius: 6px; overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+}
+.telegram-table thead th {
+    background: #16213e; color: #fff; padding: 10px 8px;
+    font-weight: 500; font-size: 12px;
+}
+.telegram-table thead th:first-child { width: 42px; }
+.telegram-table thead th:nth-child(2) { width: 48px; }
+.telegram-table thead th:nth-child(3) { width: 38px; }
+.telegram-table thead th:nth-child(4) { width: 48px; }
+.telegram-table thead th:nth-child(5) { width: 48px; }
+.telegram-table thead th:last-child { width: auto; }
+.telegram-table tbody td {
+    padding: 5px 8px; border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+.telegram-table tbody td:first-child,
+.telegram-table tbody td:nth-child(2),
+.telegram-table tbody td:nth-child(3),
+.telegram-table tbody td:nth-child(4),
+.telegram-table tbody td:nth-child(5) {
+    text-align: center;
+}
+.telegram-table tbody td:last-child {
+    text-align: left; white-space: normal; word-break: break-all;
+}
+.telegram-table tbody tr:nth-child(even) { background: #fafafa; }
+.telegram-table .lv-S { background: #c0392b; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-A { background: #e74c3c; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-B { background: #f39c12; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-C { background: #bbb; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+
+.footer {
+    text-align: center; margin-top: 40px; padding: 20px;
+    color: #999; font-size: 12px; border-top: 1px solid #eee;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header"><h1>每日早报深度分析：2026年09月07日（周一）交易日</h1></div>
+
+<div class="verdict-section">
+<h2 class="section-title" style="margin-top:0">核心判断</h2>
+<div class="verdict-content">
+<p><strong>一句话定调</strong>：今日市场核心矛盾在于“外部紧缩预期升温（美联储9月加息概率升至57%+美债利率创一年新高）与内部政策托底加码（中央金融企业获3600亿注资+5000亿买断式逆回购）”之间的激烈博弈，叠加中东地缘风险升级（伊朗宣布霍尔木兹海峡禁区），风险偏好承压但结构性机会犹存。</p>
+<p><strong>3个关键信号</strong>：</p>
+<p>1. <strong>美国8月非农大超预期（16.2万 vs 预期5.5万）</strong>——彻底扭转加息预期，9月加息概率飙升至57%，10Y美债利率创一年新高，全球风险资产承压，外资流出新兴市场压力加大；</p>
+<p>2. <strong>伊朗宣布霍尔木兹海峡“禁区”</strong>——中东冲突质变升级，WTI原油突破92美元，能源安全与通胀预期成为全球定价核心变量；</p>
+<p>3. <strong>8家中央金融企业获3600亿注资（财政部发行3000亿特别国债）</strong>——中国版“量化宽松”式资本补充，直接利好大金融板块，是今日A股最确定的多头力量。</p>
+<p><strong>策略一句话</strong>：高低切换延续，防御为先——超配银行保险（资本补充直接受益）、石油石化（地缘溢价）、创新药（国谈催化），规避拥挤度仍高的电子通信；关注算力大会主题机会，但控制仓位等待美联储决议落地。</p>
+</div></div>
+<h2 class="section-title">一、重要性排序总览</h2>
+<table class="rank-table">
+<thead><tr>
+<th class="">排名</th>
+<th class="">时间</th>
+<th class="">等级</th>
+<th class="">标题概述</th>
+<th class="">重要度</th>
+<th class="th-important">核心影响</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class=""><span class="rank-num">1</span></td>
+<td class="">08:17</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">美国8月非农大超预期，9月加息概率升至57%</td>
+<td class=""><span class="stars">★★★★★</span></td>
+<td class="impact-col">全球流动性预期逆转，美债利率新高压制风险资产</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">2</span></td>
+<td class="">03:06</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">伊朗宣布霍尔木兹海峡“禁区”</td>
+<td class=""><span class="stars">★★★★★</span></td>
+<td class="impact-col">中东冲突质变，油价破92美元，通胀与能源安全重定价</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">3</span></td>
+<td class="">08:13</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">财政部发行3000亿特别国债支持8家中央金融企业补充资本</td>
+<td class=""><span class="stars">★★★★★</span></td>
+<td class="impact-col">直接利好大金融，政策托底信号明确</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">4</span></td>
+<td class="">22:00</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">下周大事：美联储决议+华为苹果小米新品+算力大会</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">超级事件周，科技与宏观双重催化窗口</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">5</span></td>
+<td class="">08:01</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">韩国KOSPI开盘涨3.34%，日经高开</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">亚太市场情绪修复，半导体板块强势反弹</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">6</span></td>
+<td class="">06:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">A股缩量整理或临近尾声，机构看好9月中下旬行情</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">市场底部信号积累，风格再平衡延续</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">7</span></td>
+<td class="">07:31</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">277.85亿元限售股今日解禁</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">短期流动性扰动，摩尔线程等个股承压</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">8</span></td>
+<td class="">06:18</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">上周ETF净流入超330亿元，半导体获加仓</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">资金借道ETF抄底，成长方向获配置</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">9</span></td>
+<td class="">08:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">2026国谈第三日：诺诚健华、默沙东等入场</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">创新药板块事件催化，谈判结果将分化</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">10</span></td>
+<td class="">07:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">小米汽车累计交付超80万辆</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">新能车产业链景气验证，小米生态链受益</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">11</span></td>
+<td class="">08:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">日本芯片股大涨，铠侠涨7.3%</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">全球半导体共振反弹，A股映射效应</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">12</span></td>
+<td class="">06:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">个人养老金基金产品扩容至含权二级债基</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">长线资金入市渠道拓宽，利好权益市场</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">13</span></td>
+<td class="">07:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">华为Mate XT2非凡大师今日发布</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">折叠屏产业链催化，消费电子情绪提振</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">14</span></td>
+<td class="">06:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">周一关注中国8月外储等经济数据</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">数据验证窗口，汇率与资本流动信号</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">15</span></td>
+<td class="">08:34</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">特斯拉限时优惠：Model Y现金激励1万元</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">新能源车价格战延续，行业竞争加剧</td>
+</tr>
+</tbody></table>
+
+
+<h2 class="section-title">二、TOP 15 重要新闻深度分析</h2>
+<div class="analysis-card">
+<div class="card-title">1. <span class="card-level">B级</span> 美国8月非农大超预期，交易员加大9月加息押注</div>
+<div class="card-meta"><span class="stars">★★★★★</span> <span>⏰ 2026年09月07日 2026年09月07日 08:17</span></div>
+<div class="logic">美国8月非农新增16.2万人，远超预期的5.5万人，失业率稳定在4.1%。这一数据彻底扭转了市场对美联储的宽松预期——交易员预计到年底前累计加息约38个基点，9月加息概率升至57%。10年期美债收益率创一年新高，全球风险资产的定价锚正在剧烈重估。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">美债利率上行直接压制A股成长板块估值，尤其是此前拥挤度较高的电子、通信、半导体方向。上周双创板块跌超4%已提前反映这一预期。但另一方面，中美利差扩大加大人民币贬值压力，可能触发外资流出，对权重蓝筹形成扰动。国内政策空间受到外部约束，但央行今日5000亿买断式逆回购操作显示“以我为主”的取向未变。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">美国经济韧性超预期意味着“不着陆”情景概率上升，美元指数走强，大宗商品承压（原油除外）。亚太市场今日表现分化——韩国KOSPI大涨3.34%主要受半导体反弹驱动，但美债利率持续上行对全球股市估值形成系统性压制。外资在美联储决议落地前可能维持观望态度。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>高股息防御板块</strong>: 美债利率上行期高股息资产相对占优 → 个股: 长江电力(600900), 中国神华(601088)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>出口链（美元收入）</strong>: 人民币贬值预期下出口企业受益 → 个股: 美的集团(000333), 海尔智家(600690)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“非农超预期是否意味着美国经济韧性可持续”，分歧点在于——若美联储9月加息落地，是“利空出尽”还是“紧缩周期重启”？</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">多家券商提示美债利率上行对A股估值压制，华泰证券指出“10Y美债利率创一年新高，9月加息概率升至57%，美债利率上行对A股风险偏好形成压制”。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，需等待9月美联储决议落地后重新定价</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">2. <span class="card-level">B级</span> 伊朗将宣布霍尔木兹海峡“禁区”</div>
+<div class="card-meta"><span class="stars">★★★★★</span> <span>⏰ 2026年09月07日 2026年09月07日 03:06</span></div>
+<div class="logic">伊朗最高国家安全委员会秘书宣布将设立霍尔木兹海峡“禁区”，从美国海军封锁线延伸至波斯湾内水域，任何进入船只将被列入制裁名单。这是中东冲突质变的标志性事件——全球约20%的石油贸易通过该海峡，伊朗此举直接威胁全球能源供应安全。WTI原油已突破92美元/桶。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中国作为全球最大原油进口国，霍尔木兹海峡风险直接关系到能源安全和输入性通胀压力。A股油气板块、油运板块将获得事件驱动溢价。同时，若油价持续上行推升PPI，可能制约国内货币政策宽松空间，对成长股估值形成间接压制。中国与伊朗关系密切，中资油运企业可能面临合规风险与机遇并存局面。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">美国能源部长表态“始终对与伊朗达成协议持开放态度，但首要目标是切断伊朗能源出口”，显示美伊博弈进入新阶段。油价上行加剧全球通胀压力，使美联储加息路径更加陡峭。日本、韩国等能源进口国受损明显，日经指数高开但持续性存疑。全球地缘风险溢价全面重估。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>油气开采</strong>: 油价直接受益，上游勘探开采利润弹性最大 → 个股: 中国石油(601857), 中国海油(600938)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>油运/航运</strong>: 航线风险溢价提升运价 → 个股: 中远海能(600026), 招商轮船(601872)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>军工（地缘催化）</strong>: 中东局势升级提升国防开支预期 → 个股: 中航沈飞(600760), 航发动力(600893)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">核心分歧在于“伊朗是否真的会封锁海峡”以及“美国是否会军事回应”。部分投资者认为伊朗言论是谈判筹码，另一部分认为局势已失控。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">能源分析师普遍上调油价预测，认为地缘溢价短期难以消退，布伦特原油有望挑战100美元。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，地缘冲突演变将主导能源板块定价</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">3. <span class="card-level">B级</span> 财政部发行3000亿特别国债支持8家中央金融企业补充资本</div>
+<div class="card-meta"><span class="stars">★★★★★</span> <span>⏰ 2026年09月07日 2026年09月07日 08:13</span></div>
+<div class="logic">财政部将发行3000亿元特别国债，支持工商银行、农业银行、进出口银行、出口信用保险、人保、国寿、太平、中再保等8家中央金融企业补充核心一级资本。这是继1998年特别国债注资四大行后的又一重大制度性安排，总增资规模达3600亿元。此举直接提升银行信贷投放能力和风险抵御能力。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">对A股而言，这是今日最确定的多头力量。工商银行、农业银行作为直接注资对象，资本充足率提升打开信贷扩张空间。银行板块估值修复逻辑强化——低估值+资本补充+分红稳定。同时，特别国债发行需要流动性配合，央行今日5000亿买断式逆回购操作或为对冲发行压力。保险板块同样受益，人保、国寿资本实力增强。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中国通过特别国债注资金融机构，与欧美银行体系面临资本压力形成对比，显示中国财政政策空间仍充足。外资可能将此视为中国版“量化宽松”信号，对人民币资产信心有所提振。但需注意特别国债发行可能吸收市场流动性，对债市形成短期压力。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>国有大行</strong>: 直接注资对象，资本充足率提升 → 个股: 工商银行(601398), 农业银行(601288)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>保险板块</strong>: 国寿、人保获注资，偿付能力增强 → 个股: 中国人寿(601628), 中国太保(601601)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>银行IT/金融科技</strong>: 资本补充后银行IT投入有望增加 → 个股: 宇信科技(300674), 长亮科技(300348)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于3000亿特别国债的发行方式和对市场流动性的影响，分歧点在于“利好银行估值修复”还是“利好出尽”。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">银行分析师普遍认为这是重大利好，预计大行估值将向1倍PB修复，板块有15-20%上行空间。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，资本补充落地后银行信贷扩张逻辑将持续演绎</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">4. <span class="card-level">B级</span> 下周大事提醒：美联储决议+华为苹果小米新品+算力大会</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年09月07日 2026年09月06日 22:00</span></div>
+<div class="logic">本周是超级事件周——美联储9月议息会议（加息悬念落槌）、华为Mate XT2/苹果/小米集体发新品、2026中国算力大会（工信部主办）在廊坊举行。多重事件叠加将决定9月中下旬市场方向。国家统计局9月9日公布8月CPI/PPI数据，央行今日5000亿买断式逆回购操作。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">算力大会是A股最直接的产业催化——聚焦算力基础设施与AI基建，相关概念股有望获得主题性机会。华为三折叠新机发布催化消费电子产业链情绪。8月CPI/PPI数据将验证内需恢复成色，若通胀低迷可能强化政策宽松预期。央行5000亿买断式逆回购显示流动性呵护意图明确。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">美联储决议是全球市场最大变量。若9月加息落地，需关注点阵图对未来路径的指引；若意外按兵不动，全球风险资产将迎来反弹窗口。华为苹果小米同日竞技显示全球消费电子竞争白热化，产业链公司面临订单分流风险。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>算力基础设施</strong>: 算力大会催化，AI基建景气验证 → 个股: 中科曙光(603019), 浪潮信息(000977)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>折叠屏产业链</strong>: 华为新机发布，铰链/UTG玻璃等环节受益 → 个股: 精研科技(300709), 长信科技(300088)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>消费电子（苹果链）</strong>: 苹果新品发布预期 → 个股: 立讯精密(002475), 歌尔股份(002241)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“算力大会能否成为科技股反弹催化剂”，分歧点在于科技板块拥挤度消化是否充分。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">华泰证券认为“拥挤度加速消化，前5%成交额个股占比跌破1年均值，电子、通信成交额占比回到阈值以内”，科技板块调整接近尾声。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，关注事件落地后的预期差</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">5. <span class="card-level">B级</span> 韩国KOSPI开盘涨3.34%，日经高开0.89%</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年09月07日 2026年09月07日 08:01</span></div>
+<div class="logic">韩国KOSPI指数开盘大涨3.34%，SK海力士涨超5%，三星电子涨逾4%；日经225指数高开0.89%。日本芯片股大幅上涨——铠侠涨7.3%，软银涨5.4%，Lasertec涨8.2%。亚太半导体板块集体强势反弹，日韩市场情绪明显修复。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">日韩半导体大涨对A股半导体板块形成映射效应。上周A股科技板块因美债利率上行大幅调整，双创跌超4%，拥挤度加速消化。若日韩半导体反弹具有持续性，A股半导体、消费电子等方向有望迎来超跌反弹。但需注意A股半导体与日韩的联动更多体现在情绪面，基本面仍需独立验证。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">日韩股市大涨可能反映两个信号：一是对美联储加息预期的“利空出尽”交易，二是全球半导体库存周期见底的预期升温。韩国KOSPI大涨3.34%的幅度显示外资在亚太市场重新布局科技板块。日经指数期货早盘上涨1.6%，MSCI亚太指数上涨1%，亚太风险偏好整体回暖。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>半导体设备/材料</strong>: 日韩半导体反弹映射 → 个股: 北方华创(002371), 中微公司(688012)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>存储芯片</strong>: SK海力士大涨带动存储链情绪 → 个股: 兆易创新(603986), 北京君正(300223)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>消费电子</strong>: 三星、苹果链共振 → 个股: 蓝思科技(300433), 领益智造(002600)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“日韩半导体上涨能否带动A股科技反弹”，分歧点在于A股半导体基本面与日韩的差异。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">部分券商认为半导体板块调整已充分反映利空，板块估值处于历史低位，具备反弹条件。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，需观察日韩股市后续走势确认</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">6. <span class="card-level">C级</span> A股缩量整理或临近尾声，机构看好9月中下旬行情</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年09月07日 2026年09月07日 06:14</span></div>
+<div class="logic">上周A股延续震荡整理，中东地缘扰动+10Y美债收益率上扬压制科技板块，风格再平衡是主要特征。券商策略报告认为海外系统性风险可控，但美债波动与加息预期反复博弈是短期波动主因。随着半年报验证盈利持续向好、科技拥挤度消化，机构看好9月中下旬行情。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">上周中证全指跌近2%，双创跌超4%，高低切换延续。但积极信号正在积累：ETF净流入超330亿元（较前周增1倍）、私募新备案连续3个月超1200只、融资资金从电子通信流出。市场缩量整理往往是变盘前兆，若外部利空落地（美联储决议），A股有望迎来方向选择。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">全球股市面临美债利率上行压力，但日本、韩国市场今日大幅反弹显示外部风险偏好并非单边恶化。A股相对全球市场的估值优势（沪深300 PE处于历史中低位）吸引外资中长期配置。港股IPO募资超3500亿港元显示国际资本对中国资产兴趣未减。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>超跌成长</strong>: 科技板块拥挤度消化后有望反弹 → 个股: 中际旭创(300308), 新易盛(300502)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>景气验证方向</strong>: 半年报盈利向好的行业 → 个股: 宁德时代(300750), 比亚迪(002594)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“缩量整理是否真的临近尾声”，分歧点在于美联储决议前是否应该提前布局。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">华泰证券建议“沿盈利与筹码配置差继续再平衡”，关注景气投资回归机会。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，9月中下旬行情值得期待</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">7. <span class="card-level">C级</span> 277.85亿元市值限售股今日解禁</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年09月07日 2026年09月07日 07:31</span></div>
+<div class="logic">今日共有16家公司限售股解禁，合计解禁市值277.85亿元。民生健康、威尔高、华新精科解禁量居前；摩尔线程-U、威尔高、民生健康解禁市值居前。大规模解禁对个股形成短期抛压，尤其是前期涨幅较大的次新股。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">摩尔线程-U作为国产GPU龙头，解禁市值居前可能对股价形成压力。但需注意，若公司基本面扎实、产业趋势向好，解禁压力可能被市场消化。民生健康、威尔高等次新股解禁比例较高，短期波动风险加大。整体来看，277.85亿元解禁规模在A股日均成交额中占比有限，对大盘影响可控。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">解禁是A股特有现象，外资对此关注度相对有限。但若解禁个股为外资重仓标的（如科创板半导体公司），可能影响外资持股信心。港股年内IPO募资超3500亿港元，显示一级市场活跃度提升，但解禁压力也将随新股增多而累积。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>解禁压力较小的高股息标的</strong>: 资金避险需求 → 个股: 中国移动(600941), 中国电信(601728)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>解禁落地后的错杀机会</strong>: 基本面扎实但遭解禁错杀 → 个股: 关注摩尔线程-U(688795)解禁后的企稳信号</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于摩尔线程解禁后的走势，分歧点在于国产GPU赛道的高估值能否消化解禁压力。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">解禁影响通常为短期情绪扰动，中期走势仍取决于基本面。摩尔线程若回调到位，反而是中线布局机会。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">一日游，解禁压力释放后个股将回归基本面定价</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">8. <span class="card-level">C级</span> 上周ETF净流入超330亿元，半导体获加仓</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年09月07日 2026年09月07日 06:18</span></div>
+<div class="logic">上周全市场ETF合计净流入超330亿元，较前周增加1倍多，其中股票型ETF净流入107.36亿元。科创50、创业板和半导体等成长方向获得资金加仓，货币、可转债及债券ETF同样获净流入。资金借道ETF逆势布局迹象明显。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">ETF资金流向是观察机构行为的重要窗口。科创50、创业板、半导体获加仓显示部分资金在科技板块调整中逆势布局，与融资资金从电子通信流出形成对比——散户在卖、机构在买。330亿元的净流入规模创近期新高，显示市场底部区域资金承接意愿增强。私募新备案连续3个月超1200只也印证增量资金正在积累。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">全球资金流向新兴市场的趋势未变，A股ETF获净流入与外资通过港股通加仓中国资产形成共振。日韩半导体今日大涨可能进一步催化A股半导体ETF的申购热情。但需注意，若美联储加息落地导致全球流动性收紧，ETF净流入趋势可能阶段性逆转。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>科创50ETF成分股</strong>: 资金直接加仓方向 → 个股: 中芯国际(688981), 金山办公(688111)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>半导体ETF成分股</strong>: 逆势布局方向 → 个股: 韦尔股份(603501), 紫光国微(002049)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“ETF净流入是否代表市场见底信号”，分歧点在于机构逆势布局的时点选择。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">历史经验显示，ETF大规模净流入往往出现在市场阶段性底部区域，当前或处于“黎明前”的布局窗口。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，ETF扩容趋势下增量资金将持续流入</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">9. <span class="card-level">C级</span> 2026国谈第三日：诺诚健华、默沙东等企业入场</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年09月07日 2026年09月07日 08:15</span></div>
+<div class="logic">2026年国家医保药品目录谈判竞价及商保创新药目录价格协商进入第三日，诺诚健华、华润双鹤、默沙东、远大制药、首药控股、正大天晴、艾伯维、诺华等近20家企业代表入场，今日谈判品种以肿瘤药物为主。国谈结果将直接影响创新药企未来两年的放量节奏。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">创新药国谈是每年医药板块最重要的政策事件之一。谈判结果将分化——纳入医保的品种有望实现以价换量，未纳入或降价幅度超预期的品种可能承压。商保创新药目录是今年的新增变量，为创新药支付端开辟第二通道，超出市场预期的品种将获得估值重塑机会。医药板块近期表现平淡，国谈或成为板块催化剂。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">默沙东、艾伯维等跨国药企参与国谈，显示中国医保谈判的全球影响力提升。创新药出海与国内医保放量的“双轮驱动”逻辑持续强化。港股18A生物医药公司对国谈结果敏感度更高，或带动A/H溢价收窄。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>创新药（肿瘤线）</strong>: 国谈品种放量预期 → 个股: 诺诚健华(688428), 首药控股(688197)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>商保目录受益</strong>: 新增支付渠道打开 → 个股: 百济神州(688235), 信达生物(1801.HK)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“商保创新药目录的支付体量”，分歧点在于国谈降价幅度与放量空间的权衡。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">医药分析师普遍认为国谈常态化后，创新药“以价换量”逻辑确立，关注谈判结果超预期的品种。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，谈判结果公布后个股将分化</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">10. <span class="card-level">C级</span> 小米汽车累计交付超80万辆</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年09月07日 2026年09月07日 07:16</span></div>
+<div class="logic">雷军宣布小米汽车累计交付量超过80万辆。这一数据验证了小米汽车在智能电动车市场的强劲竞争力，从首款车型发布到80万辆交付的节奏远超市场预期。小米汽车产业链公司有望获得持续订单催化。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">小米汽车80万辆交付对A股产业链是实质性利好——供应链公司订单能见度提升。同时，小米汽车的成功也加剧了新能源车行业竞争，特斯拉今日推出限时优惠（Model Y现金激励1万元），价格战延续。新能源车板块整体面临“销量增长但盈利承压”的格局，结构性机会在智能化、一体化压铸等差异化环节。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">小米汽车的成功是中国智能电动车产业竞争力的缩影。日韩车企（丰田计划提升二手车销量、捷豹路虎裁员4000人）面临中国电动车冲击，全球汽车产业格局正在重塑。特斯拉降价应对竞争，显示中国市场的价格压力已传导至全球车企。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>小米汽车产业链</strong>: 订单放量直接受益 → 个股: 拓普集团(601689), 三花智控(002050)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>智能化零部件</strong>: 小米汽车智能化配置领先 → 个股: 德赛西威(002920), 华阳集团(002906)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“小米汽车80万辆后增速能否持续”，分歧点在于产业链公司估值是否已充分反映订单预期。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">汽车分析师关注小米汽车二期工厂投产进度和海外市场拓展计划，认为产业链公司仍有业绩上修空间。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线，小米汽车产业链将随交付数据持续催化</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">11. <span class="card-level">C级</span> 日本芯片股大涨，铠侠涨7.3%</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年09月07日 2026年09月07日 08:19</span></div>
+<div class="logic">日本芯片相关股票大幅上涨，铠侠上涨7.3%，软银集团上涨5.4%，Lasertec上涨8.2%。日经225指数上涨2%至66,341点。日本半导体板块的强势表现与韩国KOSPI大涨3.34%形成共振，显示全球半导体资金正在回流。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">日韩半导体大涨对A股半导体板块形成明确映射。上周A股半导体因美债利率上行大幅调整，科创50、半导体ETF却获资金逆势加仓，显示部分资金已在布局反弹。若日韩半导体涨势延续，A股半导体设备、材料、存储等方向有望迎来超跌反弹行情。华为半导体负责人何庭波更新韬定律论文，也引发市场对半导体竞争格局的重新审视。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">全球半导体板块同步反弹可能反映以下信号：AI算力需求持续超预期、存储芯片价格触底回升、半导体设备支出周期见底。软银集团大涨可能与其持有的ARM股价表现相关，AI芯片产业链景气度从设计端向制造端、设备端传导。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>半导体设备</strong>: 全球资本开支周期见底 → 个股: 北方华创(002371), 中微公司(688012)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>存储芯片</strong>: 铠侠大涨映射，价格触底回升 → 个股: 兆易创新(603986), 佰维存储(688525)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>半导体材料</strong>: 国产替代逻辑强化 → 个股: 沪硅产业(688126), 安集科技(688019)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“全球半导体反弹的持续性”，分歧点在于AI算力需求能否对冲消费电子疲软。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">半导体分析师认为板块调整已充分，当前估值对应2027年业绩仅20倍PE出头，具备中线配置价值。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，关注日韩股市后续走势</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">12. <span class="card-level">C级</span> 个人养老金基金产品扩容至含权二级债基</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年09月07日 2026年09月07日 06:15</span></div>
+<div class="logic">监管部门推动含权二级债基、偏债混合基金纳入个人养老金基金产品名录，首批产品纳入后按季度常态化开展。个人养老金基金产品从纯权益/混合型向含权固收+方向扩容，丰富不同风险偏好投资者的选择。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">个人养老金是A股最重要的长线增量资金来源之一。产品品类扩容将吸引更多稳健型投资者参与，为市场提供持续增量资金。含权二级债基的“固收+”属性使其在震荡市中更具吸引力，有助于提升个人养老金整体参与率。对公募基金行业而言，产品线扩容打开管理规模增长空间。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中国个人养老金制度借鉴了美国401K和IRA的经验，产品品类扩容是制度完善的必经之路。长线资金入市有助于提升A股机构化程度和定价效率，对外资而言，一个更多由长线资金主导的市场更具配置价值。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>公募基金重仓股</strong>: 长线资金入市利好核心资产 → 个股: 贵州茅台(600519), 招商银行(600036)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>券商板块</strong>: 基金代销规模提升 → 个股: 东方财富(300059), 中信证券(600030)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“个人养老金扩容对A股增量资金的测算”，分歧点在于实际入市节奏和规模。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">非银分析师测算个人养老金每年可为A股带来千亿级增量资金，产品扩容将加速这一进程。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">长期赛道，制度完善将带来持续增量资金</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">13. <span class="card-level">C级</span> 华为Mate XT2非凡大师今日发布</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年09月07日 2026年09月07日 07:57</span></div>
+<div class="logic">华为全新展翼三折叠HUAWEI Mate XT2非凡大师真机将于今日发布。作为华为折叠屏旗舰的迭代产品，Mate XT2在铰链技术、屏幕耐用性、影像系统等方面有望实现全面升级。华为折叠屏手机的发布节奏和产品力是消费电子产业链的重要风向标。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">华为新机发布对A股消费电子产业链形成事件催化。折叠屏是智能手机中为数不多保持高增长的细分赛道，铰链、UTG玻璃、柔性屏等环节直接受益。华为回归高端市场对苹果形成竞争压力，但也带动了整个国产供应链的升级。今日华为、苹果、小米集体发布新品，消费电子板块情绪有望提振。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">华为在芯片制裁背景下仍能迭代折叠屏旗舰，显示中国消费电子产业链的韧性。全球折叠屏市场三星、华为双雄格局确立，苹果尚未推出折叠屏产品。华为新机的创新方向（三折叠形态）可能引领行业趋势，对全球供应链格局产生影响。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>铰链/结构件</strong>: 三折叠对铰链要求更高 → 个股: 精研科技(300709), 东睦股份(600114)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>UTG玻璃/屏幕</strong>: 折叠屏核心材料 → 个股: 长信科技(300088), 凯盛科技(600552)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>华为产业链整体</strong>: 新机发布带动出货预期 → 个股: 光弘科技(300735), 卓翼科技(002369)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“Mate XT2的定价和出货量预期”，分歧点在于三折叠形态能否成为主流。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">消费电子分析师看好折叠屏渗透率提升趋势，预计2027年全球折叠屏出货量将突破1亿台。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，发布会后关注市场反馈和销量数据</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">14. <span class="card-level">C级</span> 周一关注中国8月外储等经济数据</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年09月07日 2026年09月07日 06:07</span></div>
+<div class="logic">今日公布中国8月外汇储备数据，本周还将公布8月CPI/PPI（9月9日）。外汇储备数据反映资本流动和汇率压力，CPI/PPI验证内需恢复成色。在美联储加息预期升温、人民币汇率承压的背景下，外储数据尤为重要。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">8月外储数据将反映人民币贬值压力下的资本流动状况。若外储降幅可控，说明资本外流压力有限，央行有充足工具维持汇率稳定。CPI/PPI数据若显示通胀低迷，可能强化政策宽松预期——降准降息空间打开。上周多项增量金融政策落地（贴息贷款提额、新型政策性金融工具、房地产信贷优化），政策“组合拳”效果有待数据验证。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">日本外汇储备连续第四个月下降（8月减少795.75亿美元），主要受7月底汇市干预影响。中国外储规模远高于日本，且资本管制更严格，抗风险能力更强。但美联储加息预期下，亚洲货币普遍承压，韩元升至2024年10月以来最高水平显示亚洲货币分化。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>银行板块</strong>: 政策宽松预期强化 → 个股: 招商银行(600036), 宁波银行(002142)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>地产链</strong>: 房地产信贷政策优化 → 个股: 保利发展(600048), 万科A(000002)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“8月CPI是否会转正”，分歧点在于政策宽松的节奏和力度。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">宏观分析师预计8月CPI同比回升至0.5%左右，PPI降幅收窄，通胀温和回升为政策宽松提供空间。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">一日游，数据公布后市场将重新定价</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">15. <span class="card-level">C级</span> 特斯拉限时优惠：Model Y现金激励1万元</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年09月07日 2026年09月07日 08:34</span></div>
+<div class="logic">特斯拉推出限时优惠政策，Model 3全系现车享现金激励5000元，Model Y全系现车享现金激励10000元，部分Model 3还可申请8000元保险补贴。优惠后Model 3售价222,500元起，Model Y售价253,500元起。特斯拉降价显示新能源车市场竞争白热化。</div>
+<h4 class="perspective-domestic">国内视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">特斯拉降价对国内新能源车市场形成压力，尤其是20-30万价格区间的竞品（小米SU7、极氪007、小鹏P7+等）。价格战延续意味着行业盈利承压，但加速淘汰落后产能，头部企业份额有望提升。小米汽车累计交付超80万辆、特斯拉降价促销，新能源车行业“内卷”加剧。</p>
+<h4 class="perspective-intl">国际视角</h4>
+<p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">特斯拉在中国市场降价促销，反映其全球销量增长面临瓶颈。中国新能源车品牌的崛起对特斯拉形成巨大竞争压力，特斯拉被迫以价换量。捷豹路虎计划裁员4000人、丰田调整二手车战略，传统车企的转型困境与特斯拉的份额压力形成对照。</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>特斯拉产业链</strong>: 降价促销带动销量，产业链订单受益 → 个股: 拓普集团(601689), 旭升集团(603305)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>锂电材料</strong>: 销量提升带动电池需求 → 个股: 宁德时代(300750), 亿纬锂能(300014)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">讨论焦点在于“特斯拉降价对行业格局的影响”，分歧点在于价格战何时结束、谁将成为最终赢家。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">汽车分析师认为2026年是新能源车行业洗牌之年，具备成本优势和品牌力的头部企业将胜出。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动，关注9月销量数据验证</p>
+</div>
+<h2 class="section-title">三、全量电报列表（精简）</h2>
+<table class="telegram-table">
+<thead><tr>
+<th class="">序号</th>
+<th class="">时间</th>
+<th class="">Lv</th>
+<th class="">分享</th>
+<th class="">评论</th>
+<th class="">内容摘要40字</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class=""><span class="rank-num">1</span></td>
+<td class="">22:00</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">3821</td>
+<td class="">5</td>
+<td class="content-col">【下周资本市场大事提醒：美联储9月加息悬念迎落槌时刻，华为苹果小米集体上新品，2</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">2</span></td>
+<td class="">08:17</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">1326</td>
+<td class="">0</td>
+<td class="content-col">【财联社9月7日早间新闻精选】 1、美国8月非农就业人数增加16.2万人，预估为</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">3</span></td>
+<td class="">03:06</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">791</td>
+<td class="">30</td>
+<td class="content-col">【伊朗将宣布霍尔木兹海峡禁区】财联社9月7日电，伊朗最高国家安全委员会秘书雷扎伊</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">4</span></td>
+<td class="">08:01</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">312</td>
+<td class="">8</td>
+<td class="content-col">【韩国KOSPI指数开盘上涨3.34%】财联社9月7日电，韩国KOSPI指数开盘</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">5</span></td>
+<td class="">07:57</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">275</td>
+<td class="">4</td>
+<td class="content-col">【投资日历：周一资本市场大事提醒】 ①今日共有1只新股申购，为百瑞吉；2只新股上</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">6</span></td>
+<td class="">00:51</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">242</td>
+<td class="">1</td>
+<td class="content-col">【俄外交部 ：高市要求俄拆除纪念碑的言论“荒谬且无视历史”】财联社9月7日电，俄</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">7</span></td>
+<td class="">01:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">176</td>
+<td class="">0</td>
+<td class="content-col">【德国萨安州选举极右翼政党大幅领先】财联社9月7日电，德国东部萨克森-安哈尔特州</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">8</span></td>
+<td class="">21:50</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">162</td>
+<td class="">0</td>
+<td class="content-col">【王小洪分别会见老挝和乌兹别克斯坦客人】中共中央书记处书记、公安部部长王小洪6日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">9</span></td>
+<td class="">22:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">161</td>
+<td class="">0</td>
+<td class="content-col">【日本流感季大幅提前 八成地区病例数增加】财联社9月6日电，日本媒体6日报道，日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">10</span></td>
+<td class="">06:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">137</td>
+<td class="">7</td>
+<td class="content-col">【A股缩量整理或临近尾声 机构看好9月中下旬行情】财联社9月7日电，上周，A股市</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">11</span></td>
+<td class="">23:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">141</td>
+<td class="">1</td>
+<td class="content-col">【泽连斯基结束与美方代表首轮会谈】财联社9月6日电，乌克兰总统泽连斯基当地时间9</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">12</span></td>
+<td class="">01:45</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">140</td>
+<td class="">0</td>
+<td class="content-col">【也门政府军与胡塞武装交火 造成至少117人死亡】财联社9月7日电，也门政府军与</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">13</span></td>
+<td class="">06:18</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">135</td>
+<td class="">2</td>
+<td class="content-col">【上周ETF净流入资金合计逾330亿元】财联社9月7日电，近期，资金持续借道ET</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">14</span></td>
+<td class="">21:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">125</td>
+<td class="">1</td>
+<td class="content-col">【冷门赛道逆袭 基金发行“顺风局”现象缓解】财联社9月6日电，近日，“冷门”的农</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">15</span></td>
+<td class="">05:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">124</td>
+<td class="">0</td>
+<td class="content-col">【泽连斯基称与美特使等人举行“实质性”会晤】财联社9月7日电，乌克兰总统泽连斯基</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">16</span></td>
+<td class="">02:13</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">123</td>
+<td class="">0</td>
+<td class="content-col">【黎方称以军袭击黎南部 致3人死亡】财联社9月7日电，黎巴嫩公共卫生部紧急行动中</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">17</span></td>
+<td class="">23:46</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">120</td>
+<td class="">1</td>
+<td class="content-col">财联社9月6日电，美国联邦通信委员会（FCC）主席卡尔表示，美国联邦通信委员会或</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">18</span></td>
+<td class="">23:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">119</td>
+<td class="">0</td>
+<td class="content-col">财联社9月6日电，据报道，优步已向Atoms公司投资1亿美元；Atoms已与优步</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">19</span></td>
+<td class="">04:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">112</td>
+<td class="">0</td>
+<td class="content-col">【美一货机冲出跑道撞车起火】财联社9月7日电，当地时间9月6日下午2点左右，美国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">20</span></td>
+<td class="">06:13</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">101</td>
+<td class="">1</td>
+<td class="content-col">【多项增量金融政策落地 助力扩内需稳经济】财联社9月7日电，贴息贷款提额扩面，新</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">21</span></td>
+<td class="">06:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">101</td>
+<td class="">0</td>
+<td class="content-col">【新备案私募证券基金连续3个月超1200只】财联社9月7日电，近期A股市场震荡调</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">22</span></td>
+<td class="">21:28</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">97</td>
+<td class="">0</td>
+<td class="content-col">【中国银行于泉州举办GBIC大会暨全球闽商合作对接会】财联社9月6日电，中国银行</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">23</span></td>
+<td class="">00:24</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">92</td>
+<td class="">2</td>
+<td class="content-col">财联社9月7日电，东京证交所退市数量将连续第三年创下新高。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">24</span></td>
+<td class="">22:51</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">87</td>
+<td class="">2</td>
+<td class="content-col">财联社9月6日电，美国能源部长赖特表示，美国始终对与伊朗达成协议持开放态度，美国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">25</span></td>
+<td class="">06:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">86</td>
+<td class="">0</td>
+<td class="content-col">【周一（9月7日）重点关注财经事件和经济数据】 ① 待定 中国8月外汇储备； ②</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">26</span></td>
+<td class="">04:04</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">81</td>
+<td class="">0</td>
+<td class="content-col">【联合国贸发会议报告：最不发达国家数字化可交付服务发展滞后】财联社9月7日电，联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">27</span></td>
+<td class="">00:11</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">75</td>
+<td class="">0</td>
+<td class="content-col">【尼泊尔泥石流已致1353人死亡】财联社9月7日电，据尼泊尔警方公布的数据，截至</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">28</span></td>
+<td class="">22:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">74</td>
+<td class="">0</td>
+<td class="content-col">财联社9月6日电，乌克兰总统泽连斯基表示，乌克兰与美国谈判代表的首次会谈已结束。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">29</span></td>
+<td class="">21:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">72</td>
+<td class="">0</td>
+<td class="content-col">财联社9月6日电，特朗普称，加拿大对美国的货币美元汇率失衡是不可接受的。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">30</span></td>
+<td class="">01:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">72</td>
+<td class="">0</td>
+<td class="content-col">【宁夏发布山洪灾害蓝色预警 多地发布大雾橙色预警】财联社9月7日电，据宁夏气象部</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">31</span></td>
+<td class="">05:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">72</td>
+<td class="">0</td>
+<td class="content-col">【美一货机冲出跑道5人死亡】财联社9月7日电，当地时间9月6日下午2点左右，美国</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">32</span></td>
+<td class="">22:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">70</td>
+<td class="">0</td>
+<td class="content-col">【印尼东努沙登加拉省一火山喷发】财联社9月6日电，据印尼火山地质减灾中心消息，当</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">33</span></td>
+<td class="">03:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">65</td>
+<td class="">1</td>
+<td class="content-col">财联社9月7日电，美国交通部长达菲表示，因一架亚马逊货运飞机冲出跑道，已在迈阿密</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">34</span></td>
+<td class="">06:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">64</td>
+<td class="">0</td>
+<td class="content-col">【从扩数量到扩品类 个人养老金基金产品矩阵将进一步丰富】财联社9月7日电，记者获</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">35</span></td>
+<td class="">07:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">62</td>
+<td class="">1</td>
+<td class="content-col">【法国共产党全国书记鲁塞尔宣布参加2027年总统选举】财联社9月7日电，法国共产</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">36</span></td>
+<td class="">07:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">55</td>
+<td class="">3</td>
+<td class="content-col">【“姜健”号驱逐舰正式入列朝鲜海军】财联社9月7日电，据朝中社7日报道，“姜健”</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">37</span></td>
+<td class="">06:54</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">57</td>
+<td class="">1</td>
+<td class="content-col">【年内港股IPO募资超3500亿港元】财联社9月7日电，截至9月6日，今年以来港</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">38</span></td>
+<td class="">06:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">55</td>
+<td class="">2</td>
+<td class="content-col">【美重启穿梭外交 俄乌短暂停火 和平进程仍漫漫】财联社9月7日电，9月5日到6日</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">39</span></td>
+<td class="">08:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">54</td>
+<td class="">1</td>
+<td class="content-col">财联社9月7日电，日本芯片相关股票大幅上涨，铠侠上涨7.3%，软银集团上涨5.4</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">40</span></td>
+<td class="">06:48</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">51</td>
+<td class="">0</td>
+<td class="content-col">财联社9月7日电，现货白银向上触及66美元/盎司，日内上涨0.02%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">41</span></td>
+<td class="">08:34</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">51</td>
+<td class="">0</td>
+<td class="content-col">【特斯拉推出限时优惠政策 购买Model 3/Y现车享现金激励5000元起】财联</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">42</span></td>
+<td class="">07:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">41</td>
+<td class="">7</td>
+<td class="content-col">【小米汽车累计交付量超80万辆】财联社9月7日电，雷军宣布小米汽车累计交付量超过</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">43</span></td>
+<td class="">06:03</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">43</td>
+<td class="">1</td>
+<td class="content-col">财联社9月7日电，WTI原油期货涨幅扩大至1%，报92.432美元/桶。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">44</span></td>
+<td class="">06:05</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">41</td>
+<td class="">0</td>
+<td class="content-col">财联社9月7日电，丰田计划到2030年将日本国内二手车年销量从当前约35万辆提升</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">45</span></td>
+<td class="">06:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">41</td>
+<td class="">0</td>
+<td class="content-col">财联社9月7日电，现货白银跌破66美元/盎司，日内下跌0.3%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">46</span></td>
+<td class="">07:31</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">36</td>
+<td class="">2</td>
+<td class="content-col">【A股限售股解禁一览：277.85亿元市值限售股今日解禁】财联社9月7日电，Wi</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">47</span></td>
+<td class="">08:13</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">38</td>
+<td class="">0</td>
+<td class="content-col">【财政部积极支持有关中央金融企业补充核心一级资本】财联社9月7日电，按照党中央、</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">48</span></td>
+<td class="">08:15</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">37</td>
+<td class="">0</td>
+<td class="content-col">【2026国谈第三日上午场：诺诚健华、华润双鹤、默沙东、正大天晴、艾伯维等企业代</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">49</span></td>
+<td class="">07:57</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">27</td>
+<td class="">2</td>
+<td class="content-col">【今日申购指南及新股定位分析】财联社9月7日电，今日有1只新股申购，为北交所的百</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">50</span></td>
+<td class="">06:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">28</td>
+<td class="">0</td>
+<td class="content-col">财联社9月7日电，丰田目标截至2030财年将非汽车销售业务利润提升40%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">51</span></td>
+<td class="">07:52</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">26</td>
+<td class="">1</td>
+<td class="content-col">【日本外汇储备连续第四个月下降】财联社9月7日电，日本财务省公布的数据显示，截至</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">52</span></td>
+<td class="">07:47</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">27</td>
+<td class="">0</td>
+<td class="content-col">财联社9月7日电，日经225指数期货早盘上涨1.6%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">53</span></td>
+<td class="">08:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">27</td>
+<td class="">0</td>
+<td class="content-col">【六部门印发《关于推动历史经典产业高质量发展的意见》】财联社9月7日电，工业和信</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">54</span></td>
+<td class="">08:11</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">26</td>
+<td class="">0</td>
+<td class="content-col">【华泰证券A股策略：沿盈利与筹码“配置差”继续再平衡】财联社9月7日电，华泰证券</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">55</span></td>
+<td class="">08:39</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">22</td>
+<td class="">0</td>
+<td class="content-col">【腾达科技：9月7日对全部产品进行价格下调】财联社9月7日电，腾达科技发布调价通</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">56</span></td>
+<td class="">08:24</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">22</td>
+<td class="">0</td>
+<td class="content-col">财联社9月7日电，日经225指数上涨2%，至66,341.69点。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">57</span></td>
+<td class="">08:26</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">21</td>
+<td class="">0</td>
+<td class="content-col">【未来三天北方降雨向东扩展 多地气温将创下半年来新低】财联社9月7日电，今后三天</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">58</span></td>
+<td class="">08:22</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">18</td>
+<td class="">0</td>
+<td class="content-col">财联社9月7日电，30年期日本国债收益率上升1.0个基点至3.975%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">59</span></td>
+<td class="">08:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">1</td>
+<td class="content-col">财联社9月7日电，MSCI亚太指数上涨1%至282.08点。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">60</span></td>
+<td class="">08:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">【墨西哥中部烟花爆炸死伤人数升至74人】财联社9月7日电，墨西哥中部墨西哥州政府</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">61</span></td>
+<td class="">08:38</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">13</td>
+<td class="">0</td>
+<td class="content-col">【捷豹路虎计划两年裁减4000个岗位】财联社9月7日电，据中新经纬援引英国《金融</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">62</span></td>
+<td class="">08:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">10</td>
+<td class="">0</td>
+<td class="content-col">财联社9月7日电，韩元兑美元汇率升至2024年10月7日以来的最高水平，现报13</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">63</span></td>
+<td class="">08:03</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①华为半导体负责人何庭波更新韬定律论文，分析师看好半导体竞争正从先进节点竞赛延伸</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">64</span></td>
+<td class="">07:40</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①交换机+液冷服务器，液冷服务器已实现规模化量产，高端数据中心交换机量价齐升，A</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">65</span></td>
+<td class="">07:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①自动驾驶国标开启L4元年，分析师看好相关产业链； ②这家公司AI服务器及光模块</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">66</span></td>
+<td class="">22:12</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①液冷+数据中心+储能+算力+华为！这家公司液冷产品已入围某互联网大厂1.2MW</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">67</span></td>
+<td class="">21:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①极致轮动收敛后，景气投资有望回归；②GPT-6 Astra强化3D空间建模能力</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">68</span></td>
+<td class="">21:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">0</td>
+<td class="">0</td>
+<td class="content-col">①英伟达或使用OCS交换机，硅光方案具备体积小、切换速度快等显著优势，这家国内厂</td>
+</tr>
+</tbody></table>
+
+<div class="footer">Generated by CLS Daily Summary Tool &copy; 2026年09月07日</div>
+</div>
+</body>
+</html>
