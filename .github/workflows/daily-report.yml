@@ -1,11 +1,19 @@
 name: CLS Daily Report
 
+# ⚠️ 触发方式说明（2026-09-27 修订）
+# 本地 Windows 计划任务已完整覆盖每日产出，且是实际生效的通道：
+#   - CLS_Daily_Summary    周一~五 08:45  →  C:\Users\29732\Desktop\CLS工具\main.py
+#   - CLS_Weekend_Summary  周日    21:00  →  同上（周末综述）
+#   - SyncDailyReports     周一~五 08:50  →  quant-a-share\sync_daily_reports.py
+# 因此本 workflow 不再随 push / schedule 自动触发——历史上它从未成功过，
+# 且每次 push 都以 startup_failure 告终（649 次），纯属噪声。
+# 仅保留 workflow_dispatch 作为「本机不可用」时的手动备份通道。
+#
+# 历史故障根因：下方 Generate 步骤原以内联 `python -c "..."` 更新 reports.js，
+# 但内联 Python 未随 `run: |` 块缩进，YAML 块标量提前终止 → workflow 启动即失败
+# （0 个 job）。现已抽成 cls_tool/update_reports_js.py。
+
 on:
-  push:
-    branches: [main]
-  schedule:
-    # Monday-Friday at 00:45 UTC = 08:45 Beijing time
-    - cron: '45 0 * * 1-5'
   workflow_dispatch:
 
 permissions:
@@ -33,37 +41,18 @@ jobs:
           cd cls_tool
           python main.py
           # Copy generated files to reports/
-          for f in outputs/CLS_早报_*.md; do cp "$f" ../reports/ 2>/dev/null; done
-          for f in outputs/CLS_早报_*.html; do cp "$f" ../reports/ 2>/dev/null; done
-          # Update reports.js with the new date
-          DATE_STR=$(date +%Y%m%d)
-          DATE_LABEL=$(date +%Y年%m月%d日)
-          python -c "
-import json, os
-js_path = '../reports.js'
-with open(js_path, 'r', encoding='utf-8') as f:
-    content = f.read()
-# Extract existing list
-start = content.index('[')
-end = content.rindex(']') + 1
-arr = json.loads(content[start:end])
-# Prepend new date if not already first
-entry = {'date': '$DATE_STR', 'label': '$DATE_LABEL', 'file': 'reports/CLS_早报_$DATE_STR.html'}
-if not arr or arr[0].get('date') != '$DATE_STR':
-    arr.insert(0, entry)
-    new_json = json.dumps(arr, ensure_ascii=False, indent=2)
-    new_content = content[:start] + new_json + content[end:]
-    with open(js_path, 'w', encoding='utf-8') as f:
-        f.write(new_content)
-    print(f'Updated reports.js with date $DATE_STR')
-else:
-    print(f'Date $DATE_STR already in reports.js')
-"
+          for f in outputs/CLS_早报_*.md; do cp "$f" ../reports/ 2>/dev/null || true; done
+          for f in outputs/CLS_早报_*.html; do cp "$f" ../reports/ 2>/dev/null || true; done
+
+      - name: Update reports.js
+        run: python cls_tool/update_reports_js.py
 
       - name: Commit and push reports
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports/
+          # ⚠️ 必须同时 add reports.js：旧版只 add reports/，
+          # 导致上一步写入的报告列表永远提交不上去。
+          git add reports/ reports.js
           git diff --cached --quiet || git commit -m "Daily report $(date +%Y-%m-%d)"
           git push
