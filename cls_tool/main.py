@@ -230,7 +230,10 @@ def main():
         weekday_str = weekday_map[end_dt.weekday()]
         trading_note = "交易日" if _is_trading_day(end_dt.date()) else "非交易日(供下一交易日参考)"
         date_display = end_dt.strftime("%Y年%m月%d日")
-        analysis = normalize(analysis, date_display, weekday_str, trading_note)
+        # 标明本次产出实际覆盖的电报时间区间（起点=上一交易日收盘锚点，终点=本次运行时刻）
+        window_str = (f"{start_dt.strftime('%Y-%m-%d %H:%M')}"
+                      f" → {end_dt.strftime('%Y-%m-%d %H:%M')}")
+        analysis = normalize(analysis, date_display, weekday_str, trading_note, window_str)
     except Exception as e:
         print(f"[WARN] Markdown规范化失败: {e}")
 

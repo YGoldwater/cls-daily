@@ -9,7 +9,8 @@ Handles the 3 known AI output variants:
 import re
 
 
-def normalize(md_text: str, date_str: str = "", weekday_str: str = "", trading_note: str = "") -> str:
+def normalize(md_text: str, date_str: str = "", weekday_str: str = "", trading_note: str = "",
+              window_str: str = "") -> str:
     """Normalize markdown to consistent format. Returns normalized text."""
     text = md_text.strip()
 
@@ -17,7 +18,7 @@ def normalize(md_text: str, date_str: str = "", weekday_str: str = "", trading_n
     text = _strip_preamble(text)
 
     # ── 2. Ensure H1 title ──
-    text = _ensure_h1(text, date_str, weekday_str, trading_note)
+    text = _ensure_h1(text, date_str, weekday_str, trading_note, window_str)
 
     # ── 3. Normalize "核心判断" to ## 核心判断 ──
     text = _normalize_core_judgment(text)
@@ -67,9 +68,18 @@ def _strip_preamble(text: str) -> str:
     return text
 
 
-def _ensure_h1(text: str, date_str: str, weekday_str: str, trading_note: str) -> str:
-    """Ensure there's exactly one H1 title at the top."""
+def _ensure_h1(text: str, date_str: str, weekday_str: str, trading_note: str,
+               window_str: str = "") -> str:
+    """Ensure there's exactly one H1 title at the top.
+
+    window_str = 本次产出实际覆盖的电报时间区间（起点 → 终点）。
+    每份报告都必须标明，便于事后核对「这份到底覆盖了哪一段」——
+    2026-09-27 曾出现修复前后两次运行覆盖区间不同（55h vs 79h）却
+    在标题上看不出来的情况。
+    """
     h1 = f"# 每日早报深度分析：{date_str}（{weekday_str}）{trading_note}"
+    if window_str:
+        h1 += f" ｜ 覆盖区间 {window_str}"
 
     # Check if H1 already exists
     existing_h1 = re.match(r'^#\s+.*', text)
