@@ -6,7 +6,7 @@ Fetches CLS telegraph news and generates AI-powered morning briefing.
 import sys
 import os
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 
 from config import (
     OUTPUT_DIR, LOG_DIR,
@@ -22,6 +22,48 @@ from prompt_builder import build_analysis_prompt
 from ai_analyzer import analyze_via_deepseek, analyze_fallback
 from report_writer import write_report, append_run_log
 from market_data import get_index_data
+
+
+_TRADE_DAY_CACHE = {}
+
+
+def _trade_days():
+    """交易日历（升序 list[date]）；取不到返回 None。进程内缓存一次。"""
+    if "td" not in _TRADE_DAY_CACHE:
+        try:
+            import akshare as ak
+            import pandas as pd
+            df = ak.tool_trade_date_hist_sina()
+            lst = sorted(pd.to_datetime(df["trade_date"]).dt.date.tolist())
+            _TRADE_DAY_CACHE["td"] = lst
+            _TRADE_DAY_CACHE["set"] = set(lst)
+        except Exception as e:
+            print(f"[WARN] 交易日历获取失败({e})，回退到按星期判断")
+            _TRADE_DAY_CACHE["td"] = None
+    return _TRADE_DAY_CACHE["td"]
+
+
+def _prev_trading_day(d):
+    """返回严格早于 d 的最近一个交易日 (datetime.date)。
+
+    ⚠️ 不要用 today - timedelta(days=2) 硬编码「周日减 2 天 = 周五」：
+    遇到中秋/国庆等把周五打成休市日的假期（如 2026-09-25 中秋），
+    算出来的「周五 15:00」不对应任何收盘时点。
+    与 sync_daily_reports.py 同口径：按真实交易日历回推。
+    """
+    td = _trade_days()
+    if not td:
+        return d - timedelta(days=1)
+    past = [x for x in td if x < d]
+    return past[-1] if past else d - timedelta(days=1)
+
+
+def _is_trading_day(d) -> bool:
+    """d 是否为交易日。日历取不到时退回 d.weekday() < 5 的旧行为。"""
+    td = _trade_days()
+    if not td:
+        return d.weekday() < 5
+    return d in _TRADE_DAY_CACHE["set"]
 
 
 def get_time_window(date_override: str = None) -> tuple:
@@ -50,9 +92,11 @@ def get_time_window(date_override: str = None) -> tuple:
     # Sunday
     if weekday == 6:
         if now.hour >= SUNDAY_EVENING_HOUR:
-            # Sunday evening run: Friday 15:00 → now
-            friday = today - timedelta(days=2)
-            start_dt = friday.replace(hour=TIME_START_HOUR, minute=TIME_START_MINUTE)
+            # Sunday evening run: 上一交易日 15:00 → now
+            # 正常周=周五 15:00；若周五休市（如 2026-09-25 中秋）则回推到更早的交易日
+            anchor = _prev_trading_day(today.date())
+            start_dt = datetime.combine(
+                anchor, time(TIME_START_HOUR, TIME_START_MINUTE))
             end_dt = now
             return start_dt, end_dt, today.strftime("%Y%m%d")
         else:
@@ -184,7 +228,7 @@ def main():
         from md_normalizer import normalize
         weekday_map = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
         weekday_str = weekday_map[end_dt.weekday()]
-        trading_note = "交易日" if end_dt.weekday() < 5 else "非交易日(供下一交易日参考)"
+        trading_note = "交易日" if _is_trading_day(end_dt.date()) else "非交易日(供下一交易日参考)"
         date_display = end_dt.strftime("%Y年%m月%d日")
         analysis = normalize(analysis, date_display, weekday_str, trading_note)
     except Exception as e:
