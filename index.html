@@ -111,6 +111,45 @@ body {
   line-height: 1.6;
 }
 
+/* ── Pinned tools (固定工具页，非按日期列表) ── */
+.sidebar-pinned {
+  padding: 10px 0 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-pinned .pinned-title {
+  padding: 0 20px 8px;
+  font-size: 11px; letter-spacing: 1px;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+}
+
+.sidebar-pinned a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 20px;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+}
+
+.sidebar-pinned a:hover {
+  background: var(--sidebar-hover);
+  color: #fff;
+  border-left-color: rgba(255,255,255,0.3);
+}
+
+.sidebar-pinned a.active {
+  background: var(--sidebar-active);
+  color: #fff;
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+.sidebar-pinned a .date-icon { font-size: 16px; width: 22px; text-align: center; }
+
 /* ── Main ── */
 .main {
   margin-left: 280px;
@@ -188,6 +227,13 @@ body {
     <h2><span class="live-dot"></span>CLS 每日早报</h2>
     <div class="subtitle">财联社电报 · AI 深度分析</div>
   </div>
+  <div class="sidebar-pinned" id="pinnedNav">
+    <div class="pinned-title">模型 · 工具</div>
+    <a data-file="ice_point_daily.html" onclick="loadTool('ice_point_daily.html','择时模型 · 冰点每日评分')">
+      <span class="date-icon">📊</span>
+      <span class="report-label">择时模型 · 冰点评分</span>
+    </a>
+  </div>
   <nav class="sidebar-nav" id="reportList">
     <div style="padding:20px;color:rgba(255,255,255,0.4);font-size:13px;text-align:center">加载中...</div>
   </nav>
@@ -217,10 +263,23 @@ function loadReport(item) {
   document.getElementById('reportFrame').src = item.file;
   document.getElementById('breadcrumb').innerHTML = 'CLS 早报 / <strong>' + item.label + '</strong>';
   document.getElementById('refreshHint').textContent = '报告日期: ' + item.label;
-  var links = document.querySelectorAll('.sidebar-nav a');
+  var links = document.querySelectorAll('.sidebar-nav a, .sidebar-pinned a');
   links.forEach(function(a) {
     a.classList.toggle('active', a.getAttribute('data-date') === item.date);
   });
+}
+
+// 固定工具页（择时模型等）：路径固定、每次原地覆盖，故不受报告列表影响
+function loadTool(file, label) {
+  document.getElementById('reportFrame').src = file;
+  document.getElementById('breadcrumb').innerHTML = '工具 / <strong>' + label + '</strong>';
+  document.getElementById('refreshHint').textContent = '页面内标注生成时间';
+  var links = document.querySelectorAll('.sidebar-nav a, .sidebar-pinned a');
+  links.forEach(function(a) {
+    a.classList.toggle('active', a.getAttribute('data-file') === file);
+  });
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
 }
 
 function renderSidebar() {
