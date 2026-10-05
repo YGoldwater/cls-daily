@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLS 早报</title>
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+    background: #f4f5f7;
+    color: #1a1a2e;
+    line-height: 1.6;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 30px 24px; }
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff; padding: 30px 36px; border-radius: 8px; margin-bottom: 24px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+.header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; letter-spacing: 1px; }
+.header .meta { font-size: 13px; opacity: 0.85; margin-top: 10px; }
+.header .meta span { margin-right: 20px; }
+.header .verdict {
+    margin-top: 18px; padding: 14px 18px; background: rgba(255,255,255,0.1);
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 14px; line-height: 1.7;
+}
+
+/* Core verdict banner */
+.verdict-banner {
+    background: #fff5f5; padding: 16px 20px; border-radius: 8px;
+    border-left: 4px solid #e94560; margin: 12px 0 20px;
+    font-size: 18px; line-height: 1.8; color: #e94560;
+    box-shadow: 0 1px 6px rgba(233,69,96,0.1);
+}
+
+/* Verdict section (## 核心判断) */
+.verdict-section {
+    background: #fff; border-radius: 8px; padding: 24px 28px;
+    margin: 16px 0 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    border-top: 4px solid #e94560;
+}
+.verdict-section .section-title {
+    border-bottom: none; margin-top: 0; margin-bottom: 14px;
+    color: #e94560; font-size: 22px;
+}
+.verdict-content p { font-size: 15px; line-height: 1.8; margin: 6px 0; }
+.verdict-content strong { color: #0f3460; }
+.verdict-content ul, .verdict-content ol { margin: 8px 0 8px 20px; font-size: 15px; line-height: 1.7; }
+.verdict-content li { margin-bottom: 4px; }
+
+/* Section titles */
+.section-title {
+    font-size: 20px; font-weight: 700; color: #0f3460;
+    border-bottom: 3px solid #e94560; padding-bottom: 8px;
+    margin: 28px 0 16px;
+}
+
+/* Ranking table */
+.rank-table {
+    width: 100%; border-collapse: collapse; margin: 16px 0 24px;
+    background: #fff; border-radius: 8px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); font-size: 14px;
+}
+.rank-table thead th {
+    background: #0f3460; color: #fff; padding: 10px 10px;
+    font-weight: 600; text-align: center; font-size: 13px;
+}
+.rank-table thead th.th-important {
+    color: #ff6b6b; font-size: 15px; font-weight: 800;
+}
+.rank-table tbody td {
+    padding: 8px 10px; border-bottom: 1px solid #eee;
+    text-align: center; vertical-align: middle;
+}
+.rank-table tbody tr:hover { background: #f8f9ff; }
+.rank-table .rank-num { font-weight: 700; color: #e94560; font-size: 16px; }
+.rank-table .title-col { text-align: left; font-weight: 500; }
+.rank-table .impact-col { text-align: left; font-size: 14px; color: #444; max-width: 400px; }
+.rank-table .stars { color: #f5a623; white-space: nowrap; font-size: 14px; letter-spacing: 1px; }
+
+/* Analysis card */
+.analysis-card {
+    background: #fff; border-radius: 8px; padding: 22px 28px;
+    margin: 16px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    border-top: 4px solid #e94560;
+}
+.analysis-card .card-title {
+    font-size: 17px; font-weight: 700; color: #1a1a2e; margin-bottom: 12px;
+}
+.analysis-card .card-level {
+    display: inline-block; padding: 3px 10px; border-radius: 3px;
+    font-size: 16px; font-weight: 800; color: #e94560;
+    background: #fff5f5; border: 1px solid #e94560;
+    margin-right: 4px;
+}
+.analysis-card .card-meta {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 10px;
+    font-size: 13px; color: #777;
+    line-height: 1.4;
+}
+.analysis-card .card-meta-inline {
+    display: inline-block; margin-right: 18px; margin-bottom: 8px;
+    font-size: 13px; color: #777; line-height: 1.4;
+}
+.analysis-card .card-meta .stars { color: #f5a623; font-size: 16px; }
+.analysis-card .logic {
+    background: #fff8f0; padding: 12px 16px; border-radius: 6px;
+    font-size: 14px; color: #8b4513; margin-bottom: 14px;
+    border-left: 3px solid #f5a623;
+}
+.analysis-card h4 {
+    font-size: 15px; font-weight: 700; color: #0f3460;
+    margin: 10px 0 4px; padding-bottom: 2px; border-bottom: 1px dashed #ddd;
+    line-height: 1.4;
+}
+.analysis-card h4.perspective-domestic {
+    color: #c0392b; border-bottom-color: #e94560; font-size: 17px;
+}
+.analysis-card h4.perspective-intl {
+    color: #0e8c6a; border-bottom-color: #0e8c6a; font-size: 17px;
+}
+/* When a perspective h4 is immediately followed by another h4, make it inline */
+.analysis-card h4.perspective-domestic + h4,
+.analysis-card h4.perspective-intl + h4 {
+    margin-top: 0; padding-top: 0; border-top: none;
+}
+.analysis-card h4.perspective-domestic + h4::before {
+    content: 'B8  ';
+    color: #c0392b;
+}
+.analysis-card h4.perspective-intl + h4::before {
+    content: 'B8  ';
+    color: #0e8c6a;
+}
+.analysis-card ul { margin: 4px 0 8px 18px; font-size: 14px; line-height: 1.5; }
+.analysis-card ul li { margin-bottom: 2px; }
+.bull { color: #e94560; font-weight: 600; }
+.bear { color: #2ecc71; font-weight: 600; }
+
+/* Sector tags */
+.tag { display: inline-block; padding: 2px 8px; border-radius: 3px;
+    font-size: 11px; font-weight: 600; margin-right: 4px; }
+.tag-a { background: #ffe0e0; color: #c0392b; }
+.tag-b { background: #fff3cd; color: #856404; }
+.tag-c { background: #e8e8e8; color: #555; }
+
+/* Emotion section */
+.emotion-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px; margin: 16px 0;
+}
+.emotion-item {
+    background: #fff; padding: 18px 20px; border-radius: 8px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+}
+.emotion-item .label { font-size: 11px; color: #999; text-transform: uppercase; }
+.emotion-item .value { font-size: 16px; font-weight: 700; color: #0f3460; margin-top: 4px; }
+
+/* Risk list */
+.risk-list { list-style: none; }
+.risk-list li {
+    padding: 10px 14px; margin: 6px 0; background: #fff5f5;
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 13px;
+}
+.risk-list li::before { content: '⚠ '; }
+
+.risk-item {
+    padding: 6px 12px; margin: 3px 0; background: #fff5f5;
+    border-left: 3px solid #e94560; border-radius: 0 6px 6px 0;
+    font-size: 13px; line-height: 1.5;
+}
+.risk-heading {
+    font-size: 15px; font-weight: 800; color: #e94560;
+    margin: 10px 0 4px;
+}
+
+/* Full telegram table */
+.telegram-table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    background: #fff; border-radius: 6px; overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+}
+.telegram-table thead th {
+    background: #16213e; color: #fff; padding: 10px 8px;
+    font-weight: 500; font-size: 12px;
+}
+.telegram-table thead th:first-child { width: 42px; }
+.telegram-table thead th:nth-child(2) { width: 48px; }
+.telegram-table thead th:nth-child(3) { width: 38px; }
+.telegram-table thead th:nth-child(4) { width: 48px; }
+.telegram-table thead th:nth-child(5) { width: 48px; }
+.telegram-table thead th:last-child { width: auto; }
+.telegram-table tbody td {
+    padding: 5px 8px; border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+.telegram-table tbody td:first-child,
+.telegram-table tbody td:nth-child(2),
+.telegram-table tbody td:nth-child(3),
+.telegram-table tbody td:nth-child(4),
+.telegram-table tbody td:nth-child(5) {
+    text-align: center;
+}
+.telegram-table tbody td:last-child {
+    text-align: left; white-space: normal; word-break: break-all;
+}
+.telegram-table tbody tr:nth-child(even) { background: #fafafa; }
+.telegram-table .lv-S { background: #c0392b; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-A { background: #e74c3c; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-B { background: #f39c12; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+.telegram-table .lv-C { background: #bbb; color: #fff; padding: 1px 5px; border-radius: 2px; font-size: 10px; }
+
+.footer {
+    text-align: center; margin-top: 40px; padding: 20px;
+    color: #999; font-size: 12px; border-top: 1px solid #eee;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header"><h1>每日早报深度分析：2026年10月05日（周一）非交易日(供下一交易日参考) ｜ 覆盖区间 2026-10-04 21:00 → 2026-10-05 08:45</h1></div>
+
+<div class="verdict-section">
+<h2 class="section-title" style="margin-top:0">核心判断</h2>
+<div class="verdict-content">
+<p><strong>一句话定调</strong>：中东地缘冲突骤然升级（胡塞袭击沙特阿美+霍尔木兹海峡连续遇袭）叠加美联储加息预期升温至22%，全球风险资产面临"油价冲击+流动性收紧"双重压制，但日经暴涨2%显示亚太资金仍在积极做多非中国资产，A股今日核心矛盾在于<strong>能否在地缘风险溢价上升中守住独立性</strong>。</p>
+<p><strong>3个关键信号</strong>：</p>
+<p>1. <strong>中东冲突质变</strong>：胡塞武装直接打击沙特阿美设施+霍尔木兹海峡4起袭击+油轮爆炸，布伦特原油突破103美元，全球能源供应链风险溢价急剧上升；</p>
+<p>2. <strong>美联储加息预期跳升</strong>：10月加息概率升至22.1%，12月累计加息概率达68.7%，哈塞特公开呼吁鲍威尔离开，美联储独立性受政治侵蚀；</p>
+<p>3. <strong>日经暴涨2%</strong>：日本临时国会召开+高市早苗施政演说+AI议题升温，亚太资金加速流向日本，对A股形成资金分流压力。</p>
+<p><strong>策略一句话</strong>：今日以防御为主，重点关注油气/军工/航运的脉冲机会，回避高估值成长股，等待地缘风险释放后的错杀机会。</p>
+</div></div>
+<h2 class="section-title">一、重要性排序总览</h2>
+
+<table class="rank-table">
+<thead><tr>
+<th class="">排名</th>
+<th class="">时间</th>
+<th class="">等级</th>
+<th class="">标题概述</th>
+<th class="">重要度</th>
+<th class="th-important">核心影响</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class=""><span class="rank-num">1</span></td>
+<td class="">06:02</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">布伦特原油涨破103美元/桶</td>
+<td class=""><span class="stars">★★★★★</span></td>
+<td class="impact-col">全球通胀预期重新抬头，压制风险资产估值</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">2</span></td>
+<td class="">00:14</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">胡塞武装袭击沙特阿美石油设施</td>
+<td class=""><span class="stars">★★★★★</span></td>
+<td class="impact-col">中东冲突直接打击能源供给端，油价地缘溢价飙升</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">3</span></td>
+<td class="">06:01</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">美联储10月维持利率不变概率77.9%，加息概率22.1%</td>
+<td class=""><span class="stars">★★★★★</span></td>
+<td class="impact-col">全球流动性拐点预期升温，压制新兴市场估值</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">4</span></td>
+<td class="">08:09</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">日经225指数涨幅扩大至2%</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">亚太资金加速流向日本，A股面临分流压力</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">5</span></td>
+<td class="">21:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">特朗普成立"超级智能特别工作组"</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">AI国家战略竞争升级，中美科技博弈新维度</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">6</span></td>
+<td class="">04:25</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">油轮在也门红海海域附近发生多次爆炸</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">航运保险成本飙升，全球供应链风险加剧</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">7</span></td>
+<td class="">21:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">哈塞特：抵押贷款利率必须降下来</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">白宫施压美联储，政治干预货币政策独立性</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">8</span></td>
+<td class="">05:32</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">沙特联军称将继续向也门政府提供支持</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">中东代理人战争升级，地缘风险长期化</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">9</span></td>
+<td class="">05:27</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">沙特阿美下调11月销往亚洲原油售价</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">沙特以价换量保份额，亚洲炼化利润有望改善</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">10</span></td>
+<td class="">05:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">高盛将智谱公司港股评级上调至买入</td>
+<td class=""><span class="stars">★★★★☆</span></td>
+<td class="impact-col">外资看多中国AI资产，目标价空间149%</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">11</span></td>
+<td class="">03:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">施耐德电气拟200亿美元收购PTC</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">工业软件并购潮，利好国内工业软件板块</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">12</span></td>
+<td class="">23:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">泽连斯基：乌德联合生产2000架无人机</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">俄乌冲突无人机军备竞赛升级</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">13</span></td>
+<td class="">08:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">日本央行副行长：AI给经济和物价带来上行压力</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">全球央行关注AI通胀效应，货币政策新变量</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">14</span></td>
+<td class="">21:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">乌克兰与德国讨论LNG供应</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">欧洲能源脱俄加速，全球LNG贸易格局重塑</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">15</span></td>
+<td class="">08:01</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">日经225开盘涨超1%，韩国股市休市</td>
+<td class=""><span class="stars">★★★☆☆</span></td>
+<td class="impact-col">亚太市场分化，资金集中流向日本</td>
+</tr>
+</tbody></table>
+
+
+<h2 class="section-title">二、TOP 15 重要新闻深度分析</h2>
+
+<div class="analysis-card">
+<div class="card-title">1. <span class="card-level">B级</span> 布伦特原油涨破103美元/桶</div>
+<div class="card-meta"><span class="stars">★★★★★</span> <span>⏰ 2026年10月05日 2026年10月5日 06:02</span></div>
+<div class="logic">布伦特原油突破103美元是中东地缘冲突升级的直接定价结果。胡塞武装袭击沙特阿美设施+霍尔木兹海峡连续4起袭击+油轮爆炸，三重供给端冲击叠加，市场开始定价"霍尔木兹海峡封锁"的尾部风险。油价每上涨10美元，全球通胀预期上升约0.3-0.5个百分点，直接压制央行降息空间。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 直接利好油气开采板块（中国石油、中国海油、中海油服），利空航空（中国国航、南方航空）、化工中下游（恒力石化、荣盛石化）等用油企业</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 输入性通胀压力上升，制约国内货币政策宽松空间，对债市偏空</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 战略石油储备概念（海越能源、泰山石油）可能获得主题炒作</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 新能源替代逻辑强化，光伏/风电/新能源车板块可能获得资金关注</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 油价飙升直接推升美国CPI预期，与美联储加息预期形成正反馈，美元指数走强</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 欧洲能源安全焦虑加剧，加速LNG进口多元化，利好美国LNG出口商</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 沙特阿美下调亚洲售价但上调美国售价，显示沙特在"保份额"与"挺价格"之间权衡</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 新兴市场输入性通胀压力加大，印度、土耳其等石油进口国汇率承压</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>油气开采</strong>: 油价直接弹性最大 → 中国海油(600938), 中国石油(601857), 中海油服(601808)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>油服设备</strong>: 资本开支预期上升 → 杰瑞股份(002353), 石化机械(000852)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>战略储备/替代能源</strong>: 能源安全主题 → 海越能源(600387), 隆基绿能(601012)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区关注油价能否持续突破110美元，分歧在于"地缘脉冲"vs"供需基本面拐点"。多数认为短期脉冲确定，但中期取决于OPEC+增产节奏。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中信证券认为油价短期看110-120美元，但需警惕需求破坏；中金公司提示关注炼化利润压缩风险。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动（地缘溢价），若霍尔木兹海峡实质封锁则升级为中期主线</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">2. <span class="card-level">B级</span> 胡塞武装袭击沙特阿美石油设施</div>
+<div class="card-meta"><span class="stars">★★★★★</span> <span>⏰ 2026年10月05日 2026年10月5日 00:14</span></div>
+<div class="logic">胡塞武装直接打击沙特阿美核心设施，这是继2019年Abqaiq袭击以来最严重的能源基础设施攻击。与以往不同，此次袭击发生在沙特对也门发动1460次空袭的背景下，意味着冲突已从"代理人战争"升级为"直接对抗"。沙特阿美设施遇袭直接影响全球5%以上的原油供给能力。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 油气板块直接受益，中国石油、中国海油等央企油价弹性凸显</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 军工板块（无人机、导弹防御）获得事件催化，航天彩虹、中无人机等关注度提升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 航运保险成本上升，中远海能、招商轮船等油运公司运价有望跳涨</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 化工板块分化：煤化工（华鲁恒升）相对受益于油价上涨，油头化工承压</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 美国可能被迫增加中东军事部署，B-1轰炸机撤回本土后又可能重新部署</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 沙特与伊朗关系正常化进程受阻，地区和解前景黯淡</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球能源供应链"去风险化"加速，各国战略储备补库需求上升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 俄罗斯作为能源出口国间接受益，乌克兰局势可能被边缘化</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>油气开采</strong>: 供给冲击直接受益 → 中国海油(600938), 中国石油(601857), 新奥股份(600803)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>军工无人机</strong>: 防御需求升级 → 航天彩虹(002389), 中无人机(688297)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>油运</strong>: 运价+保险双升 → 中远海能(600026), 招商轮船(601872)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区讨论焦点在于"沙特是否会大规模报复"以及"伊朗是否直接介入"。分歧点在于冲突是"有限升级"还是"全面战争"。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">国泰君安认为地缘风险溢价将持续2-4周；华泰证券提示关注军工板块的事件驱动机会。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线（中东冲突长期化趋势明确）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">3. <span class="card-level">B级</span> 美联储10月维持利率不变概率77.9%，加息概率22.1%</div>
+<div class="card-meta"><span class="stars">★★★★★</span> <span>⏰ 2026年10月05日 2026年10月5日 06:01</span></div>
+<div class="logic">美联储加息预期从接近0%跳升至22.1%，这是全球流动性环境的重大拐点信号。12月累计加息概率高达68.7%，意味着市场已开始定价"美联储重启加息周期"。背后逻辑是油价飙升推升通胀预期+美国经济数据强劲+AI投资拉动生产率，三重因素共同推动。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 中美利差倒挂加深，人民币汇率承压，北向资金可能加速流出</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 国内货币政策宽松空间受限，降准降息预期推迟</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 高估值成长股（创业板、科创板）估值承压，价值风格可能占优</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 银行板块受益于息差预期改善，保险板块受益于利率上行</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 美元指数走强，全球资金回流美国，新兴市场面临资本外流压力</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 美债收益率上行，全球债券市场调整，风险资产估值中枢下移</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 黄金短期承压但中长期受益于"滞胀"逻辑，现货黄金触及4150美元</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 日本央行可能被迫跟进收紧，日元套利交易面临逆转风险</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>银行/保险</strong>: 利率上行受益 → 招商银行(600036), 中国平安(601318)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>黄金</strong>: 滞胀对冲 → 山东黄金(600547), 紫金矿业(601899)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>出口链</strong>: 美元走强利好出口 → 海尔智家(600690), 美的集团(000333)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区对"美联储是否真的会加息"存在巨大分歧。多数认为22%概率偏低，但方向性变化值得警惕。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中金公司认为美联储加息门槛较高，但预期管理已足够影响市场；中信建投提示关注汇率压力对A股的传导。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线（全球流动性拐点）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">4. <span class="card-level">B级</span> 日经225指数涨幅扩大至2%</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年10月05日 2026年10月5日 08:09</span></div>
+<div class="logic">日经暴涨2%与A股节前缩量震荡形成鲜明对比。驱动因素包括：日本临时国会召开+高市早苗施政演说+AI议题升温+日元贬值预期。全球资金在"中东风险+美联储加息"背景下，选择日本作为亚太避风港，对A股形成资金分流压力。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 北向资金可能加速流出A股转向日本，压制A股风险偏好</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 中日制造业竞争加剧，半导体设备、精密制造等领域关注度提升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 日本AI战略推进，国内AI板块可能获得映射效应</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 关注中日韩自贸区概念、RCEP受益标的</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 日本央行副行长提及AI对物价上行压力，暗示货币政策可能调整</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 高市早苗施政演说可能涉及防卫预算增加，军工板块联动</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 日元套利交易活跃，全球风险偏好分化</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 亚太市场"日本独强"格局强化，资金集中效应明显</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>AI算力</strong>: 日本AI战略映射 → 中际旭创(300308), 新易盛(300502)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>半导体设备</strong>: 中日竞争+国产替代 → 北方华创(002371), 中微公司(688012)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>中日贸易</strong>: RCEP受益 → 连云港(601008), 青岛港(601298)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区关注"日经暴涨是否意味着外资撤离A股"，分歧在于"短期分流"vs"长期配置再平衡"。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">野村东方国际认为日本股市上涨有基本面支撑；国内券商提示关注资金分流对A股的短期压力。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动（需观察日本政策落地）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">5. <span class="card-level">C级</span> 特朗普成立"超级智能特别工作组"</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年10月05日 2026年10月4日 21:10</span></div>
+<div class="logic">特朗普成立SIF工作组，将AI提升至"国家安全"级别，标志着中美AI竞争进入新阶段。工作组协调政府与超级智能企业、情报机构、关键基础设施提供商的合作，意味着AI军事化、情报化应用加速。这是继芯片出口管制后，美国在AI领域的又一重大战略布局。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 国产AI算力（华为昇腾链、寒武纪）获得政策催化</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- AI安全/监管概念（美亚柏科、安恒信息）关注度提升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 大模型自主可控（科大讯飞、三六零）受益于国产替代逻辑</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 中美AI脱钩加速，国内AI应用企业可能面临技术封锁</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球AI军备竞赛升级，欧洲、日本可能跟进类似政策</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 英伟达、OpenAI等美国AI企业获得政府订单预期</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- AI治理分歧加大，阿尔特曼与Anthropic在风险问题上分歧公开化</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球AI供应链"阵营化"加速，技术标准分裂</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>国产算力</strong>: 自主可控加速 → 寒武纪(688256), 海光信息(688041)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>AI安全</strong>: 监管需求提升 → 美亚柏科(300188), 安恒信息(688023)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>大模型</strong>: 国产替代 → 科大讯飞(002230), 三六零(601360)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区讨论"美国AI国家战略对中国的压力"，分歧在于"利空（技术封锁）"vs"利好（国产替代加速）"。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">国盛证券认为AI国家战略竞争利好国产算力链；中信证券提示关注AI安全监管主题。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">长期赛道（AI竞争是未来5-10年主线）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">6. <span class="card-level">B级</span> 油轮在也门红海海域附近发生多次爆炸</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年10月05日 2026年10月5日 04:25</span></div>
+<div class="logic">油轮在红海遇袭+霍尔木兹海峡4起袭击，意味着中东冲突已从"陆上对抗"扩展至"海上封锁"。全球约30%的海运石油经过霍尔木兹海峡，约12%经过红海-苏伊士运河。航运保险成本飙升将直接推高全球能源运输成本，形成"油价+运价"双涨格局。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 油运板块直接受益，中远海能、招商轮船运价弹性大</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 航运保险概念（中国平安、中国人保）关注度提升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 替代路线（中欧班列、北极航线）概念获得催化</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 能源安全主题强化，战略储备补库需求上升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球供应链风险溢价上升，集装箱运价可能跟涨</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 美国第五舰队可能加强护航，军事存在升级</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 欧洲能源进口成本上升，通胀压力加大</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球航运格局重塑，绕行好望角成为常态</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>油运</strong>: 运价+保险双升 → 中远海能(600026), 招商轮船(601872)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>航运保险</strong>: 保费上涨 → 中国平安(601318), 中国人保(601319)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>替代路线</strong>: 中欧班列 → 铁龙物流(600125), 大秦铁路(601006)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区关注"红海危机是否会导致全球供应链断裂"，分歧在于"短期扰动"vs"长期重构"。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">申万宏源认为油运板块迎来"戴维斯双击"；中金公司提示关注航运保险成本上升。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线（红海危机长期化）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">7. <span class="card-level">C级</span> 哈塞特：抵押贷款利率必须降下来</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年10月05日 2026年10月4日 21:16</span></div>
+<div class="logic">白宫国家经济委员会主任公开施压美联储降息，同时呼吁鲍威尔离开美联储理事会，这是对美联储独立性的严重侵蚀。哈塞特表示"不同意加息但尊重沃什"，显示白宫与美联储在货币政策方向上的分歧公开化。政治干预货币政策将削弱美元信用，中长期利好黄金。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 美联储独立性受损，美元信用下降，人民币国际化逻辑强化</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 黄金板块受益于"去美元化"逻辑，山东黄金、紫金矿业关注</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 中美博弈加剧，自主可控主题强化</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 国内货币政策可能获得更大自主空间</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 美元指数短期承压，但加息预期仍支撑美元</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球央行加速"去美元化"，黄金储备需求上升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 美国政治极化加剧，政策不确定性上升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 新兴市场央行可能加速多元化配置</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>黄金</strong>: 去美元化+滞胀 → 山东黄金(600547), 中金黄金(600489)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>人民币国际化</strong>: 跨境支付 → 跨境通(002640), 四方精创(300468)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>自主可控</strong>: 中美博弈 → 中国软件(600536), 中国长城(000066)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区讨论"美联储独立性受损对全球货币体系的影响"，多数认为中长期利好黄金和人民币资产。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">东吴证券认为黄金迎来"货币属性重估"；中信证券提示关注美元信用下降的长期影响。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">长期赛道（美元信用体系重构）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">8. <span class="card-level">B级</span> 沙特联军称将继续向也门政府提供支持</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年10月05日 2026年10月5日 05:32</span></div>
+<div class="logic">沙特主导联军明确表态继续支持也门政府，意味着中东代理人战争将进一步升级。胡塞武装袭击沙特阿美设施后，沙特必然报复，冲突螺旋升级风险加大。伊朗表态"愿推动对话"但实际支持胡塞，美伊博弈加剧。中东局势从"缓和"转向"对抗"的拐点已现。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 军工板块获得持续事件催化，无人机、导弹产业链受益</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 油气板块地缘溢价持续，中国海油、中国石油弹性大</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 一带一路在中东的项目可能受影响，关注风险敞口</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 新能源替代逻辑强化，光伏、风电关注度提升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 美国可能被迫重新介入中东，战略重心从印太分散</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 俄罗斯作为中东博弈的"受益者"，乌克兰局势可能被边缘化</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 欧洲能源安全焦虑加剧，LNG进口多元化加速</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球地缘格局"多极化"加速，联合国机制弱化</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>军工</strong>: 地缘冲突升级 → 航天彩虹(002389), 中兵红箭(000519)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>油气</strong>: 供给风险溢价 → 中国海油(600938), 新潮能源(600777)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>新能源</strong>: 替代逻辑 → 隆基绿能(601012), 通威股份(600438)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区关注"中东是否爆发全面战争"，分歧在于"有限冲突"vs"螺旋升级"。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">国泰君安认为地缘风险将持续发酵；华泰证券提示关注军工板块的事件驱动。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线（中东冲突长期化）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">9. <span class="card-level">B级</span> 沙特阿美下调11月销往亚洲原油售价</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年10月05日 2026年10月5日 05:27</span></div>
+<div class="logic">沙特阿美将11月销往亚洲的阿拉伯轻质原油售价定为较阿曼/迪拜均价贴水5美元/桶，同时上调销往美国售价。这一"东降西升"的定价策略显示：沙特在亚洲面临俄罗斯、伊朗原油竞争，被迫以价换量保份额；同时通过挺价美国市场维护与美国的战略关系。对亚洲炼化企业是成本端利好。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 炼化板块成本端改善，恒力石化、荣盛石化利润有望修复</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 中国作为亚洲最大原油进口国，受益于沙特"以价换量"</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 关注中石化、中石油炼化板块的盈利弹性</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 化工品价格可能跟随油价上涨，但成本压力小于预期</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 沙特与俄罗斯在亚洲市场的份额争夺加剧</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 美国页岩油出口竞争力下降（沙特挺价美国市场）</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 亚洲炼化利润有望改善，日韩炼化企业受益</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球原油贸易格局"东移"加速</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>炼化</strong>: 成本改善 → 恒力石化(600346), 荣盛石化(002493)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>化工</strong>: 价差扩大 → 万华化学(600309), 华鲁恒升(600426)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>原油进口</strong>: 采购成本下降 → 中石化(600028), 中石油(601857)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区讨论"沙特降价是否意味着原油供给过剩"，分歧在于"份额战"vs"需求疲软"。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中金公司认为炼化板块迎来配置窗口；中信建投提示关注化工品价格传导。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动（需观察实际到岸成本）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">10. <span class="card-level">C级</span> 高盛将智谱公司港股评级上调至买入</div>
+<div class="card-meta"><span class="stars">★★★★☆</span> <span>⏰ 2026年10月05日 2026年10月5日 05:41</span></div>
+<div class="logic">高盛将智谱港股评级从中性上调至买入，目标价1560港元，较最新收盘价有149%上涨空间。这是外资投行对中国AI资产的重估信号，尤其是在特朗普成立AI特别工作组的背景下，中国AI资产的"稀缺性"和"自主可控"价值凸显。智谱作为国产大模型龙头，获得外资背书意义重大。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- AI大模型板块获得外资背书，科大讯飞、三六零等关注度提升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 港股AI板块可能获得资金流入，关注商汤、百度等</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 国产算力链（寒武纪、海光信息）受益于AI投资加速</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- AI应用（办公、教育、医疗）商业化预期升温</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 外资对中国AI资产的态度从"谨慎"转向"积极"</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 中美AI竞争加剧背景下，中国AI资产"独立性"价值凸显</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球AI投资热潮持续，资金寻找"非美"AI标的</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 港股作为中国AI资产"桥头堡"，可能获得外资增配</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>AI大模型</strong>: 外资背书 → 科大讯飞(002230), 三六零(601360)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>国产算力</strong>: AI投资加速 → 寒武纪(688256), 海光信息(688041)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>港股AI</strong>: 资金流入 → 商汤-W(00020), 百度集团-SW(09888)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区讨论"高盛上调智谱评级是否意味着外资重新看多中国AI"，多数认为信号意义大于实质。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">高盛认为中国AI资产被低估；国内券商提示关注AI板块的估值修复机会。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线（AI投资周期）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">11. <span class="card-level">C级</span> 施耐德电气拟200亿美元收购PTC</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年10月05日 2026年10月5日 03:36</span></div>
+<div class="logic">施耐德电气拟以200亿美元收购工业软件企业PTC，这是全球工业软件领域最大并购之一。反映两大趋势：一是工业自动化与数字化的深度融合；二是全球工业软件竞争加剧，巨头通过并购补齐能力短板。对国内工业软件板块形成映射效应，国产替代逻辑强化。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 工业软件板块获得映射催化，中控技术、宝信软件关注度提升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 国产替代逻辑强化，政策支持力度可能加大</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 智能制造主题升温，关注工业互联网标的</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 并购重组概念可能活跃，关注有整合预期的公司</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球工业软件格局重塑，西门子、施耐德、罗克韦尔三足鼎立</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 工业软件"军备竞赛"升级，中国国产软件面临更大竞争压力</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 数字化转型加速，工业软件需求持续增长</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 中美科技脱钩背景下，工业软件自主可控紧迫性上升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>工业软件</strong>: 国产替代 → 中控技术(688777), 宝信软件(600845)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>智能制造</strong>: 数字化转型 → 汇川技术(300124), 埃斯顿(002747)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>工业互联网</strong>: 主题催化 → 用友网络(600588), 东方国信(300166)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区讨论"施耐德收购PTC对国内工业软件的影响"，分歧在于"竞争加剧"vs"国产替代加速"。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">国信证券认为工业软件国产替代空间巨大；中信证券提示关注并购重组主题。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动（映射效应）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">12. <span class="card-level">C级</span> 泽连斯基：乌德联合生产2000架无人机</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年10月05日 2026年10月4日 23:29</span></div>
+<div class="logic">乌克兰与德国联合生产2000架"巴尔斯"远程拦截无人机，标志着俄乌冲突进入"无人机军备竞赛"新阶段。无人机已成为现代战争的核心装备，全球军工产业向"无人化、智能化"转型加速。对国内无人机产业链形成映射效应，军工无人机板块获得催化。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 军工无人机板块获得事件催化，航天彩虹、中无人机关注</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 无人机产业链（发动机、飞控、复合材料）受益</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 低空经济概念可能联动，关注相关政策进展</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 军工板块整体风险偏好提升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球无人机军备竞赛升级，中东、俄乌冲突加速需求</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 中国无人机出口可能受益于全球需求增长</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 无人机技术扩散加剧，非国家行为体威胁上升</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 军工产业"无人化"转型加速</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>军工无人机</strong>: 军备竞赛 → 航天彩虹(002389), 中无人机(688297)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>无人机产业链</strong>: 核心零部件 → 航发动力(600893), 中航高科(600862)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>低空经济</strong>: 政策催化 → 中信海直(000099), 万丰奥威(002085)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区关注"无人机军备竞赛对军工板块的持续催化"，多数认为军工板块迎来配置窗口。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">国泰君安认为军工板块估值处于低位；华泰证券提示关注无人机产业链。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中期主线（军工无人化趋势）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">13. <span class="card-level">C级</span> 日本央行副行长：AI给经济和物价带来上行压力</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年10月05日 2026年10月5日 08:32</span></div>
+<div class="logic">日本央行副行长内田真一表示AI已成为央行讨论的关键议题，给经济和物价带来上行压力。这是全球央行首次公开将AI纳入货币政策框架，意味着AI对通胀的影响从"学术讨论"进入"政策实践"。AI投资拉动需求+生产率提升+劳动力替代，三重效应叠加，可能改变全球通胀中枢。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- AI通胀效应可能制约全球央行宽松空间，间接影响国内货币政策</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- AI算力板块获得政策关注，国产算力链受益</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 通胀预期升温，消费板块可能受益于提价预期</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 关注AI对就业结构的冲击，政策可能加大职业培训投入</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球央行关注AI通胀效应，货币政策框架可能调整</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- AI投资热潮持续，算力需求爆发式增长</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 日本央行可能加速货币政策正常化，日元套利交易面临逆转</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球通胀中枢可能上移，债券市场面临调整压力</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>AI算力</strong>: 政策关注+需求爆发 → 中际旭创(300308), 新易盛(300502)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>消费</strong>: 通胀预期 → 贵州茅台(600519), 海天味业(603288)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>职业培训</strong>: AI就业冲击 → 中公教育(002607), 行动教育(605098)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区讨论"AI是否会导致长期通胀"，分歧在于"生产率提升通缩"vs"需求拉动通胀"。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">中金公司认为AI对通胀影响复杂；中信证券提示关注AI算力板块的长期机会。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">长期赛道（AI改变通胀中枢）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">14. <span class="card-level">C级</span> 乌克兰与德国讨论LNG供应</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年10月05日 2026年10月4日 21:49</span></div>
+<div class="logic">乌克兰与德国讨论通过德国基础设施向乌克兰供应LNG，涉及欧盟公司参与乌克兰天然气储存设施运营。这是欧洲能源"去俄罗斯化"的又一举措，同时将乌克兰纳入欧洲能源安全体系。全球LNG贸易格局加速重塑，美国LNG出口商受益，俄罗斯能源影响力下降。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- LNG接收站、储气设施建设加速，关注相关标的</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 天然气板块获得主题催化，新奥股份、广汇能源关注</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 中俄能源合作可能受影响，关注相关风险</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球LNG贸易活跃，中国LNG进口多元化受益</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 欧洲能源"去俄罗斯化"加速，美国LNG出口受益</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球LNG贸易格局重塑，卡塔尔、美国、澳大利亚竞争加剧</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 乌克兰成为欧洲能源安全"前沿阵地"</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 俄罗斯能源影响力下降，地缘格局重塑</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>LNG接收站</strong>: 建设加速 → 新奥股份(600803), 广汇能源(600256)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>天然气</strong>: 主题催化 → 深圳燃气(601139), 蓝天燃气(605368)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>LNG船</strong>: 需求增长 → 中国船舶(600150), 中船防务(600685)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区关注"欧洲能源脱俄对全球LNG市场的影响"，多数认为LNG船和接收站受益。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">申万宏源认为LNG产业链迎来长期机会；中信建投提示关注天然气板块。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">长期赛道（欧洲能源脱俄）</p>
+</div>
+<div class="analysis-card">
+<div class="card-title">15. <span class="card-level">B级</span> 日经225开盘涨超1%，韩国股市休市</div>
+<div class="card-meta"><span class="stars">★★★☆☆</span> <span>⏰ 2026年10月05日 2026年10月5日 08:01</span></div>
+<div class="logic">日经225开盘涨超1%，韩国股市休市，亚太市场分化明显。日本临时国会召开+高市早苗施政演说+AI议题升温，日本市场获得资金集中流入。韩国休市导致资金进一步向日本集中，形成"日本独强"格局。对A股形成资金分流压力，但同时也提供映射机会。</div>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国内视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 北向资金可能加速流出A股转向日本，压制风险偏好</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 日本AI战略映射，国内AI板块可能获得联动</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 中日制造业竞争加剧，半导体设备、精密制造关注</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 关注中日韩自贸区概念、RCEP受益标的</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>国际视角</strong>：</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 亚太市场"日本独强"格局强化，资金集中效应明显</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 日本央行政策正常化预期升温，日元套利交易活跃</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 全球资金在"中东风险+美联储加息"背景下寻找避风港</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- 日本股市估值修复+AI主题+政策催化，三重驱动</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">- <strong>受益方向及个股</strong>:</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">1. <strong>AI算力</strong>: 日本AI战略映射 → 中际旭创(300308), 新易盛(300502)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">2. <strong>半导体设备</strong>: 中日竞争+国产替代 → 北方华创(002371), 中微公司(688012)</p>
+<p style="font-size:14px;margin:2px 0;line-height:1.5">3. <strong>中日贸易</strong>: RCEP受益 → 连云港(601008), 青岛港(601298)</p>
+<h4>韭研公社热议</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">社区关注"日经暴涨是否意味着外资撤离A股"，分歧在于"短期分流"vs"长期配置再平衡"。</p>
+<h4>券商研报视角</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">野村东方国际认为日本股市上涨有基本面支撑；国内券商提示关注资金分流对A股的短期压力。</p>
+<h4>持续性判断</h4><p style="font-size:14px;margin:2px 0 6px 16px;line-height:1.5">3-5天事件驱动（需观察日本政策落地）</p>
+</div>
+<h2 class="section-title">三、全量电报排序（51条）</h2>
+
+<table class="rank-table">
+<thead><tr>
+<th class="">排名</th>
+<th class="">时间</th>
+<th class="">等级</th>
+<th class="">标题概述</th>
+<th class="">综合热度</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class=""><span class="rank-num">1</span></td>
+<td class="">08:09</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">日经225指数涨幅扩大至2%</td>
+<td class="">165分享/16评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">2</span></td>
+<td class="">22:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">哈塞特：不同意加息但尊重沃什</td>
+<td class="">216分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">3</span></td>
+<td class="">21:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">特朗普成立"超级智能特别工作组"</td>
+<td class="">161分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">4</span></td>
+<td class="">01:07</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">伊朗石油部长辞职</td>
+<td class="">139分享/2评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">5</span></td>
+<td class="">00:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">胡塞武装袭击沙特阿美设施</td>
+<td class="">101分享/1评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">6</span></td>
+<td class="">04:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">迪拜航空副驾驶原计划撞以色列机场</td>
+<td class="">102分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">7</span></td>
+<td class="">06:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">美联储10月维持利率不变概率77.9%</td>
+<td class="">88分享/1评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">8</span></td>
+<td class="">21:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">伊朗表示愿推动胡塞与沙特对话</td>
+<td class="">86分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">9</span></td>
+<td class="">23:18</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">也门总统领导委员会称反攻胡塞</td>
+<td class="">83分享/1评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">10</span></td>
+<td class="">23:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">泽连斯基：乌德强化防务合作</td>
+<td class="">83分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">11</span></td>
+<td class="">05:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">沙特联军称将继续支持也门政府</td>
+<td class="">77分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">12</span></td>
+<td class="">07:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">美将部署英国B1轰炸机撤回本土</td>
+<td class="">76分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">13</span></td>
+<td class="">00:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">以军称将扩编以应对多线威胁</td>
+<td class="">75分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">14</span></td>
+<td class="">04:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">油轮在也门红海海域发生爆炸</td>
+<td class="">73分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">15</span></td>
+<td class="">05:27</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">沙特阿美下调11月销往亚洲原油售价</td>
+<td class="">68分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">16</span></td>
+<td class="">21:03</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">胡塞武装称袭击沙特阿美设施</td>
+<td class="">68分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">17</span></td>
+<td class="">22:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">美国能源部长：柴油价格将跌</td>
+<td class="">66分享/1评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">18</span></td>
+<td class="">23:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">霍尔木兹海峡4起袭击事件</td>
+<td class="">65分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">19</span></td>
+<td class="">05:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">高盛上调智谱港股评级至买入</td>
+<td class="">60分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">20</span></td>
+<td class="">05:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">高盛将智谱公司港股评级上调至买入</td>
+<td class="">60分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">21</span></td>
+<td class="">22:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">美国能源部长：霍尔木兹海峡能源供应增加</td>
+<td class="">59分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">22</span></td>
+<td class="">21:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">哈塞特：抵押贷款利率必须降下来</td>
+<td class="">59分享/1评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">23</span></td>
+<td class="">22:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">伊拉克"伊斯兰国"遗留炸弹爆炸</td>
+<td class="">58分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">24</span></td>
+<td class="">08:01</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="title-col">日经225开盘涨超1%，韩国休市</td>
+<td class="">58分享/1评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">25</span></td>
+<td class="">06:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">胡塞武装称沙特24小时内发动百次空袭</td>
+<td class="">54分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">26</span></td>
+<td class="">03:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">日本Rapidus将协助17家企业芯片设计</td>
+<td class="">52分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">27</span></td>
+<td class="">23:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">以媒称迪拜航空袭击者系单独作案</td>
+<td class="">52分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">28</span></td>
+<td class="">03:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">施耐德电气拟200亿美元收购PTC</td>
+<td class="">52分享/1评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">29</span></td>
+<td class="">22:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">湖北A级景区接待游客1117万人次</td>
+<td class="">50分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">30</span></td>
+<td class="">02:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">特朗普首席经济顾问呼吁鲍威尔离开</td>
+<td class="">50分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">31</span></td>
+<td class="">04:23</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">以色列收紧对赴以航班机组人员限制</td>
+<td class="">50分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">32</span></td>
+<td class="">21:24</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">深圳解除所有雷雨大风和暴雨预警</td>
+<td class="">47分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">33</span></td>
+<td class="">21:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">乌克兰与德国讨论LNG供应</td>
+<td class="">46分享/1评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">34</span></td>
+<td class="">01:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">四川宜宾市高县发生3.8级地震</td>
+<td class="">46分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">35</span></td>
+<td class="">23:59</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">日本将召集第222届临时国会</td>
+<td class="">45分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">36</span></td>
+<td class="">06:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">雅居乐集团接近敲定重组支持协议</td>
+<td class="">43分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">37</span></td>
+<td class="">01:35</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">以总理下令审查外国民航赴以安保</td>
+<td class="">42分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">38</span></td>
+<td class="">01:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">尼加拉瓜宣布退出中美洲议会</td>
+<td class="">42分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">39</span></td>
+<td class="">03:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">UKMTO称收到也门穆哈以南事件报告</td>
+<td class="">41分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">40</span></td>
+<td class="">08:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">巴西总统选举首轮投票无人胜出</td>
+<td class="">41分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">41</span></td>
+<td class="">21:31</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">沙特资本市场管理局研究修改外资持股限制</td>
+<td class="">38分享/1评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">42</span></td>
+<td class="">08:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">日本央行副行长：AI给物价带来上行压力</td>
+<td class="">37分享/1评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">43</span></td>
+<td class="">21:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">伊拉克纳杰夫机场恢复与伊朗航班</td>
+<td class="">36分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">44</span></td>
+<td class="">08:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">日本9月服务业PMI终值51.3</td>
+<td class="">35分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">45</span></td>
+<td class="">06:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">布伦特原油期货涨幅扩大至1%</td>
+<td class="">33分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">46</span></td>
+<td class="">05:48</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">波黑大选初步结果公布</td>
+<td class="">30分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">47</span></td>
+<td class="">06:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">纽约期银日内涨超1%</td>
+<td class="">26分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">48</span></td>
+<td class="">06:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">WTI原油期货开盘涨0.6%</td>
+<td class="">24分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">49</span></td>
+<td class="">08:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">现货黄金向上触及4150美元</td>
+<td class="">20分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">50</span></td>
+<td class="">07:46</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">日经225指数期货早盘上涨1.86%</td>
+<td class="">17分享/0评论</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">51</span></td>
+<td class="">08:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="title-col">日本东证指数涨幅扩大至1%</td>
+<td class="">16分享/0评论</td>
+</tr>
+</tbody></table>
+
+
+<p style="margin:4px 0;font-size:13px"><strong>免责声明</strong>：本分析基于公开信息整理，不构成投资建议。市场有风险，投资需谨慎。</p>
+
+<h2 class="section-title">三、全量电报列表（精简）</h2>
+<table class="telegram-table">
+<thead><tr>
+<th class="">序号</th>
+<th class="">时间</th>
+<th class="">Lv</th>
+<th class="">分享</th>
+<th class="">评论</th>
+<th class="">内容摘要40字</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class=""><span class="rank-num">1</span></td>
+<td class="">08:09</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">165</td>
+<td class="">16</td>
+<td class="content-col">财联社10月5日电，日经225指数涨幅扩大至2%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">2</span></td>
+<td class="">01:07</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">139</td>
+<td class="">2</td>
+<td class="content-col">【伊朗石油部长辞职 伊朗国家石油公司CEO任代理部长】财联社10月5日电，伊朗总</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">3</span></td>
+<td class="">08:01</td>
+<td class=""><span class="tag tag-b">B</span></td>
+<td class="">58</td>
+<td class="">1</td>
+<td class="content-col">财联社10月5日电，日经225指数开盘涨超1%。韩国股市今日休市一日。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">4</span></td>
+<td class="">22:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">216</td>
+<td class="">0</td>
+<td class="content-col">【哈塞特：不同意加息 但尊重沃什出于正确理由行事】财联社10月4日电，白宫国家经</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">5</span></td>
+<td class="">21:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">161</td>
+<td class="">0</td>
+<td class="content-col">【特朗普宣布成立“超级智能特别工作组”】财联社10月4日电，美国总统特朗普宣布成</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">6</span></td>
+<td class="">00:14</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">101</td>
+<td class="">1</td>
+<td class="content-col">【胡塞武装袭击沙特两处石油设施】财联社10月5日电，也门胡塞武装发言人叶海亚·萨</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">7</span></td>
+<td class="">04:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">102</td>
+<td class="">0</td>
+<td class="content-col">【消息人士称迪拜航空副驾驶原计划驾机撞向以机场航站楼】财联社10月5日电，据以色</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">8</span></td>
+<td class="">06:01</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">88</td>
+<td class="">1</td>
+<td class="content-col">【美联储10月维持利率不变的概率升至77.9%】财联社10月5日电，据CME“美</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">9</span></td>
+<td class="">21:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">86</td>
+<td class="">0</td>
+<td class="content-col">【伊朗表示愿推动也门胡塞武装与沙特对话】财联社10月4日电，伊朗外交部发言人巴加</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">10</span></td>
+<td class="">23:18</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">83</td>
+<td class="">1</td>
+<td class="content-col">【也门总统领导委员会称反攻胡塞武装】财联社10月4日电，也门行使总统职权的总统领</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">11</span></td>
+<td class="">23:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">83</td>
+<td class="">0</td>
+<td class="content-col">【泽连斯基：乌德强化防务合作 对乌美俄三方会谈持积极态度】财联社10月4日电，乌</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">12</span></td>
+<td class="">05:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">77</td>
+<td class="">0</td>
+<td class="content-col">【沙特主导联军称将继续向也门政府提供支持 应对胡塞武装袭击】财联社10月5日电，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">13</span></td>
+<td class="">07:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">76</td>
+<td class="">0</td>
+<td class="content-col">【美将部署英国B1轰炸机撤回本土】财联社10月5日电，据美国《华尔街日报》报道，</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">14</span></td>
+<td class="">00:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">75</td>
+<td class="">0</td>
+<td class="content-col">【以军称将扩编以应对多线威胁】财联社10月5日电，以色列军方10月4日发布通告称</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">15</span></td>
+<td class="">04:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">73</td>
+<td class="">0</td>
+<td class="content-col">【一油轮在也门西南部海域航行时附近发生多次爆炸】财联社10月5日电，英国海上贸易</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">16</span></td>
+<td class="">05:27</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">68</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，沙特阿美将11月销往亚洲的阿拉伯轻质原油官方售价定为较阿曼/</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">17</span></td>
+<td class="">21:03</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">68</td>
+<td class="">0</td>
+<td class="content-col">财联社10月4日电，也门胡塞武装称，他们用弹道导弹和无人机袭击了利雅得和库莱斯的</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">18</span></td>
+<td class="">22:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">66</td>
+<td class="">1</td>
+<td class="content-col">财联社10月4日电，美国能源部长赖特表示，柴油价格应该不久就会跌至每加仑6美元以</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">19</span></td>
+<td class="">23:19</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">65</td>
+<td class="">0</td>
+<td class="content-col">财联社10月4日电，英国海上贸易行动办公室周日称，10月1日至4日霍尔木兹海峡共</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">20</span></td>
+<td class="">05:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">62</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，OpenAI首席执行官山姆·阿尔特曼在人工智能风险问题上与A</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">21</span></td>
+<td class="">21:16</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">59</td>
+<td class="">1</td>
+<td class="content-col">财联社10月4日电，白宫国家经济委员会主任凯文·哈塞特表示，“确凿无疑”，抵押贷</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">22</span></td>
+<td class="">05:41</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">60</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，高盛将智谱公司港股评级从中性上调至买入，目标价为1560港元</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">23</span></td>
+<td class="">22:33</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">59</td>
+<td class="">0</td>
+<td class="content-col">财联社10月4日电，美国能源部长赖特表示，从霍尔木兹海峡运出的能源供应继续增加。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">24</span></td>
+<td class="">22:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">58</td>
+<td class="">0</td>
+<td class="content-col">【伊拉克西部“伊斯兰国”遗留炸弹爆炸致2人死亡】财联社10月4日电，伊拉克国防部</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">25</span></td>
+<td class="">06:56</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">54</td>
+<td class="">0</td>
+<td class="content-col">【胡塞武装称沙特24小时内发动百次空袭和导弹袭击】财联社10月5日电，也门胡塞武</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">26</span></td>
+<td class="">03:36</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">52</td>
+<td class="">1</td>
+<td class="content-col">财联社10月5日电，施耐德电气接近达成一项交易，拟以200亿美元收购工业软件企业</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">27</span></td>
+<td class="">03:53</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">52</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，日本Rapidus公司将协助17家企业为其客户开展芯片设计工</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">28</span></td>
+<td class="">23:10</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">52</td>
+<td class="">0</td>
+<td class="content-col">【以媒称初步调查显示迪拜航空袭击者系单独作案】财联社10月4日电，据以色列媒体4</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">29</span></td>
+<td class="">22:17</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">0</td>
+<td class="content-col">财联社10月4日电，湖北省A级旅游景区10月1日至4日累计接待游客1117.18</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">30</span></td>
+<td class="">02:29</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，美国总统特朗普的首席经济顾问呼吁前美联储主席鲍威尔离开美联储</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">31</span></td>
+<td class="">04:23</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">50</td>
+<td class="">0</td>
+<td class="content-col">【以色列交通部收紧对赴以航班外国机组人员限制】财联社10月5日电，以色列方面消息</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">32</span></td>
+<td class="">21:49</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">46</td>
+<td class="">1</td>
+<td class="content-col">财联社10月4日电，乌克兰方面表示，乌克兰与德国正在讨论通过德国基础设施向乌克兰</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">33</span></td>
+<td class="">21:24</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">47</td>
+<td class="">0</td>
+<td class="content-col">【深圳市解除所有雷雨大风和暴雨预警信号】财联社10月4日电，影响深圳市的雷雨云团</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">34</span></td>
+<td class="">01:21</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">46</td>
+<td class="">0</td>
+<td class="content-col">【四川宜宾市高县发生3.8级地震 震源深度5公里】财联社10月5日电，中国地震台</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">35</span></td>
+<td class="">23:59</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">45</td>
+<td class="">0</td>
+<td class="content-col">【日本将召集第222届临时国会】财联社10月4日电，日本定于当地时间10月5日召</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">36</span></td>
+<td class="">06:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">43</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，雅居乐集团港交所公告，公司与协调委员会接近敲定有关商业条款清</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">37</span></td>
+<td class="">01:35</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">42</td>
+<td class="">0</td>
+<td class="content-col">【以总理下令对外国民航客机赴以安保工作进行彻底审查】财联社10月5日电，以色列总</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">38</span></td>
+<td class="">01:25</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">42</td>
+<td class="">0</td>
+<td class="content-col">【尼加拉瓜宣布退出中美洲议会】财联社10月5日电，尼加拉瓜外交部3日签署公告，宣</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">39</span></td>
+<td class="">08:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">41</td>
+<td class="">0</td>
+<td class="content-col">【巴西总统选举首轮投票无人胜出 将进行第二轮角逐】财联社10月5日电，巴西高等选</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">40</span></td>
+<td class="">03:07</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">41</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，英国海上贸易行动办公室（UKMTO）称收到一则发生在也门穆哈</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">41</span></td>
+<td class="">21:31</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">38</td>
+<td class="">1</td>
+<td class="content-col">财联社10月4日电，沙特资本市场管理局（CMA）主席马赞·苏代里（Mazen A</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">42</span></td>
+<td class="">08:32</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">37</td>
+<td class="">1</td>
+<td class="content-col">财联社10月5日电，日本央行副行长内田真一称，人工智能已成为包括日本央行在内的中</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">43</span></td>
+<td class="">21:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">36</td>
+<td class="">0</td>
+<td class="content-col">财联社10月4日电，伊拉克纳杰夫国际机场3日宣布，4日起恢复与伊朗之间的航班往来</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">44</span></td>
+<td class="">08:30</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">35</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，日本9月服务业PMI终值 51.3，前值51.6。日本9月综</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">45</span></td>
+<td class="">06:02</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">33</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，布伦特原油期货涨幅扩大至1%，报103.3美元/桶。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">46</span></td>
+<td class="">05:48</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">30</td>
+<td class="">0</td>
+<td class="content-col">【波黑大选初步结果公布】财联社10月5日电，根据波黑中央选举委员会4日公布的最新</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">47</span></td>
+<td class="">06:09</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">26</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，纽约期银日内涨超1%，现报61.04美元/盎司。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">48</span></td>
+<td class="">06:00</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">24</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，WTI原油期货开盘涨0.6%，报91.6美元/桶。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">49</span></td>
+<td class="">08:06</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">20</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，现货黄金向上触及4150美元，日内上涨0.26%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">50</span></td>
+<td class="">07:46</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">17</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，日经225指数期货早盘上涨1.86%。</td>
+</tr>
+<tr>
+<td class=""><span class="rank-num">51</span></td>
+<td class="">08:08</td>
+<td class=""><span class="tag tag-c">C</span></td>
+<td class="">16</td>
+<td class="">0</td>
+<td class="content-col">财联社10月5日电，日本东证指数涨幅扩大至1%。</td>
+</tr>
+</tbody></table>
+
+<div class="footer">Generated by CLS Daily Summary Tool &copy; 2026年10月05日</div>
+</div>
+</body>
+</html>
