@@ -6,6 +6,11 @@ window.__REPORT_LIST__ = [
     "file": "reports/CLS_早报_20261105.html"
   },
   {
+    "date": "20261104",
+    "label": "2026年11月04日",
+    "file": "reports/CLS_早报_20261104.html"
+  },
+  {
     "date": "20261103",
     "label": "2026年11月03日",
     "file": "reports/CLS_早报_20261103.html"
